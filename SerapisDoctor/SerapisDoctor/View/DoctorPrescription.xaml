@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SerapisDoctor.View.DoctorPrescription"
+             Title="Prescribe Medication"
+             >
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" VerticalOptions="Fill">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="9*"/>
+                                </Grid.ColumnDefinitions>
+
+
+                                <StackLayout Grid.Column="0" VerticalOptions="Center">
+                                    <StackLayout>
+                                        <Image  
+                                             Source="MedicationSubIcon.png" 
+                                             Aspect="AspectFit"
+                                            
+                                         >
+
+                                            <Image.WidthRequest>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                </OnIdiom>
+                                            </Image.WidthRequest>
+                                            <Image.HeightRequest>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                </OnIdiom>
+                                            </Image.HeightRequest>
+
+                                        </Image>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <Entry Grid.Column="1"
+                                    Text="{Binding PrescriptionMedication, Mode=TwoWay}" 
+                                    Placeholder="Medication" 
+                                    x:Name="medication"
+                                    HorizontalOptions="FillAndExpand" 
+                                    FontSize="Large"
+                                    VerticalOptions="Center"
+                                    TranslationY="12"   
+                                />
+
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="9*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout VerticalOptions="Center" Grid.Column="0" >
+                                    <StackLayout>
+                                        <Image
+                                                Source="DosageIcon.png" 
+                                                Aspect="AspectFit"
+                                                 >
+
+                                            <Image.WidthRequest>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                </OnIdiom>
+                                            </Image.WidthRequest>
+                                            <Image.HeightRequest>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                </OnIdiom>
+                                            </Image.HeightRequest>
+
+                                        </Image>
+
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <Entry Grid.Column="1"
+                                       Text="{Binding DosagePrescriptionAmount, Mode=TwoWay}" 
+                                       Placeholder="Dosage Amount"  
+                                       x:Name="dosageAmount" 
+                                       HorizontalOptions="FillAndExpand" 
+                                       VerticalOptions="Center"
+                                       FontSize="Large"
+                                       TranslationY="12"       
+                                />
+
+
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="9*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout VerticalOptions="Center" Grid.Column="0" >
+                                    <Image 
+                                    Source="InstructionsIcon.png" 
+                                    Aspect="AspectFit"
+                                    >
+
+                                        <Image.WidthRequest>
+                                            <OnIdiom x:TypeArguments="x:Double">
+                                                <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                            </OnIdiom>
+                                        </Image.WidthRequest>
+                                        <Image.HeightRequest>
+                                            <OnIdiom x:TypeArguments="x:Double">
+                                                <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                            </OnIdiom>
+                                        </Image.HeightRequest>
+
+                                    </Image>
+                                </StackLayout>
+
+
+                                <Entry Grid.Column="1"
+                                       Text="{Binding PrescriptionInstructions, Mode=TwoWay}" 
+                                       Placeholder="Instructions" 
+                                       x:Name="instructions" 
+                                       HorizontalOptions="FillAndExpand" 
+                                       VerticalOptions="Center"
+                                       FontSize="Large"    
+                                       TranslationY="10"
+                                />
+
+
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="9*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Column="0" VerticalOptions="Center">
+                                    <StackLayout>
+                                        <Image Grid.Column="0" 
+                                    Source="AddedInstructionsIcon.png" 
+                                    Aspect="AspectFit"
+                                 >
+
+                                            <Image.WidthRequest>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                </OnIdiom>
+                                            </Image.WidthRequest>
+                                            <Image.HeightRequest>
+                                                <OnIdiom x:TypeArguments="x:Double">
+                                                    <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                    <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                </OnIdiom>
+                                            </Image.HeightRequest>
+
+                                        </Image>
+                                    </StackLayout>
+                                </StackLayout>
+
+
+                                <Entry Grid.Column="1"
+                                      Text="{Binding AddedPrescriptionNotes, Mode=TwoWay}" 
+                                      Placeholder="Added Notes" 
+                                      x:Name="notes" 
+                                      HorizontalOptions="FillAndExpand" 
+                                      VerticalOptions="Center"
+                                      FontSize="Large"
+                                      TranslationY="10"
+                                       />
+
+
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="1" VerticalOptions="End">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" 
+                           Source="addmedication.png" 
+                           HorizontalOptions="Center" 
+                           x:Name="tapCount" 
+                           Opacity="{Binding SetOpacity}"
+                           >
+
+                        <Image.WidthRequest>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Phone>40</OnIdiom.Phone>
+                                <OnIdiom.Tablet>120</OnIdiom.Tablet>
+                            </OnIdiom>
+                        </Image.WidthRequest>
+                        <Image.HeightRequest>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Phone>40</OnIdiom.Phone>
+                                <OnIdiom.Tablet>120</OnIdiom.Tablet>
+                            </OnIdiom>
+                        </Image.HeightRequest>
+
+                        <Image.GestureRecognizers >
+                            <TapGestureRecognizer 
+                                Command="{Binding AddToBusketCommand}"  
+                                x:Name="additionButton"
+                                />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Grid Grid.Column="1" HorizontalOptions="Center">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Row="0" 
+                                   Grid.Column="0"
+                                   HorizontalOptions="Center"
+                                   Source="ItemsBottle.png" 
+                                   x:Name="medicationbusketicon"
+                                   >
+
+                                <Image.WidthRequest>
+                                    <OnIdiom x:TypeArguments="x:Double">
+                                        <OnIdiom.Phone>50</OnIdiom.Phone>
+                                        <OnIdiom.Tablet>150</OnIdiom.Tablet>
+                                    </OnIdiom>
+                                </Image.WidthRequest>
+                                <Image.HeightRequest>
+                                    <OnIdiom x:TypeArguments="x:Double">
+                                        <OnIdiom.Phone>50</OnIdiom.Phone>
+                                        <OnIdiom.Tablet>150</OnIdiom.Tablet>
+                                    </OnIdiom>
+                                </Image.HeightRequest>
+
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding ViewBusketCommand}"
+                                        />
+                                </Image.GestureRecognizers>
+                            </Image>
+
+
+                            <Label 
+                                VerticalTextAlignment="Center" 
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Grid.Column="0" 
+                                Grid.Row="0" 
+                                FontSize="20"
+                                TextColor="Black"
+                                Text="{Binding MedsInBusket}"
+                                TranslationY="10"
+                                >
+
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ViewBusketCommand}"/>
+                                </Label.GestureRecognizers>
+
+                            </Label>
+
+
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

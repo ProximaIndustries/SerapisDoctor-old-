@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:profilepicture="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="SerapisDoctor.View.TabbedPages.CheckOut">
+
+    <ContentPage.Resources>
+        <Style x:Key="CellLabels" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="FontSize" Value="Medium"/>
+        </Style>
+
+        <Style x:Key="LineNumber" TargetType="Label">
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <ListView ItemsSource="{Binding List}" 
+                  HasUnevenRows="True" 
+                  SeparatorVisibility="Default" 
+                  SeparatorColor="Black"
+                  Grid.Row="0"
+                      CachingStrategy="RecycleElement"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="0,10,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="6*"/>
+                                </Grid.ColumnDefinitions>
+
+
+                                <Label Text="{Binding .}"
+                                Style="{StaticResource CellLabels}"
+                                Grid.Column="0"
+                                />
+
+
+
+                                <profilepicture:CircleImage 
+                                                Source="{Binding PatientProfilePicture}"
+                                                Grid.Column="1"
+                                                Aspect="AspectFit"
+                                                BorderThickness="1"
+                                                BorderColor="#607d8b"
+                                            >
+                                    <profilepicture:CircleImage.WidthRequest>
+                                        <OnIdiom x:TypeArguments="x:Double">
+                                            <OnIdiom.Phone>40</OnIdiom.Phone>
+                                            <OnIdiom.Tablet>65</OnIdiom.Tablet>
+                                        </OnIdiom>
+                                    </profilepicture:CircleImage.WidthRequest>
+                                    <profilepicture:CircleImage.HeightRequest>
+                                        <OnIdiom x:TypeArguments="x:Double">
+                                            <OnIdiom.Phone>40</OnIdiom.Phone>
+                                            <OnIdiom.Tablet>65</OnIdiom.Tablet>
+                                        </OnIdiom>
+                                    </profilepicture:CircleImage.HeightRequest>
+
+                                </profilepicture:CircleImage>
+
+
+
+
+                                <Label Text="{Binding FullName}" 
+                                       Style="{StaticResource CellLabels}"
+                                       Grid.Column="2"
+                                />
+
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

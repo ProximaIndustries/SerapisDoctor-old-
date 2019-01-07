@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popUp:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SerapisDoctor.View.Pop_ups.DoctorsNote"
+             xmlns:popUp="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:popUpAnimation="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             >
+
+    <popUp:PopupPage.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </popUp:PopupPage.Resources>
+    
+    
+    
+    <popUp:PopupPage.Content>
+        <Frame BackgroundColor="White" 
+               CornerRadius="12" 
+               OutlineColor="Black" 
+               HorizontalOptions="Center" 
+              VerticalOptions="Center"
+              HeightRequest="600"
+              WidthRequest="900">
+            <Grid BackgroundColor="White" 
+              
+              >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Row="0"
+                   BackgroundColor="White" 
+                   OutlineColor="Black" 
+                   CornerRadius="10"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   >
+
+                    <Label Text="{Binding TodaysDate}" 
+                       VerticalTextAlignment="Center" 
+                       HorizontalTextAlignment="Center"
+                       FontSize="30"
+                    />
+                </Frame>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="8*"/>
+                    </Grid.RowDefinitions>
+
+                    <Editor Grid.Row="1"/>
+
+                </Grid>
+
+                    <Grid Grid.Row="2" 
+                          HorizontalOptions="Center" 
+                          VerticalOptions="Center"
+                    >
+
+                    <Button TextColor="White" 
+                            FontSize="20" 
+                            Text="Save" 
+                            HeightRequest="80" 
+                            WidthRequest="400" 
+                            BackgroundColor="DodgerBlue" 
+                            CornerRadius="8"
+                            />
+
+                </Grid>
+
+            </Grid>
+        </Frame>
+    </popUp:PopupPage.Content>
+</popUp:PopupPage>

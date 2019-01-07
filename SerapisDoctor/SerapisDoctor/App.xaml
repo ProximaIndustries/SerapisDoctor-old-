@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SerapisDoctor.App">
+	<Application.Resources>
+        <Color x:Key="SecondaryColour">#262a33</Color>
+        <Color x:Key="PrimaryColour">#1E90FF</Color>
+
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColour}"/>
+        </Style>
+
+        <Style TargetType="TabbedPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColour}"/>
+        </Style>
+        
+    </Application.Resources>
+</Application>

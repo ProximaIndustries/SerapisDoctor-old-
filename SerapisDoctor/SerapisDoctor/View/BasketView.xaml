@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SerapisDoctor.View.BasketView">
+
+
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="medicationLabels">
+            <Setter Property="FontSize" Value="Large"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <ListView ItemsSource="{Binding PrescriptionList}" 
+                      HasUnevenRows="True" 
+                      SeparatorColor="Black" 
+                      
+                      >
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ContentView>
+                                    <Grid RowSpacing="15">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="9*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.Margin>
+                                            <OnIdiom x:TypeArguments="Thickness">
+                                                <OnIdiom.Phone>10,10,0,10</OnIdiom.Phone>
+                                                <OnIdiom.Tablet>12,12,0,12</OnIdiom.Tablet>
+                                            </OnIdiom>
+                                        </Grid.Margin>
+                                        
+                                        <Grid Grid.Row="0" Grid.Column="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="5*"/>
+                                                    <ColumnDefinition Width="5*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Grid.Column="0" Text="Medication" Style="{StaticResource medicationLabels}"/>
+                                                <Label Grid.Column="1" Text="{Binding PrescriptionMedication}" Style="{StaticResource medicationLabels}"/>
+
+                                            </Grid>
+                                        </Grid>
+
+                                        <Grid Grid.Row="1" Grid.Column="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="5*"/>
+                                                    <ColumnDefinition Width="5*"/>
+                                                </Grid.ColumnDefinitions>
+
+
+                                                <Label Grid.Column="0" Text="Dosage Amount" Style="{StaticResource medicationLabels}"/>
+                                                <Label Grid.Column="1" Text="{Binding PrescriptionDosage}" Style="{StaticResource medicationLabels}"/>
+
+                                            </Grid>
+                                        </Grid>
+
+                                        <Grid Grid.Row="2" Grid.Column="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="5*"/>
+                                                    <ColumnDefinition Width="5*"/>
+                                                </Grid.ColumnDefinitions>
+
+
+                                                <Label Grid.Column="0" Text="Instructions" Style="{StaticResource medicationLabels}"/>
+                                                <Label Grid.Column="1" Text="{Binding PrescriptionInstructions}" Style="{StaticResource medicationLabels}"/>
+
+                                            </Grid>
+                                        </Grid>
+
+                                        <Grid Grid.Row="3" Grid.Column="0"> 
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="5*"/>
+                                                    <ColumnDefinition Width="5*"/>
+                                                </Grid.ColumnDefinitions>
+
+
+                                                <Label Grid.Column="0" Text="Added Notes" Style="{StaticResource medicationLabels}"/>
+                                                <Label Grid.Column="1" Text="{Binding AddedPrescriptionNotes}" Style="{StaticResource medicationLabels}"/>
+
+                                            </Grid>
+                                        </Grid>
+
+                                        <Grid Grid.RowSpan="4" Grid.Column="1" 
+                                              VerticalOptions="Center"
+                                              HorizontalOptions="Center"
+                                              >
+                                            <Label FontSize="25" Text="1"/>
+                                        </Grid>
+
+                                    </Grid>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.Footer> 
+                        <Label 
+                            HorizontalOptions="Center" 
+                            IsVisible="True"
+                            Text="{Binding NumOfItems, StringFormat='Total number of items: {0}'}"
+                            FontSize="25"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            />
+                    </ListView.Footer>
+                
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Row="1" 
+                  VerticalOptions="Fill" 
+                  HorizontalOptions="Fill" 
+                  BackgroundColor="#8eacbb"
+                  >
+
+                <Label 
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="50" 
+                    TextColor="White"
+                    Text="Confirm"
+                    VerticalOptions="Center"
+                    />
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ConfirmCommand}"/>
+                </Grid.GestureRecognizers>
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

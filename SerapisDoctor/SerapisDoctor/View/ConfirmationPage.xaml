@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="SerapisDoctor.View.ConfirmationPage"
+             xmlns:template="clr-namespace:SerapisDoctor.View.Templates"
+             x:Name="Self"
+             >
+
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="6*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                    <Label Text="Patient" HorizontalOptions="Center" FontSize="25" FontAttributes="Bold"/>
+                                </Grid>
+
+                                <Grid Grid.Row="1">
+                                    <controls:CircleImage Source="userplaceholder.png" BorderColor="Black" BorderThickness="2">
+                                        <controls:CircleImage.WidthRequest>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, iOS">100</On>
+                                                <On Platform="WinPhone">50</On>
+                                            </OnPlatform>
+                                        </controls:CircleImage.WidthRequest>
+                                        <controls:CircleImage.HeightRequest>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, iOS">100</On>
+                                                <On Platform="WinPhone">50</On>
+                                            </OnPlatform>
+                                        </controls:CircleImage.HeightRequest>
+                                    </controls:CircleImage>
+                                </Grid>
+
+                                <Grid Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Center">
+                                    <Label Text="Khanyisani Buthelezi" HorizontalOptions="Center" FontSize="20"/>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="6*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0" HorizontalOptions="Center">
+                                    <Label Text="Doctor" FontAttributes="Bold" FontSize="25"/>
+                                </Grid>
+
+                                <Grid Grid.Row="1" HorizontalOptions="Fill">
+                                    <controls:CircleImage Source="userplaceholder.png" BorderColor="Black" BorderThickness="2">
+                                        <controls:CircleImage.WidthRequest>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, iOS">100</On>
+                                                <On Platform="WinPhone">50</On>
+                                            </OnPlatform>
+                                        </controls:CircleImage.WidthRequest>
+                                        <controls:CircleImage.HeightRequest>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, iOS">100</On>
+                                                <On Platform="WinPhone">50</On>
+                                            </OnPlatform>
+                                        </controls:CircleImage.HeightRequest>
+                                    </controls:CircleImage>
+                                </Grid>
+
+                                <Grid Grid.Row="2" HorizontalOptions="Center">
+                                    <Label Text="Dr. X.A Fymboos" FontSize="20"/>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid.Margin>
+                        <OnIdiom x:TypeArguments="Thickness">
+                            <OnIdiom.Phone>0,15,0,0</OnIdiom.Phone>
+                            <OnIdiom.Tablet>0,15,0,0</OnIdiom.Tablet>
+                        </OnIdiom>
+                    </Grid.Margin>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <BoxView Color="Black" HorizontalOptions="FillAndExpand"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <carousel:CarouselViewControl 
+                        ShowArrows="True"  
+                        CurrentPageIndicatorTintColor="White"
+                        Orientation="Horizontal"
+                        ItemsSource="{Binding Tile}"
+                        ShowIndicators="True"
+                        IndicatorsShape="Square"
+                        InterPageSpacing="0"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        IsSwipeEnabled="True"
+                        >
+
+                        <carousel:CarouselViewControl.ItemTemplate>
+                            <DataTemplate>
+                                <template:SummaryTemplate/>
+                            </DataTemplate>
+                        </carousel:CarouselViewControl.ItemTemplate>
+                        
+                    </carousel:CarouselViewControl>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <Image Source="TouchIdIcon.png">
+                        <Image.WidthRequest>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Phone>70</OnIdiom.Phone>
+                                <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                            </OnIdiom>
+                        </Image.WidthRequest>
+                        <Image.HeightRequest>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Phone>70</OnIdiom.Phone>
+                                <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                            </OnIdiom>
+                        </Image.HeightRequest>
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AuthenticatePrescription}"/>
+                        </Image.GestureRecognizers>
+
+                    </Image>
+                </Grid>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

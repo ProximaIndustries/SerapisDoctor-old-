@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:template="clr-namespace:SerapisDoctor.Cells"
+             xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             x:Class="SerapisDoctor.View.TabbedPages.CheckIn"
+             >
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <template:PatientSelector x:Key="PaymentMethodSelector"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <ListView x:Name="waitingList"
+                      ItemsSource="{Binding ListOfBookedPatients}" 
+                      HasUnevenRows="True" 
+                      SeparatorColor="Black" 
+                      RefreshCommand="{Binding LoadItemsCommand}"
+                      ItemTemplate="{StaticResource PaymentMethodSelector}"
+                      CachingStrategy="RecycleElement"
+                >
+
+                <ListView.Behaviors>
+                    <behaviorsPack:SelectedItemBehavior Command="{Binding SelectPatient}"/>
+                </ListView.Behaviors>
+                
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

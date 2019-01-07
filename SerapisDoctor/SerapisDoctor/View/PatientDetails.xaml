@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="SerapisDoctor.View.PatientDetails">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" 
+                   
+                   x:Key="TileHeader"
+                   >
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+
+            <Style TargetType="Label"
+                   
+                   x:Key="PatientInfo"
+                   >
+                <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+
+            <Style TargetType="Label"
+                   
+                   x:Key="PatientName"
+                   >
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="Large"/>
+            </Style>
+
+            <Style TargetType="Image" x:Key="BottomIcons">
+                <Setter Property="HeightRequest" Value="80"/>
+                <Setter Property="WidthRequest" Value="80"/>
+            </Style>
+
+
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid x:Name="patientConditions"
+                  Margin="0,5,0,0"
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Fill"
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--#region Users First Hand Information-->
+                <Grid Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10, 10, 0, 5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <control:CircleImage 
+                            Source="userplaceholder.png" 
+                            Aspect="AspectFit" 
+                            BorderColor="DodgerBlue" 
+                            BorderThickness="2"
+                            HorizontalOptions="Center"
+                            Grid.Column="0"
+                            >
+
+                            <control:CircleImage.WidthRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android, iOS">80</On>
+                                    <On Platform="WinPhone">35</On>
+                                </OnPlatform>
+                            </control:CircleImage.WidthRequest>
+                            <control:CircleImage.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Android, iOS">80</On>
+                                    <On Platform="WinPhone">35</On>
+                                </OnPlatform>
+                            </control:CircleImage.HeightRequest>
+                        </control:CircleImage>
+
+                        <Label
+                            Text="Khanyisani Buthelezi"
+                            Grid.Column="1"
+                            Style="{StaticResource PatientName}"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            />
+
+                    </Grid>
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Black Line-->
+                <Grid Grid.Row="1" HorizontalOptions="Fill">
+                    <BoxView
+                        Color="Black"
+                        />
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region Body with more information tiles-->
+                <Grid Grid.Row="2" 
+                      HorizontalOptions="Fill" 
+                      VerticalOptions="Fill" 
+                      >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="5*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--#region Age Tile-->
+                                <Grid Grid.Column="0" 
+                                      
+                                      HorizontalOptions="Fill"
+                                      >
+
+                                    <Frame>
+                                        <Grid VerticalOptions="Center" >
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Image Source="TileAgeIcon.png">
+                                                    <Image.WidthRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.WidthRequest>
+                                                    <Image.HeightRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.HeightRequest>
+                                                </Image>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Label
+                                                Text="Age"
+                                                Style="{StaticResource TileHeader}"
+                                                />
+                                            </Grid>
+
+                                            <Grid Grid.Row="2">
+                                                <Label
+                                                Text="21"
+                                                Style="{StaticResource PatientInfo}"
+                                                />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </Grid>
+                                <!--#endregion-->
+
+                                <!--#region Blood Type Tile-->
+                                <Grid Grid.Column="1" 
+                                      VerticalOptions="Fill" 
+                                      HorizontalOptions="Fill"
+                                      >
+                                    <Frame>
+                                        <Grid VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Image
+                                                Aspect="AspectFit"
+                                                Source="TileBloodIcon.png"
+                                                >
+                                                    <Image.WidthRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.WidthRequest>
+                                                    <Image.HeightRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.HeightRequest>
+                                                </Image>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Label
+                                                  Text="Blood type"
+                                                  Style="{StaticResource TileHeader}"
+                                                    />
+                                            </Grid>
+
+                                            <Grid Grid.Row="2">
+                                                <Label
+                                                Text="A+"
+                                                Style="{StaticResource PatientInfo}"
+                                                />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+                                </Grid>
+                                <!--#endregion-->
+
+                                <!--#region Blood Pressure-->
+                                <Grid Grid.Column="2" 
+                                      VerticalOptions="Fill" 
+                                      HorizontalOptions="Fill"
+                                      >
+
+                                    <Frame >
+                                        <Grid VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Image
+                                                Aspect="AspectFit"
+                                                Source="TileBloodPressureIcon.png"
+                                                >
+                                                    <Image.WidthRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.WidthRequest>
+                                                    <Image.HeightRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.HeightRequest>
+                                                </Image>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Label
+                                                 Text="Blood Pressure"
+                                                 Style="{StaticResource TileHeader}"
+                                                    />
+                                            </Grid>
+
+                                            <Grid Grid.Row="2">
+                                                <Label
+                                                Text="No"
+                                                Style="{StaticResource PatientInfo}"
+                                                />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </Grid>
+                                <!--#endregion-->
+
+                                <!--#region Gender-->
+                                <Grid Grid.Column="3" 
+                                      VerticalOptions="Fill" 
+                                      HorizontalOptions="Fill"
+                                      >
+
+                                    <Frame>
+                                        <Grid VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Image
+                                                Aspect="AspectFit"
+                                                Source="TileGenderIcon.png"
+                                            />
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Label
+                                                 Text="Gender"
+                                                 Style="{StaticResource TileHeader}"
+                                                 />
+                                            </Grid>
+
+                                            <Grid Grid.Row="2">
+                                                <Label
+                                                Text="Male"
+                                                Style="{StaticResource PatientInfo}"
+                                                />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </Grid>
+                                <!--#endregion-->
+
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--#region Chronic disease-->
+                                <Grid Grid.Column="0" 
+                                      VerticalOptions="Fill" 
+                                      HorizontalOptions="Fill"
+                                      >
+
+                                    <Frame>
+                                        <Grid VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Image
+                                                Aspect="AspectFit"
+                                                Source="TileChronicIcon.png"
+                                                >
+                                                    <Image.WidthRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.WidthRequest>
+                                                    <Image.HeightRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.HeightRequest>
+                                                </Image>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Label
+                                                    Text="Chronic Disease(s)"
+                                                    Style="{StaticResource TileHeader}"
+                                                    />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+
+
+                                </Grid>
+                                <!--#endregion-->
+
+
+                                <!--#region Medical Files Tile-->
+                                <Grid Grid.Column="1" 
+                                      VerticalOptions="Fill" 
+                                      HorizontalOptions="Fill"
+                                      >
+
+                                    <Frame>
+                                        <Grid VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Image
+                                                Aspect="AspectFit"
+                                                Source="TileFolderIcon.png"
+                                                >
+                                                    <Image.WidthRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.WidthRequest>
+                                                    <Image.HeightRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.HeightRequest>
+                                                </Image>
+
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Label
+                                                 Text="Medical Files"
+                                                 Style="{StaticResource TileHeader}"   
+                                           />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </Grid>
+                                <!--#endregion-->
+
+                                <!--#region Medication Tile-->
+                                <Grid Grid.Column="2" 
+                                      VerticalOptions="Fill" 
+                                      HorizontalOptions="Fill"
+                                      >
+
+                                    <Frame>
+                                        <Grid VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Image
+                                                Aspect="AspectFit"
+                                                Source="TileMedicationIcon.png"
+                                            />
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Label
+                                                 Text="Medication"
+                                                 Style="{StaticResource TileHeader}"
+                                                    />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </Grid>
+                                <!--#endregion-->
+
+                                <!--#region Allergies Tile-->
+                                <Grid Grid.Column="3" 
+                                      VerticalOptions="Fill" 
+                                      HorizontalOptions="Fill"
+                                      >
+
+                                    <Frame>
+                                        <Grid VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0">
+                                                <Image
+                                                Aspect="AspectFit"
+                                                Source="TileAllergiesIcon.png"
+                                                >
+                                                    <Image.WidthRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.WidthRequest>
+                                                    <Image.HeightRequest>
+                                                        <OnIdiom x:TypeArguments="x:Double">
+                                                            <OnIdiom.Phone>50</OnIdiom.Phone>
+                                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                                        </OnIdiom>
+                                                    </Image.HeightRequest>
+                                                </Image>
+                                            </Grid>
+
+                                            <Grid Grid.Row="1">
+                                                <Label
+                                                    Text="Allergies"
+                                                    Style="{StaticResource TileHeader}"
+                                                    />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame>
+
+                                </Grid>
+                                <!--#endregion-->
+
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+                <!--#endregion-->
+
+                <!--#region The next buttons-->
+                <Grid Grid.Row="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Image Source="AddFileIcon.png" Style="{StaticResource BottomIcons}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DoctorsNoteCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
+                        
+                        <Grid Grid.Column="1">
+                            <Image Source="DoctorNoteIcon.png" Style="{StaticResource BottomIcons}">
+
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding AddMedicalFiles}"/>
+                                </Image.GestureRecognizers>
+                                
+                            </Image>
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+                            <Image 
+                                Source="PrescriptionFillIcon.png" 
+                                Style="{StaticResource BottomIcons}"
+                                >
+
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding PrescriptionCommand}"/>
+                                </Image.GestureRecognizers>
+
+                            </Image>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+                <!--#endregion-->
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

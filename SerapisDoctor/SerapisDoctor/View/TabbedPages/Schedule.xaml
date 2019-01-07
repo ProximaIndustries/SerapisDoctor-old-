@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:SerapisDoctor.Controls.Calendar"
+             x:Class="SerapisDoctor.View.TabbedPages.Schedule">
+
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <!--Practice display information-->
+            <Grid Grid.Row="0">
+
+            </Grid>
+
+            <!--The actual calendar-->
+
+            <controls:Calendar 
+                x:Name="AppCalendar"
+                StartDay="Sunday"
+                DatesFontSize="13"
+                SelectedFontSize="15"
+                WeekdaysFontSize="13"
+                TitleLabelFontSize="13"
+                WeekdaysShow="True"
+                DatesBackgroundColor="White"
+                MultiSelectDates="False"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                DateCommand="{Binding SelectedDateCommand}"
+                SelectedDates="{Binding Dates, Mode=TwoWay}"   
+                TitleLeftArrowTextColor="Black"
+                TitleRightArrowTextColor="Black"
+                Grid.Row="1"
+                >
+
+                <controls:Calendar.SelectedBackgroundImage>
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android" Value="SelectionBall"/>
+                    </OnPlatform>
+                </controls:Calendar.SelectedBackgroundImage>
+            </controls:Calendar>
+
+
+
+            <!--The confirmation Button-->
+            <Grid Grid.Row="2">
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
