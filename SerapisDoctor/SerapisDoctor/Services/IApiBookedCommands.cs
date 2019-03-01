@@ -9,8 +9,13 @@ namespace SerapisDoctor.Services
 {
     interface IApiBookedCommands
     {
-         Task<List<Patient>> GetBookedPatientsAsync();
-         Task GetPatientFileAsync(ObjectId id, Patient patientInfomation);
+        //Get all booked patients for the day
+         Task<IEnumerable<Patient>> GetBookedPatientsAsync();
+
+        //Get the patients full details
+         Task<Patient> GetPatientFileAsync(ObjectId patientInfomation);
+
+        //Check Them out the practice
          Task CheckPatientOutAsync(ObjectId id);
     }
 }

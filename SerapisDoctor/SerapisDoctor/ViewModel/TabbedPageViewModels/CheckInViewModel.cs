@@ -26,8 +26,8 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
         public CheckInViewModel()
         {
-            GenerateDummyList();
-            //GenerateDummyList2Async();
+            //GenerateDummyList();
+            GenerateDummyList2Async();
             popUp = new CheckInPopUp();
         }
 
@@ -62,8 +62,9 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
         private async Task GenerateDummyList2Async()
         {
-            ApiCalls call = new ApiCalls();
-             await call.GetBookedPatientsAsync();
+            BookingApi bookedPatient_today = new BookingApi();
+
+            await bookedPatient_today.GetBookedPatientsAsync();
         }
 
         public ICommand SelectPatient => new Command<Patient>(patient =>

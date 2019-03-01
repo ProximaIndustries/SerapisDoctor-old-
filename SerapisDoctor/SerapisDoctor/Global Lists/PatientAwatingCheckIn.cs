@@ -21,7 +21,6 @@ namespace SerapisDoctor.Global_Lists
         {
             PatientsBooked.Add(patient);
             UpdateList();
-           
         }
 
        public static ObservableCollection<Patient> UpdateList()

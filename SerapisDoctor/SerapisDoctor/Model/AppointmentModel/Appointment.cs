@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using SerapisDoctor.Model.Patient;
 namespace SerapisDoctor.Model.AppointmentModel
 {
     public class Appointment
@@ -13,5 +13,6 @@ namespace SerapisDoctor.Model.AppointmentModel
         public string TimeBooked { get; set; }
         public bool HasSeenGP { get; set; }
         public TimeSpan TimeSpent { get; set; }
+        public Patient.Patient PatientInformation { get; set; }
     }
 }
