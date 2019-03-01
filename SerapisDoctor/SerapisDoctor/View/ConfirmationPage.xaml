@@ -6,6 +6,7 @@
              x:Class="SerapisDoctor.View.ConfirmationPage"
              xmlns:template="clr-namespace:SerapisDoctor.View.Templates"
              x:Name="Self"
+             
              >
 
 
