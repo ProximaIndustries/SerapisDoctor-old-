@@ -22,14 +22,22 @@ namespace SerapisDoctor
 
         public App ()
 		{
-			InitializeComponent();
-
-            PCA = new PublicClientApplication(ClientId)
+            try
             {
-                RedirectUri = RedirectAddress
-            };
+                InitializeComponent();
 
-			MainPage = new NavigationPage(new MainPage());
+                PCA = new PublicClientApplication(ClientId)
+                {
+                    RedirectUri = RedirectAddress
+                };
+
+                MainPage = new NavigationPage(new MainPage());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
 		}
 
 		protected override void OnStart ()
