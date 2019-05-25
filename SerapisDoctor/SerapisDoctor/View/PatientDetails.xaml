@@ -46,6 +46,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="customerinsightIcon.png" Command="{Binding PatientAnaylticsPortal}"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <ScrollView>
             <Grid x:Name="patientConditions"

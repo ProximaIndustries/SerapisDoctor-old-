@@ -21,14 +21,21 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
         private CheckInPopUp popUp;
 
+        
+
         private Patient Patient;
         private Patient Patient2;
 
+        public Command PatientAnaylticsPortal { get; set; }
+
         public CheckInViewModel()
         {
-            //GenerateDummyList();
-            GenerateDummyList2Async();
+            
+             GenerateDummyList();
+            //GenerateDummyList2Async(); !!!use when api with azure is up and running
             popUp = new CheckInPopUp();
+
+            
         }
 
         private void GenerateDummyList()
