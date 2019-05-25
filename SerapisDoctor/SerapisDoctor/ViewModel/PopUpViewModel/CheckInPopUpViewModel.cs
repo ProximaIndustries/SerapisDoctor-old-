@@ -22,7 +22,6 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
         {
             CheckInPatient = new Command(AddPatientToList);
 
-
             //temp code
             ClosePopup = new Command(CloseThePopUp);
 
@@ -60,7 +59,7 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
             PatientsInLine.PatientAdd(patientObj);
 
             //Remove from PatientAwaitingCheckIn
-            //PatientAwatingCheckIn.RemoveFromList(patientObj);
+            PatientAwatingCheckIn.RemoveFromList(patientObj);
 
             PopupNavigation.Instance.PopAllAsync(true);
         }

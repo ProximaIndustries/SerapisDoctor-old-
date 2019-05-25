@@ -12,6 +12,39 @@ namespace SerapisDoctor.ViewModel
 
         }
 
+        private bool isButtonEnabled;
+
+        public bool IsButtonEnabled
+        {
+            get
+            {
+                return isButtonEnabled;
+            }
+            set
+            {
+                isButtonEnabled = value;
+                OnPropertyChanged("IsButtonEnabled");
+                IsButtonEnabled = value;
+            }
+        }
+
+
+        private bool isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get
+            {
+                return isRefreshing;
+            }
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged("IsRefreshing");
+                isRefreshing = value;
+            }
+        }
+
 
         private bool isBusy;
         public bool IsBusy
@@ -24,23 +57,12 @@ namespace SerapisDoctor.ViewModel
                 isBusy = value;
 
                 OnPropertyChanged("IsBusy");
+
+                isBusy = value;
             }
         }
 
-        private bool isNotBusy;
-        public bool IsNotBusy
-        {
-            get
-            {
-                return isNotBusy;
-            }
-            set
-            {
-                isNotBusy = value;
-                OnPropertyChanged("IsNotBusy");
-            }
-        }
-
+       
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

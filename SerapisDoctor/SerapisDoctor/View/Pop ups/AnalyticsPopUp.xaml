@@ -38,14 +38,14 @@
                 <Image Source="closebutton.png">
                     <Image.WidthRequest>
                         <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android, iOS">50</On>
-                            <On Platform="winPhone">55</On>
+                            <On Platform="Android, iOS">60</On>
+                            <On Platform="winPhone">65</On>
                         </OnPlatform>
                     </Image.WidthRequest>
                     <Image.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android, iOS">50</On>
-                            <On Platform="winPhone">55</On>
+                            <On Platform="Android, iOS">60</On>
+                            <On Platform="winPhone">65</On>
                         </OnPlatform>
                     </Image.HeightRequest>
                 </Image>
@@ -53,6 +53,29 @@
 
             <Grid Grid.Row="1">
                 <!--Anaylics go here, To tell the doctor what to look at-->
+                <ListView ItemsSource="{Binding .}" SeparatorVisibility="Default" SeparatorColor="Black" CachingStrategy="RecycleElement">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+                                        <!--Image icon from back-end-->
+                                    </Grid>
+
+                                    <Grid Grid.Column="1">
+                                        <!--Name of place of body to look at-->
+                                    </Grid>
+                                    
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
             
         </Grid>

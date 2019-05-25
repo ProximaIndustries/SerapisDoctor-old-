@@ -23,6 +23,8 @@
                       RefreshCommand="{Binding LoadItemsCommand}"
                       ItemTemplate="{StaticResource PaymentMethodSelector}"
                       CachingStrategy="RecycleElement"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      IsPullToRefreshEnabled="True"
                 >
 
                 <ListView.Behaviors>

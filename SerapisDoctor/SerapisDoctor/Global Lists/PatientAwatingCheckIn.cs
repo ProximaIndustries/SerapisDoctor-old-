@@ -38,9 +38,12 @@ namespace SerapisDoctor.Global_Lists
         public static void RemoveFromList(Patient patient)
         {
             var indexOfPatient=PatientsBooked.IndexOf(patient);
-            PatientsBooked.Remove(patient);
+
+            var element = PatientsBooked.Where(x => x.FullName == patient.FullName);
+
+            PatientsBooked.Remove(element.First());
+
             UpdateList();
-            
         }
 
         public static void ClearList()
