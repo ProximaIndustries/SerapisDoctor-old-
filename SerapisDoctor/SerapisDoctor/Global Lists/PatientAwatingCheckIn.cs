@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Collections.Specialized;
 using System.Linq;
+using SerapisDoctor.Services;
 
 namespace SerapisDoctor.Global_Lists
 {
@@ -14,6 +15,11 @@ namespace SerapisDoctor.Global_Lists
 
         public static ObservableCollection<Patient> GetPatients()
         {
+            foreach (var patient in DataStore.GetBookedPatients())
+            {
+                PatientsBooked.Add(patient);
+            }
+
             return PatientsBooked;
         }
 

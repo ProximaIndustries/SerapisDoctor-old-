@@ -21,16 +21,12 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
         private CheckInPopUp popUp;
 
-        private Patient Patient;
-        private Patient Patient2;
-        private Patient Patient3;
-
         public Command LoadItemsCommand { get; set; }
 
         public CheckInViewModel()
         {
 
-             GenerateDummyList();
+            GenerateDummyList();
             //GenerateDummyList2Async(); !!!use when api with azure is up and running
             popUp = new CheckInPopUp();
 
@@ -43,49 +39,9 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
         private void GenerateDummyList()
         {
-            Appointment appointment = new Appointment();
-
             ListOfBookedPatients = new ObservableCollection<Patient>();
 
-            Patient = new Patient()
-            {
-                 PatientProfilePicture="Capture.png",
-                 FullName="Khanyisani Buthelezi",
-                 Gender=Model.Enum.Genders.male,
-                 HasBloodPressure=false,
-                 IsDepenedent=false,
-                 ListOfAllergies=null,
-                 MedicalAidPatient=true,
-                 PatientAge=22,
-                 Appointment=new Appointment
-                 {
-                     DateBooked =DateTime.Today.ToShortDateString(),
-                     TimeBooked =DateTime.Today.ToShortTimeString()
-                 }
-            };
-
-            Patient2 = new Patient()
-            {
-                PatientProfilePicture = "userplaceholder.png",
-                FullName = "Bonga Ngcobo",
-                Gender = Model.Enum.Genders.male,
-                HasBloodPressure = false,
-                IsDepenedent = false,
-                ListOfAllergies = null,
-                MedicalAidPatient = false,
-                PatientAge = 21,
-                Appointment = new Appointment
-                {
-                    DateBooked = DateTime.Today.ToShortDateString(),
-                    TimeBooked = DateTime.Today.AddMinutes(45).ToShortTimeString()
-                }
-            };
-        
-            PatientAwatingCheckIn.AddPatient(Patient2);
-
-            PatientAwatingCheckIn.AddPatient(Patient);
-
-            ListOfBookedPatients = PatientAwatingCheckIn.PatientsBooked;
+            ListOfBookedPatients = PatientAwatingCheckIn.GetPatients();
         }
 
 
@@ -100,25 +56,9 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                 //Try look for more booked patients for the day in the server (Services)
 
                 //the follwing is dummy data to test to removed when back end configured
-                Patient3 = new Patient()
-                {
-                    PatientProfilePicture = "userplaceholder.png",
-                    FullName = "Anderson Cooper",
-                    Gender = Model.Enum.Genders.male,
-                    HasBloodPressure = false,
-                    IsDepenedent = false,
-                    ListOfAllergies = null,
-                    MedicalAidPatient = true,
-                    PatientAge = 45,
-                    Appointment = new Appointment
-                    {
-                        DateBooked = DateTime.Today.ToShortDateString(),
-                        TimeBooked = DateTime.Today.ToShortTimeString()
-                    }
-                };
+                var patientAdded=DataStore.GetRefereshedBookedPatients();
 
-                PatientAwatingCheckIn.AddPatient(Patient3);
-
+                PatientAwatingCheckIn.AddPatient(patientAdded);
             }
             catch (Exception)
             {
@@ -169,6 +109,7 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
                 //Brings up the pop up dialog box
                 PopupNavigation.Instance.PushAsync(popUp);
+
             }
             catch (Exception)
             {
