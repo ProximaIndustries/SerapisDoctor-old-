@@ -25,7 +25,15 @@
 
             <!--The schedule list-->
             <Grid Grid.Row="1" BackgroundColor="Green">
-                
+                <ListView ItemsSource="{Binding HoursOfOperation}" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="Value" TextColor="Black" FontSize="Large"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
 
 

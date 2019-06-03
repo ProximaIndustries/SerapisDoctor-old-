@@ -68,6 +68,7 @@
                             WidthRequest="400" 
                             BackgroundColor="DodgerBlue" 
                             CornerRadius="8"
+                            Command="{Binding .}"
                             />
 
                 </Grid>

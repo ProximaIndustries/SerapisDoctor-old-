@@ -57,7 +57,11 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                  ListOfAllergies=null,
                  MedicalAidPatient=true,
                  PatientAge=22,
-                 Appointment=new Appointment { DateBooked=DateTime.Today.ToShortDateString(), TimeBooked=DateTime.Today.ToShortTimeString() }
+                 Appointment=new Appointment
+                 {
+                     DateBooked =DateTime.Today.ToShortDateString(),
+                     TimeBooked =DateTime.Today.ToShortTimeString()
+                 }
             };
 
             Patient2 = new Patient()

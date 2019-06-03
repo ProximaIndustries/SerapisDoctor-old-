@@ -50,5 +50,7 @@ namespace SerapisDoctor.ViewModel
         {
            await App.Current.MainPage.Navigation.PushAsync(new PatientDetails());
         }
+
+
     }
 }
