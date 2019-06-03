@@ -719,5 +719,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\closebutton.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Capture.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

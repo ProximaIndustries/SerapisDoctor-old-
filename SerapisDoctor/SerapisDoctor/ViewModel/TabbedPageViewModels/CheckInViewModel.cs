@@ -49,7 +49,7 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
             Patient = new Patient()
             {
-                 PatientProfilePicture="userplaceholder.png",
+                 PatientProfilePicture="Capture.png",
                  FullName="Khanyisani Buthelezi",
                  Gender=Model.Enum.Genders.male,
                  HasBloodPressure=false,
@@ -62,7 +62,19 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
             Patient2 = new Patient()
             {
-
+                PatientProfilePicture = "userplaceholder.png",
+                FullName = "Bonga Ngcobo",
+                Gender = Model.Enum.Genders.male,
+                HasBloodPressure = false,
+                IsDepenedent = false,
+                ListOfAllergies = null,
+                MedicalAidPatient = false,
+                PatientAge = 21,
+                Appointment = new Appointment
+                {
+                    DateBooked = DateTime.Today.ToShortDateString(),
+                    TimeBooked = DateTime.Today.AddMinutes(45).ToShortTimeString()
+                }
             };
         
             PatientAwatingCheckIn.AddPatient(Patient2);
