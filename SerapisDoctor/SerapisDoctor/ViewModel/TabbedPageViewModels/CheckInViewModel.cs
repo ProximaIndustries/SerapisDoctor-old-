@@ -60,7 +60,10 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                  Appointment=new Appointment { DateBooked=DateTime.Today.ToShortDateString(), TimeBooked=DateTime.Today.ToShortTimeString() }
             };
 
-            Patient2 = new Patient();
+            Patient2 = new Patient()
+            {
+
+            };
         
             PatientAwatingCheckIn.AddPatient(Patient2);
 
