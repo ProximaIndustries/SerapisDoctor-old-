@@ -75,7 +75,7 @@
                         SeparatorColor="Black"
                         HasUnevenRows="True"
                         x:Name="DiagnosisList"     
-                        ItemsSource="{Binding DiagnosisList}"
+                        ItemsSource="{Binding DiagnoseList}"
                         >
 
                     <ListView.Header>

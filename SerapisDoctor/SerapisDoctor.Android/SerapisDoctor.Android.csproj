@@ -54,6 +54,9 @@
     <PackageReference Include="Microcharts">
       <Version>0.8.3-pre</Version>
     </PackageReference>
+    <PackageReference Include="System.Data.SQLite.Core">
+      <Version>1.0.110</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle">
       <Version>3.0.0.6-beta</Version>
     </PackageReference>

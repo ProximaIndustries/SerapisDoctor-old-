@@ -6,6 +6,8 @@ using Microsoft.Identity.Client;
 using System.Collections.Generic;
 using SerapisDoctor.Model.Patient;
 using System.Collections.ObjectModel;
+using SerapisDoctor.Services;
+using System.IO;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace SerapisDoctor
@@ -20,12 +22,31 @@ namespace SerapisDoctor
         public static UIParent UiPartent;
         #endregion
 
+        #region Properties (Local database)
+        static PatientsWaintingLineDb database;
+
+        public static PatientsWaintingLineDb Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new PatientsWaintingLineDb(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PatientSQLite.db3"));
+                }
+
+                return database;
+            }
+        }
+        #endregion
+
         public App ()
 		{
             try
             {
                 InitializeComponent();
 
+
+                //Get the doctors events from microsoft outlook
                 PCA = new PublicClientApplication(ClientId)
                 {
                     RedirectUri = RedirectAddress
