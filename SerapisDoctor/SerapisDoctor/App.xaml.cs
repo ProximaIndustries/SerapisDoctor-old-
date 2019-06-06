@@ -12,6 +12,9 @@ using System.IO;
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace SerapisDoctor
 {
+
+    //This file needs to made neater and cleaner.
+
 	public partial class App : Application
 	{
         #region Microsoft Graph credentials
@@ -23,29 +26,18 @@ namespace SerapisDoctor
         #endregion
 
         #region Properties (Local database)
-        static PatientsWaintingLineDb database;
+        public static string database;
 
-        public static PatientsWaintingLineDb Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new PatientsWaintingLineDb(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "PatientSQLite.db3"));
-                }
-
-                return database;
-            }
-        }
+        
         #endregion
 
         public App ()
 		{
+            InitializeComponent();
+
             try
             {
-                InitializeComponent();
-
-
+             
                 //Get the doctors events from microsoft outlook
                 PCA = new PublicClientApplication(ClientId)
                 {
@@ -60,6 +52,16 @@ namespace SerapisDoctor
             }
 
 		}
+
+        //Second construtor for local storage options 
+        public App(string filePath)
+        {
+            InitializeComponent();
+
+            MainPage = new NavigationPage(new MainPage());
+
+            database = filePath;
+        }
 
 		protected override void OnStart ()
 		{

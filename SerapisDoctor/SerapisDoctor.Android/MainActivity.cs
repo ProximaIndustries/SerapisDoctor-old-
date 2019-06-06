@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using CarouselView.FormsPlugin.Android;
+using System.IO;
 
 namespace SerapisDoctor.Droid
 {
@@ -22,7 +23,16 @@ namespace SerapisDoctor.Droid
             base.OnCreate(bundle);
             
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+
+            //Sqlite storage android code
+            string fileName = "patients_db.db3";
+
+            string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+
+            //Combines the name and the path
+            string completePath = Path.Combine(folderPath, fileName);
+
+            LoadApplication(new App(completePath));
         }
     }
 }
