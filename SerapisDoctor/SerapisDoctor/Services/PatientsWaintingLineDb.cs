@@ -45,7 +45,7 @@ namespace SerapisDoctor.Services
             using (SQLiteConnection conn = new SQLiteConnection(database))
             {
                 conn.CreateTable<PateintMeta>();
-                conn.Insert(patientMetaData);
+                int rowwsAdded=conn.Insert(patientMetaData);
             }
         }
 
