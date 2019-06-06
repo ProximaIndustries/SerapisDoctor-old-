@@ -1,52 +1,75 @@
 ﻿using SerapisDoctor.Model.Patient;
-using SQLite;
+using SQLitePCL;
 using System;
 using System.Collections.Generic;
+using SQLite;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SerapisDoctor.Services
 {
-    public class PatientsWaintingLineDb
+    public static class PatientsWaintingLineDb
     {
-        readonly SQLiteAsyncConnection database;
+        readonly static string database=App.Database;
 
-        public PatientsWaintingLineDb(string _dbPath)
+        public static Task<List<PateintMeta>> GetPatientsAsync(PateintMeta metaData)
         {
-            database = new SQLiteAsyncConnection(_dbPath);
-            database.CreateTableAsync<Patient>().Wait();
+            using(SQLiteConnection conn=new SQLiteConnection(database))
+            {
+                conn.CreateTable<PateintMeta>();
+                var patients = conn.Table<PateintMeta>().ToList();
+
+                return Task.FromResult(patients);
+            }
         }
 
-        public Task<List<Patient>> GetItemsAsync()
+        //public static Task<List<Patient>> GetItemsNotDoneAsync()
+        //{
+        //    return database.QueryAsync<Patient>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+        //}
+
+        public static Task<PateintMeta> GetItemAsync(int id)
         {
-            return database.Table<Patient>().ToListAsync();
+            using(SQLiteConnection conn=new SQLiteConnection(database))
+            {
+                conn.CreateTable<PateintMeta>();
+                var patient = conn.Table<PateintMeta>().Where(i => i.LocalId == id).FirstOrDefault();
+
+                return Task.FromResult(patient);
+            }
         }
 
-        public Task<List<Patient>> GetItemsNotDoneAsync()
+
+        public static void InsertPatient(PateintMeta patientMetaData)
         {
-            return database.QueryAsync<Patient>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+            using (SQLiteConnection conn = new SQLiteConnection(database))
+            {
+                conn.CreateTable<PateintMeta>();
+                conn.Insert(patientMetaData);
+            }
         }
 
-        public Task<Patient> GetItemAsync(MongoDB.Bson.ObjectId id)
-        {
-            return database.Table<Patient>().Where(i => i.Id == id).FirstOrDefaultAsync();
-        }
-
-        public Task<int> SaveItemAsync(Patient patient)
+        public static void SaveItemAsync(Patient patient)
         {
             if (patient.Id != null)
             {
-                return database.UpdateAsync(patient);
+                //Update info
             }
             else
             {
-                return database.InsertAsync(patient);
+                //Insert into database
             }
         }
 
-        public Task<int> DeleteItemAsync(Patient patient)
+        public static Task<PateintMeta> DeleteItemAsync(int localId)
         {
-            return database.DeleteAsync(patient);
+            using (SQLiteConnection conn = new SQLiteConnection(database))
+            {
+                conn.CreateTable<PateintMeta>();
+                var patient = conn.Table<PateintMeta>().Where(i => i.LocalId == localId).FirstOrDefault();
+
+                return Task.FromResult(patient);
+            }
         }
     }
 }

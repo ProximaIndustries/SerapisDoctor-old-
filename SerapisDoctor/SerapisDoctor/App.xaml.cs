@@ -26,9 +26,7 @@ namespace SerapisDoctor
         #endregion
 
         #region Properties (Local database)
-        public static string database;
-
-        
+        public static string Database=string.Empty;
         #endregion
 
         public App ()
@@ -60,7 +58,7 @@ namespace SerapisDoctor
 
             MainPage = new NavigationPage(new MainPage());
 
-            database = filePath;
+            Database = filePath;
         }
 
 		protected override void OnStart ()
