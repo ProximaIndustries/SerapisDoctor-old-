@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SerapisDoctor.Droid.Dependencies;
 using System.Data.SQLite;
 using System.IO;
-using System.Linq;
-using System.Text;
+using Xamarin.Forms;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
+[assembly: Dependency(typeof(SQliteAndroid))]
 namespace SerapisDoctor.Droid.Dependencies
 {
     public class SQliteAndroid
@@ -21,15 +14,10 @@ namespace SerapisDoctor.Droid.Dependencies
             string fileName = "patients_db.db3";
 
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-
             //Combines the name and the path
             string completePath = Path.Combine(folderPath, fileName);
-
-            
-            var path = Path.Combine(folderPath, fileName);
-            var connection = new SQLiteConnection(path);
+            var connection = new SQLiteConnection(completePath);
             return connection;
-
         }
     }
 }
