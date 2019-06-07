@@ -56,9 +56,9 @@ namespace SerapisDoctor
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
-
             Database = filePath;
+
+            MainPage = new NavigationPage(new MainPage());
         }
 
 		protected override void OnStart ()

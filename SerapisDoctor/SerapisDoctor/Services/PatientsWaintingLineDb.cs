@@ -39,13 +39,14 @@ namespace SerapisDoctor.Services
             }
         }
 
+        //tools then should be under liveshare
 
         public static void InsertPatient(PateintMeta patientMetaData)
         {
             using (SQLiteConnection conn = new SQLiteConnection(database))
             {
                 conn.CreateTable<PateintMeta>();
-                int rowwsAdded=conn.Insert(patientMetaData);
+                conn.Insert(patientMetaData);
             }
         }
 
