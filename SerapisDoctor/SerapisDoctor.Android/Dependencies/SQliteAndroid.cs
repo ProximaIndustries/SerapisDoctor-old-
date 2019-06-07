@@ -2,13 +2,16 @@
 using System.Data.SQLite;
 using System.IO;
 using Xamarin.Forms;
-
+using SerapisDoctor.Services.Interfaces;
+using SQLite;
+using SQLiteConnection = SQLite.SQLiteConnection;
 
 [assembly: Dependency(typeof(SQliteAndroid))]
 namespace SerapisDoctor.Droid.Dependencies
 {
-    public class SQliteAndroid
+    public class SQliteAndroid : ISqlite
     {
+
         public SQLiteConnection GetConnection()
         {
             string fileName = "patients_db.db3";
