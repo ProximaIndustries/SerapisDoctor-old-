@@ -9,8 +9,7 @@ namespace SerapisDoctor.Services
 {
     public interface ISQLiteCommands<T>
     {
-        //Gets local Database coonection
-        SQLiteConnection GetConnection();
+       
 
         //Gets all the pateints, currently in the local database
         Task<List<T>> GetPatientsFromLocalDbAsync(PateintMeta metaData);
