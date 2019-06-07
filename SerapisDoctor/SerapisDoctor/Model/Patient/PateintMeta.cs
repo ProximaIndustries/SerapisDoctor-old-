@@ -13,9 +13,8 @@ namespace SerapisDoctor.Model.Patient
         [PrimaryKey, AutoIncrement]
         public int LocalId { get; set; }
 
-
         //Mongodb id
-        public Object Id { get; set; }
+        public string Id { get; set; }
 
         public string FullName { get; set; }
 

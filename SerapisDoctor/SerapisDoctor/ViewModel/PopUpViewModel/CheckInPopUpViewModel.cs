@@ -63,7 +63,7 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
             {
                 FullName = patientObj.FullName,
                 ProfilePicture=patientObj.PatientProfilePicture,
-                Id=patientObj.Id
+                Id=patientObj.Id.ToString()
             };
 
             //2.Connect to the local database and insert item

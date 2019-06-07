@@ -64,6 +64,8 @@ namespace SerapisDoctor
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
+
+            //Clear the local database
 		}
 
 		protected override void OnSleep ()

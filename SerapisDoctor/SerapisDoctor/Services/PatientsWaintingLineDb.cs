@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using SQLite;
 using System.Text;
 using System.Threading.Tasks;
+using SerapisDoctor.Services.Interfaces;
+using Xamarin.Forms;
 
 namespace SerapisDoctor.Services
 {
     public static class PatientsWaintingLineDb
     {
         readonly static string database=App.Database;
-        public SQLiteConnection conn;
+        public static SQLiteConnection conn;
 
         public static Task<List<PateintMeta>> GetPatientsAsync(PateintMeta metaData)
         {
@@ -44,15 +46,15 @@ namespace SerapisDoctor.Services
 
         public static void InsertPatient(PateintMeta patientMetaData)
         {
-            //using (SQLiteConnection conn = new SQLiteConnection(database))
-            //{
-            //    conn.CreateTable<PateintMeta>();
-            //    conn.Insert(patientMetaData);
-            //}
+            using (SQLiteConnection conn = new SQLiteConnection(database))
+            {
+                conn.CreateTable<PateintMeta>();
+                conn.Insert(patientMetaData);
+            }
 
             //New Code
-            conn = DependencyService.Get<ISqlite>().GetConnection();
-            conn.CreateTable<PateintMeta>();
+            //conn = DependencyService.Get<ISqlite>().GetConnection();
+            //conn.CreateTable<PateintMeta>();
 
         }
 
