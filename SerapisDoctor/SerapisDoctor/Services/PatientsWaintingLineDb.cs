@@ -15,6 +15,7 @@ namespace SerapisDoctor.Services
         readonly static string database=App.Database;
         public static SQLiteConnection conn;
 
+        //Get all patients in the Sqlite database
         public static Task<List<PateintMeta>> GetPatientsAsync()
         {
             using(SQLiteConnection conn=new SQLiteConnection(database))
@@ -26,11 +27,7 @@ namespace SerapisDoctor.Services
             }
         }
 
-        //public static Task<List<Patient>> GetItemsNotDoneAsync()
-        //{
-        //    return database.QueryAsync<Patient>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        //}
-
+        //Get all the patients saved in the SQLIte database
         public static Task<PateintMeta> GetItemAsync(PateintMeta patientLocalDbId)
         {
             int id = patientLocalDbId.LocalId;
@@ -43,9 +40,8 @@ namespace SerapisDoctor.Services
                 return Task.FromResult(patient);
             }
         }
-
-        
-
+  
+        //Add the pateint to the local database
         public static void InsertPatient(PateintMeta patientMetaData)
         {
             using (SQLiteConnection conn = new SQLiteConnection(database))
@@ -56,7 +52,7 @@ namespace SerapisDoctor.Services
         }
 
         //Used for editing a patient object in the local database
-        public async static Task SaveItemAsync(PateintMeta patientLocal)
+        public static Task SaveItemAsync(PateintMeta patientLocal)
         {
             using(SQLiteConnection conn=new SQLiteConnection(database))
             {
@@ -75,14 +71,16 @@ namespace SerapisDoctor.Services
                               LineNumber=patientLocal.LineNumber
                         };
 
-                        conn.Update(p);
+                       return Task.FromResult(conn.Update(p));
                     }
                     else
                     {
                         //insert the patient in the local database
-                        conn.Insert(patientLocal);
+                        return Task.FromResult(conn.Insert(patientLocal));
                     }
                 }
+
+                return null;
             }
         }
 

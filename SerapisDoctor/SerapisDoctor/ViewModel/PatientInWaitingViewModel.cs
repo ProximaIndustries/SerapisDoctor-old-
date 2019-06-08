@@ -1,5 +1,6 @@
 ﻿using SerapisDoctor.Global_Lists;
 using SerapisDoctor.Model.Patient;
+using SerapisDoctor.Services;
 using SerapisDoctor.View;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace SerapisDoctor.ViewModel
             InitializeList();
         }
 
-        public ObservableCollection<Patient> DiagnoseList=new ObservableCollection<Patient>();
+        public ObservableCollection<PateintMeta> DiagnoseList { get; set; }
         
 
         public Command TempButtonCommand { get; set; }
@@ -31,7 +32,13 @@ namespace SerapisDoctor.ViewModel
 
         private void InitializeList()
         {
-            DiagnoseList = PatientsInLine._list;
+            DiagnoseList = new ObservableCollection<PateintMeta>();
+
+            //Get the meta data from the patient local database
+            foreach (var patientInWaiting in PatientsWaintingLineDb.GetPatientsAsync().Result)
+            {
+                DiagnoseList.Add(patientInWaiting);
+            }
         }
 
         private async void Navigate()

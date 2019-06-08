@@ -45,9 +45,16 @@ namespace SerapisDoctor.Global_Lists
         {
             var indexOfPatient=PatientsBooked.IndexOf(patient);
 
-            var element = PatientsBooked.Where(x => x.FullName == patient.FullName);
+            try
+            {
+                var element = PatientsBooked.Where(x => x.FullName == patient.FullName);
 
-            PatientsBooked.Remove(element.First());
+                PatientsBooked.Remove(element.FirstOrDefault());
+            }
+            catch(TimeoutException timeout)
+            {
+                throw timeout.InnerException;
+            }
 
             UpdateList();
         }
