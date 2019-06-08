@@ -8,9 +8,11 @@ using SerapisDoctor.ViewModel.TabbedPageViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using SQLite;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using SerapisDoctor.Services;
 
 namespace SerapisDoctor.ViewModel.PopUpViewModel
 {
@@ -52,11 +54,20 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
         public Command ClosePopup { get; set; }
 
 
+        //Adds patients meta-data into sqlite storage
         private void AddPatientToList()
         {
 
-            //Add to the PatientsInLine list 
-            PatientsInLine.PatientAdd(patientObj);
+            //1.Add to the Local storage database
+            PateintMeta metaData = new PateintMeta()
+            {
+                FullName = patientObj.FullName,
+                ProfilePicture=patientObj.PatientProfilePicture,
+                Id=patientObj.Id.ToString()
+            };
+
+            //2.Connect to the local database and insert item
+            PatientsWaintingLineDb.InsertPatient(metaData);
 
             //Remove from PatientAwaitingCheckIn
             PatientAwatingCheckIn.RemoveFromList(patientObj);

@@ -99,7 +99,7 @@
             </Grid>
 
             <Grid Grid.Row="3" VerticalOptions="Fill" BackgroundColor="DodgerBlue">
-                <Grid ColumnSpacing="0">
+                <Grid ColumnSpacing="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>

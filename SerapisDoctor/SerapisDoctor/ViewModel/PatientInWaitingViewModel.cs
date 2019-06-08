@@ -19,19 +19,8 @@ namespace SerapisDoctor.ViewModel
             InitializeList();
         }
 
-        private ObservableCollection<Patient> diagnoseList;
-        public ObservableCollection<Patient> DiagnosisList
-        {
-            get
-            {
-                return diagnoseList;
-            }
-            set
-            {
-                diagnoseList = value;
-                PatientsInLine.UpdateList();
-            }
-        }
+        public ObservableCollection<Patient> DiagnoseList=new ObservableCollection<Patient>();
+        
 
         public Command TempButtonCommand { get; set; }
 
@@ -42,13 +31,13 @@ namespace SerapisDoctor.ViewModel
 
         private void InitializeList()
         {
-            DiagnosisList = new ObservableCollection<Patient>();
-            DiagnosisList = PatientsInLine._list;
+            DiagnoseList = PatientsInLine._list;
         }
 
         private async void Navigate()
         {
            await App.Current.MainPage.Navigation.PushAsync(new PatientDetails());
         }
+
     }
 }

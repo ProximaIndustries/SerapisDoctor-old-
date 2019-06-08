@@ -40,20 +40,20 @@
             Source="{Binding PatientProfilePicture}" 
             Aspect="AspectFit" 
             Grid.Column="1"
-            BorderColor="#607d8b" 
-            BorderThickness="1"
+            BorderColor="DodgerBlue" 
+            BorderThickness="2"
             >
                 <control:CircleImage.WidthRequest>
                     <OnPlatform x:TypeArguments="x:Double" >
-                        <On Platform="Android, iOS">60</On>
-                        <On Platform="WinPhone">30</On>
+                    <On Platform="Android, iOS">80</On>
+                    <On Platform="WinPhone">40</On>
                     </OnPlatform>
                 </control:CircleImage.WidthRequest>
 
                 <control:CircleImage.HeightRequest>
                     <OnPlatform x:TypeArguments="x:Double" >
-                        <On Platform="Android, iOS">60</On>
-                        <On Platform="WinPhone">30</On>
+                    <On Platform="Android, iOS">80</On>
+                    <On Platform="WinPhone">40</On>
                     </OnPlatform>
                 </control:CircleImage.HeightRequest>
             </control:CircleImage>

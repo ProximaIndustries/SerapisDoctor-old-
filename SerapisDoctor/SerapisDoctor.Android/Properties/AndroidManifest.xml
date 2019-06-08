@@ -4,14 +4,15 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
 	<application android:label="SerapisDoctor.Android">
-    <activity android:name="microsoft.identity.client.BrowserTabActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="msal706e42e5-cd0d-457d-9f85-0c4862557b94" android:host="auth" />
-      </intent-filter>
-    </activity>
-  </application>
+		<activity android:name="microsoft.identity.client.BrowserTabActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="msal706e42e5-cd0d-457d-9f85-0c4862557b94" android:host="auth" />
+			</intent-filter>
+		</activity>
+	</application>
 </manifest>

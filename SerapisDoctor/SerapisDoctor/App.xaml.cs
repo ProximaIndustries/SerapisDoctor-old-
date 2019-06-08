@@ -6,11 +6,15 @@ using Microsoft.Identity.Client;
 using System.Collections.Generic;
 using SerapisDoctor.Model.Patient;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using SerapisDoctor.Services;
+using System.IO;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace SerapisDoctor
 {
+
+    //This file needs to made neater and cleaner.
+
 	public partial class App : Application
 	{
         #region Microsoft Graph credentials
@@ -21,13 +25,18 @@ namespace SerapisDoctor
         public static UIParent UiPartent;
         #endregion
 
+        #region Properties (Local database)
+        public static string Database=string.Empty;
+        #endregion
+
         public App ()
 		{
-            
+            InitializeComponent();
+
             try
             {
-                InitializeComponent();
-
+             
+                //Get the doctors events from microsoft outlook
                 PCA = new PublicClientApplication(ClientId)
                 {
                     RedirectUri = RedirectAddress
@@ -42,9 +51,22 @@ namespace SerapisDoctor
 
 		}
 
+        //Second construtor for local storage options 
+        public App(string filePath)
+        {
+            InitializeComponent();
+
+            Database = filePath;
+
+            MainPage = new NavigationPage(new MainPage());
+        }
+
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
+
+            //Clear the local database
+            
 		}
 
 		protected override void OnSleep ()

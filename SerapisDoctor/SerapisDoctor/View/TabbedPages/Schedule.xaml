@@ -6,7 +6,7 @@
 
 
     <ContentPage.Content>
-        <Grid>
+        <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="7*"/>
@@ -14,42 +14,31 @@
             </Grid.RowDefinitions>
 
             <!--Practice display information-->
-            <Grid Grid.Row="0">
-
+            <Grid Grid.Row="0" BackgroundColor="Yellow">
+                <Label 
+                    Text="Today, 3 June 2019" 
+                    FontSize="30" 
+                    TextColor="Black"
+                    VerticalTextAlignment="Center"
+                    />
             </Grid>
 
-            <!--The actual calendar-->
-
-            <controls:Calendar 
-                x:Name="AppCalendar"
-                StartDay="Sunday"
-                DatesFontSize="13"
-                SelectedFontSize="15"
-                WeekdaysFontSize="13"
-                TitleLabelFontSize="13"
-                WeekdaysShow="True"
-                DatesBackgroundColor="White"
-                MultiSelectDates="False"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                DateCommand="{Binding SelectedDateCommand}"
-                SelectedDates="{Binding Dates, Mode=TwoWay}"   
-                TitleLeftArrowTextColor="Black"
-                TitleRightArrowTextColor="Black"
-                Grid.Row="1"
-                >
-
-                <controls:Calendar.SelectedBackgroundImage>
-                    <OnPlatform x:TypeArguments="FileImageSource">
-                        <On Platform="Android" Value="SelectionBall"/>
-                    </OnPlatform>
-                </controls:Calendar.SelectedBackgroundImage>
-            </controls:Calendar>
-
+            <!--The schedule list-->
+            <Grid Grid.Row="1" BackgroundColor="Green">
+                <ListView ItemsSource="{Binding HoursOfOperation}" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="Value" TextColor="Black" FontSize="Large"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
 
 
             <!--The confirmation Button-->
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" BackgroundColor="Blue">
 
             </Grid>
 

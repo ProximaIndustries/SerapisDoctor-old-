@@ -12,7 +12,6 @@ namespace SerapisDoctor.Model.AppointmentModel
         public string DateBooked { get; set; }
         public string TimeBooked { get; set; }
         public bool HasSeenGP { get; set; }
-        public TimeSpan TimeSpent { get; set; }
-        public Patient.Patient PatientInformation { get; set; }
+        public TimeSpan Duration { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SerapisDoctor.ViewModel.TabbedPageViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,15 @@ namespace SerapisDoctor.View.TabbedPages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Schedule : ContentPage
 	{
-		public Schedule ()
+        ScheduleViewModel viewModel;
+
+        public Schedule ()
 		{
 			InitializeComponent ();
+
+            viewModel = new ScheduleViewModel();
+
+            BindingContext = viewModel;
 		}
 	}
 }

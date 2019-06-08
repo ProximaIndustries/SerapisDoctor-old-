@@ -15,7 +15,7 @@
 
     <ContentPage.Content>
 
-        <StackLayout>
+        <StackLayout VerticalOptions="Fill">
             <ListView x:Name="waitingList"
                       ItemsSource="{Binding ListOfBookedPatients}" 
                       HasUnevenRows="True" 

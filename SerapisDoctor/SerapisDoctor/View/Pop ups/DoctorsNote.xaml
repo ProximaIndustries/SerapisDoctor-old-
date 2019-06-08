@@ -52,7 +52,13 @@
                         <RowDefinition Height="8*"/>
                     </Grid.RowDefinitions>
 
-                    <Editor Grid.Row="1"/>
+                    <Editor Grid.Row="1"  
+                            AutoSize="TextChanges" 
+                            Keyboard="Text" 
+                            IsSpellCheckEnabled="True"
+                            IsTextPredictionEnabled="False"
+                            Text="{Binding PatientsNote}"
+                            />
 
                 </Grid>
 
@@ -68,6 +74,7 @@
                             WidthRequest="400" 
                             BackgroundColor="DodgerBlue" 
                             CornerRadius="8"
+                            Command="{Binding SaveDoctorsNote}"
                             />
 
                 </Grid>
