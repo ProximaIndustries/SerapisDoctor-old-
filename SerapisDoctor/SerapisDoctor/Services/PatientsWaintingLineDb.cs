@@ -15,7 +15,7 @@ namespace SerapisDoctor.Services
         readonly static string database=App.Database;
         public static SQLiteConnection conn;
 
-        public static Task<List<PateintMeta>> GetPatientsAsync(PateintMeta metaData)
+        public static Task<List<PateintMeta>> GetPatientsAsync()
         {
             using(SQLiteConnection conn=new SQLiteConnection(database))
             {
@@ -31,8 +31,10 @@ namespace SerapisDoctor.Services
         //    return database.QueryAsync<Patient>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
         //}
 
-        public static Task<PateintMeta> GetItemAsync(int id)
+        public static Task<PateintMeta> GetItemAsync(PateintMeta patientLocalDbId)
         {
+            int id = patientLocalDbId.LocalId;
+
             using(SQLiteConnection conn=new SQLiteConnection(database))
             {
                 conn.CreateTable<PateintMeta>();
@@ -42,7 +44,7 @@ namespace SerapisDoctor.Services
             }
         }
 
-        //tools then should be under liveshare
+        
 
         public static void InsertPatient(PateintMeta patientMetaData)
         {
@@ -51,33 +53,47 @@ namespace SerapisDoctor.Services
                 conn.CreateTable<PateintMeta>();
                 conn.Insert(patientMetaData);
             }
-
-            //New Code
-            //conn = DependencyService.Get<ISqlite>().GetConnection();
-            //conn.CreateTable<PateintMeta>();
-
         }
 
-        public static void SaveItemAsync(Patient patient)
+        //Used for editing a patient object in the local database
+        public async static Task SaveItemAsync(PateintMeta patientLocal)
         {
-            if (patient.Id != null)
+            using(SQLiteConnection conn=new SQLiteConnection(database))
             {
-                //Update info
-            }
-            else
-            {
-                //Insert into database
+                //1)Check if the item present 
+                  conn.CreateTable<PateintMeta>();
+
+                foreach (var patient in conn.Table<PateintMeta>().ToList())
+                {
+                    if (patient.LocalId == patientLocal.LocalId)
+                    {
+                        //edit the patient and save
+                        var p=conn.Table<PateintMeta>().FirstOrDefault();
+
+                         p = new PateintMeta
+                        {
+                              LineNumber=patientLocal.LineNumber
+                        };
+
+                        conn.Update(p);
+                    }
+                    else
+                    {
+                        //insert the patient in the local database
+                        conn.Insert(patientLocal);
+                    }
+                }
             }
         }
 
-        public static Task<PateintMeta> DeleteItemAsync(int localId)
+        public static Task DeletePatientAsync(PateintMeta localId)
         {
             using (SQLiteConnection conn = new SQLiteConnection(database))
             {
                 conn.CreateTable<PateintMeta>();
-                var patient = conn.Table<PateintMeta>().Where(i => i.LocalId == localId).FirstOrDefault();
+                var patient = conn.Table<PateintMeta>().Where(i => i.LocalId == localId.LocalId).FirstOrDefault();
 
-                return Task.FromResult(patient);
+                return Task.FromResult(conn.Delete<PateintMeta>(patient));
             }
         }
     }
