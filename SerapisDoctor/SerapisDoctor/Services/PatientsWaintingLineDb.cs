@@ -84,6 +84,7 @@ namespace SerapisDoctor.Services
             }
         }
 
+        //Remove a patient from the local SQlite database 
         public static Task DeletePatientAsync(PateintMeta localId)
         {
             using (SQLiteConnection conn = new SQLiteConnection(database))
@@ -92,6 +93,17 @@ namespace SerapisDoctor.Services
                 var patient = conn.Table<PateintMeta>().Where(i => i.LocalId == localId.LocalId).FirstOrDefault();
 
                 return Task.FromResult(conn.Delete<PateintMeta>(patient));
+            }
+        }
+
+
+        //Clears all pateints from the local Database, I mean all of them.
+        public static Task ClearLocalDatabaseAsync()
+        {
+            using(SQLiteConnection conn=new SQLiteConnection(database))
+            {
+                conn.CreateTable<PateintMeta>();
+                return Task.FromResult(conn.DeleteAll<PateintMeta>());
             }
         }
     }

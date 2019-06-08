@@ -63,10 +63,13 @@ namespace SerapisDoctor
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
+            // Handle when your app starts
 
-            //Clear the local database
-            
+            /*
+             * Clear the local database **More logic based on time etc. 
+             * needed This will have to do for now
+            */
+            PatientsWaintingLineDb.ClearLocalDatabaseAsync();
 		}
 
 		protected override void OnSleep ()
