@@ -6,6 +6,7 @@ using Microsoft.Identity.Client;
 using System.Collections.Generic;
 using SerapisDoctor.Model.Patient;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace SerapisDoctor
@@ -22,6 +23,7 @@ namespace SerapisDoctor
 
         public App ()
 		{
+            
             try
             {
                 InitializeComponent();
