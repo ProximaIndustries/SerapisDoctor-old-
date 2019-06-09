@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SerapisDoctor.Model
+﻿namespace SerapisDoctor.Model.Practice
 {
     public class PracticeInformation
     {
@@ -12,5 +8,7 @@ namespace SerapisDoctor.Model
 
         public string PracticeName { get; set; }
 
+        public Address PracticeAddress { get; set; }
     }
+
 }
