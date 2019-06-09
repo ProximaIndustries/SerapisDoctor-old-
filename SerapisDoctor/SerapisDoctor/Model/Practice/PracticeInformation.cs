@@ -9,6 +9,8 @@
         public string PracticeName { get; set; }
 
         public Address PracticeAddress { get; set; }
+
+        public double DistanceFromPractice { get; set; }
     }
 
 }
