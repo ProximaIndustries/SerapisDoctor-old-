@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using SerapisDoctor.Services;
 using System.IO;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace SerapisDoctor
@@ -30,7 +31,7 @@ namespace SerapisDoctor
         public static string Database=string.Empty;
         #endregion
 
-        DoctorLocationTracker trackLocation;
+        public Location trackLocation { get; set; }
 
         public App ()
 		{
@@ -75,9 +76,11 @@ namespace SerapisDoctor
              Task.FromResult(PatientsWaintingLineDb.ClearLocalDatabaseAsync());
 
             //Get doctors location
-            trackLocation = new DoctorLocationTracker();
-            trackLocation.GetCurrentLocation();
-		}
+            DoctorLocationTracker doctorLocationTracker = new DoctorLocationTracker();
+
+            Task.FromResult(doctorLocationTracker.GetCurrentLocationAsync());
+
+        }
 
 		protected override void OnSleep ()
 		{

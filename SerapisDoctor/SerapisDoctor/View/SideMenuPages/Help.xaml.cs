@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using SerapisDoctor.ViewModel.SideMenuPageViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace SerapisDoctor.View.SideMenuPages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Help : ContentPage
 	{
+        HelpViewModel viewModel;
+
 		public Help ()
 		{
 			InitializeComponent ();
+            viewModel = new HelpViewModel();
+            BindingContext = viewModel;
 		}
 	}
 }

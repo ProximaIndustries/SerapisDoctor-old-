@@ -16,12 +16,16 @@ namespace SerapisDoctor.Services
 
         public DoctorLocationTracker()
         {
-            
+            GeolocationRequest location = new GeolocationRequest();
+            location.DesiredAccuracy = GeolocationAccuracy.Medium;
+            location.Timeout = TimeSpan.FromMinutes(1);
+            GetCurrentLocationAsync();
         }
 
-        public void GetCurrentLocation()
+        public async Task<Location> GetCurrentLocationAsync()
         {
-            dynamic someValue=Geolocation.GetLocationAsync();
+            LocalGpsCoordinate = await Geolocation.GetLastKnownLocationAsync();
+            return LocalGpsCoordinate;
         }
 
         //Calculate from the gps co-ordinates where the doctor possibly is at
