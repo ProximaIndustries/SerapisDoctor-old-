@@ -14,17 +14,23 @@ namespace SerapisDoctor.Services
         //This is used locally to get the doctors location
         private static Location LocalGpsCoordinate { get; set; }
 
-        public DoctorLocationTracker()
-        {
-            GeolocationRequest location = new GeolocationRequest();
-            location.DesiredAccuracy = GeolocationAccuracy.Medium;
-            location.Timeout = TimeSpan.FromMinutes(1);
-            GetCurrentLocationAsync();
-        }
-
         public async Task<Location> GetCurrentLocationAsync()
         {
-            LocalGpsCoordinate = await Geolocation.GetLastKnownLocationAsync();
+            try
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var location = await Geolocation.GetLocationAsync(request);
+
+                if (location == null)
+                {
+                    LocalGpsCoordinate = location;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             return LocalGpsCoordinate;
         }
 

@@ -16,9 +16,11 @@ namespace SerapisDoctor.ViewModel.SideMenuPageViewModel
 
         private void Initalize()
         {
-            Lati = Geolocation.GetLastKnownLocationAsync().Result.Latitude.ToString();
+            DoctorLocationTracker tracker = new DoctorLocationTracker();
 
-            Longi = Geolocation.GetLastKnownLocationAsync().Result.Longitude.ToString();
+            Lati = tracker.GetCurrentLocationAsync().Result.Latitude.ToString();
+
+            Longi = tracker.GetCurrentLocationAsync().Result.Longitude.ToString();
         }
 
         public string Lati { get; set; } = "";
