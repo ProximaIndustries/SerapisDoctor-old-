@@ -70,6 +70,9 @@ namespace SerapisDoctor
              * needed This will have to do for now
             */
             PatientsWaintingLineDb.ClearLocalDatabaseAsync();
+
+            //Get doctors location
+            DoctorLocationTracker.GetCurrentLocation();
 		}
 
 		protected override void OnSleep ()

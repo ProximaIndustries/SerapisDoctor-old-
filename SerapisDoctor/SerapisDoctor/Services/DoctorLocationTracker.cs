@@ -8,17 +8,13 @@ using Xamarin.Essentials;
 
 namespace SerapisDoctor.Services
 {
-    public class DoctorLocationTracker
+    public static class DoctorLocationTracker
     {
         //This is used locally to get the doctors location
-        private Location LocalGpsCoordinate { get; set; }
+        private static Location LocalGpsCoordinate { get; set; }
 
-        public DoctorLocationTracker()
-        {
-           
-        }
 
-        private Location GetCurrentLocation()
+        public static Location GetCurrentLocation()
         {
             Location local = new Location();
 
@@ -28,7 +24,7 @@ namespace SerapisDoctor.Services
         }
 
         //Calculate from the gps co-ordinates where the doctor possibly is at
-        private PracticeInformation GetPossibleCurrentPractice(List<PracticeInformation> listOfPractices)
+        public static PracticeInformation GetPossibleCurrentPractice(List<PracticeInformation> listOfPractices)
         {
 
             foreach (var practice in listOfPractices)
@@ -50,7 +46,7 @@ namespace SerapisDoctor.Services
         }
 
         //To clean the code up, another method is used 
-        private double CalculateDistance(double currentLati, double currentLongi, double practiceLati, double practiceLongi)
+        private static double CalculateDistance(double currentLati, double currentLongi, double practiceLati, double practiceLongi)
         {
             var distance = Location.CalculateDistance(currentLati, currentLongi, practiceLati, practiceLongi, DistanceUnits.Kilometers);
 
