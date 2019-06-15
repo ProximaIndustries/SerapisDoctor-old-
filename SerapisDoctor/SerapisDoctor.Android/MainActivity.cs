@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
@@ -21,8 +20,12 @@ namespace SerapisDoctor.Droid
             Rg.Plugins.Popup.Popup.Init(this,bundle);
             CarouselViewRenderer.Init();
             base.OnCreate(bundle);
+
             
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            //GPs code
+            Xamarin.Essentials.Platform.Init(this, bundle);
 
             //Sqlite storage android code
             string fileName = "patients_db.db3";
@@ -30,7 +33,15 @@ namespace SerapisDoctor.Droid
             string completePath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), fileName);
             //    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TodoSQLite.db3"));
 
+
             LoadApplication(new App(completePath));
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

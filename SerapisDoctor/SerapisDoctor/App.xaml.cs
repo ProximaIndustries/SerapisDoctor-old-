@@ -8,6 +8,7 @@ using SerapisDoctor.Model.Patient;
 using System.Collections.ObjectModel;
 using SerapisDoctor.Services;
 using System.IO;
+using System.Threading.Tasks;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace SerapisDoctor
@@ -28,6 +29,8 @@ namespace SerapisDoctor
         #region Properties (Local database)
         public static string Database=string.Empty;
         #endregion
+
+        DoctorLocationTracker trackLocation;
 
         public App ()
 		{
@@ -69,10 +72,11 @@ namespace SerapisDoctor
              * Clear the local database **More logic based on time etc. 
              * needed This will have to do for now
             */
-            PatientsWaintingLineDb.ClearLocalDatabaseAsync();
+             Task.FromResult(PatientsWaintingLineDb.ClearLocalDatabaseAsync());
 
             //Get doctors location
-            DoctorLocationTracker.GetCurrentLocation();
+            trackLocation = new DoctorLocationTracker();
+            trackLocation.GetCurrentLocation();
 		}
 
 		protected override void OnSleep ()
@@ -83,6 +87,8 @@ namespace SerapisDoctor
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
+
+            //Check the location first
 		}
 	}
 }
