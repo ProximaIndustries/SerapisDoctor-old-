@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace SerapisDoctor.ViewModel.TabbedPageViewModels
@@ -17,12 +18,28 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             InitalizeList();
         }
 
-        public ObservableCollection<PatientMeta> List { get; set; }
-
-        private void InitalizeList()
+        private ObservableCollection<PatientMeta> list;
+        public ObservableCollection<PatientMeta> List
+        {
+            get
+            {
+                return list;
+            }
+            set
+            {
+                list = value;
+            }
+        }
+        private ObservableCollection<PatientMeta> InitalizeList()
         {
             List = new ObservableCollection<PatientMeta>();
 
+            foreach (var patient in PatientsWaintingLineDb.GetPatientsAsync().Result)
+            {
+                List.Add(patient);
+            }
+
+            return List;
         }
 
         private int lineNumber;

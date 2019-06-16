@@ -19,7 +19,22 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
     {
         public int LineNumber = 0;
 
-        public ObservableCollection<PatientMeta> ListOfBookedPatients { get; set; }
+        private ObservableCollection<PatientMeta> listOfBookedPatients;
+
+        public ObservableCollection<PatientMeta> ListOfBookedPatients
+        {
+            get
+            {
+                return listOfBookedPatients;
+            }
+            set
+            {
+                listOfBookedPatients = value;
+                PatientAwatingCheckIn.UpdateList();
+                listOfBookedPatients = value;
+            }
+        }
+
 
         private CheckInPopUp popUp;
 
@@ -35,7 +50,6 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             LoadItemsCommand = new Command(() => 
             {
                 RefreashPatientsBooked();
-                
             });
         }
 
@@ -45,10 +59,7 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
         {
             ListOfBookedPatients = new ObservableCollection<PatientMeta>();
 
-            foreach (var patient in PatientAwatingCheckIn.GetPatients())
-            {
-                ListOfBookedPatients.Add(patient);
-            }
+            ListOfBookedPatients = PatientAwatingCheckIn.GetPatients();
         }
 
 
@@ -107,8 +118,6 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
                 //Send the object to the pop up.
                 MessagingCenter.Send(this, MessagingKeys.PopUpObject, obj);
-
-                PatientAwatingCheckIn.RemoveFromList(obj);
 
                 //Brings up the pop up dialog box
                 PopupNavigation.Instance.PushAsync(popUp);
