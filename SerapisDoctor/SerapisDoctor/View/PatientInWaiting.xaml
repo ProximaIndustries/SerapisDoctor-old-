@@ -107,7 +107,7 @@
                                         />
 
                                     <controls:CircleImage 
-                                                Source="{Binding PatientProfilePicture}" 
+                                                Source="{Binding ProfilePicture}" 
                                                 Aspect="AspectFit" 
                                                 BorderThickness="2"
                                                 Grid.Column="1"

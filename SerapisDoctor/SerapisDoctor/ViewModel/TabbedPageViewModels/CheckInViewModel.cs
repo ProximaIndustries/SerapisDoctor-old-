@@ -17,6 +17,8 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
      public class CheckInViewModel:BaseViewModel
     {
+        public int LineNumber = 0;
+
         public ObservableCollection<PatientMeta> ListOfBookedPatients { get; set; }
 
         private CheckInPopUp popUp;
@@ -37,11 +39,16 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             });
         }
 
+
+        //Mock 
         private void GenerateDummyList()
         {
             ListOfBookedPatients = new ObservableCollection<PatientMeta>();
 
-            ListOfBookedPatients = PatientAwatingCheckIn.GetPatients();
+            foreach (var patient in PatientAwatingCheckIn.GetPatients())
+            {
+                ListOfBookedPatients.Add(patient);
+            }
         }
 
 
@@ -72,27 +79,36 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             }
         }
 
+        #region Use when the api is live
         private async Task GenerateDummyList2Async()
         {
             BookingApi bookedPatient_today = new BookingApi();
 
             await bookedPatient_today.GetBookedPatientsAsync();
         }
+        #endregion
+
 
         public ICommand SelectPatient => new Command<PatientMeta>(patient =>
         {
             IsBusy = true;
+
+            LineNumber++;
 
             try
             {
                 PatientMeta obj = new PatientMeta()
                 {
                     FullName = patient.FullName,
-                    ProfilePicture=patient.ProfilePicture
+                    ProfilePicture = patient.ProfilePicture,
+                    Id = " ",
+                    LineNumber = this.LineNumber
                 };
 
                 //Send the object to the pop up.
                 MessagingCenter.Send(this, MessagingKeys.PopUpObject, obj);
+
+                PatientAwatingCheckIn.RemoveFromList(obj);
 
                 //Brings up the pop up dialog box
                 PopupNavigation.Instance.PushAsync(popUp);

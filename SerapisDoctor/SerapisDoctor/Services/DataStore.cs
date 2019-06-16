@@ -16,7 +16,7 @@ namespace SerapisDoctor.Services
 
         static PatientMeta Patient2 = new PatientMeta()
         {
-           ProfilePicture="userplaceholder.png",
+           ProfilePicture="Bonga.jpeg",
            FullName="Bonga Ngcobo"
         };
 

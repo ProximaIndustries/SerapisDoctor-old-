@@ -37,7 +37,7 @@
             />
 
             <control:CircleImage 
-            Source="{Binding PatientProfilePicture}" 
+            Source="{Binding ProfilePicture}" 
             Aspect="AspectFit" 
             Grid.Column="1"
             BorderColor="DodgerBlue" 

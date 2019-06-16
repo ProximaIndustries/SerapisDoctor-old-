@@ -6,7 +6,6 @@ using System.Text;
 using System.Collections.Specialized;
 using System.Linq;
 using SerapisDoctor.Services;
-using SerapisDoctor.Model.PatientModel;
 
 namespace SerapisDoctor.Global_Lists
 {

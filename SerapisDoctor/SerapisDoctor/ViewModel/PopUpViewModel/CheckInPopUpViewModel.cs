@@ -29,6 +29,10 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
 
             MessagingCenter.Subscribe<CheckInViewModel, PatientMeta>(this, MessagingKeys.PopUpObject, (obj, sender) =>
             {
+                //subcribe to messging center
+                patientObj = sender;
+
+                //Set the values for the popup
                 UserName = sender.FullName;
                 ProfilePicture = sender.ProfilePicture;
             });
@@ -44,20 +48,14 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
         {
 
             //1.Add to the Local storage database
-            PatientMeta metaData = new PatientMeta()
-            {
-                FullName = patientObj.FullName,
-                ProfilePicture = patientObj.ProfilePicture,
-                Id = patientObj.Id.ToString(),
-                IsMedicalAidPatient = false
-            };
 
             //2.Connect to the local database and insert item
-            PatientsWaintingLineDb.InsertPatient(metaData);
+            PatientsWaintingLineDb.InsertPatient(patientObj);
 
             //Remove from PatientAwaitingCheckIn
             PatientAwatingCheckIn.RemoveFromList(patientObj);
 
+            //Auto close the pop up afterwards
             PopupNavigation.Instance.PopAllAsync(true);
         }
         
@@ -98,7 +96,6 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
                 userName = value;
             }
         }
-
 
     }
 }
