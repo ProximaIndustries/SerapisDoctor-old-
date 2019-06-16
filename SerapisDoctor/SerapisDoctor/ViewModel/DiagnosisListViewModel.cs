@@ -21,7 +21,7 @@ namespace SerapisDoctor.ViewModel
             InitailizeList();
         }
 
-        private async Task InitailizeList()
+        private ObservableCollection<PatientMeta> InitailizeList()
         {
             DiagnoseList = new ObservableCollection<PatientMeta>();
 
@@ -37,6 +37,8 @@ namespace SerapisDoctor.ViewModel
 
                 DiagnoseList.Add(meta);
             }
+
+            return DiagnoseList;
         }
 
         public ICommand SelectPateintCommand => new Command<PatientMeta>(patientDetails=>
