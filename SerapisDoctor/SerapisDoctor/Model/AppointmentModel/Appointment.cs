@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using SerapisDoctor.Model.Patient;
+using SerapisDoctor.Model.PatientModel;
 namespace SerapisDoctor.Model.AppointmentModel
 {
     public class Appointment

@@ -1,4 +1,4 @@
-﻿using SerapisDoctor.Model.Patient;
+﻿using SerapisDoctor.Model.PatientModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,14 +6,15 @@ using System.Text;
 using System.Collections.Specialized;
 using System.Linq;
 using SerapisDoctor.Services;
+using SerapisDoctor.Model.PatientModel;
 
 namespace SerapisDoctor.Global_Lists
 {
     public static class PatientAwatingCheckIn
     {
-        public static ObservableCollection<Patient> PatientsBooked = new ObservableCollection<Patient>();
+        public static ObservableCollection<PatientMeta> PatientsBooked = new ObservableCollection<PatientMeta>();
 
-        public static ObservableCollection<Patient> GetPatients()
+        public static ObservableCollection<PatientMeta> GetPatients()
         {
             foreach (var patient in DataStore.GetBookedPatients())
             {
@@ -23,13 +24,13 @@ namespace SerapisDoctor.Global_Lists
             return PatientsBooked;
         }
 
-        public static void AddPatient(Patient patient)
+        public static void AddPatient(PatientMeta patient)
         {
             PatientsBooked.Add(patient);
             UpdateList();
         }
 
-       public static ObservableCollection<Patient> UpdateList()
+       public static ObservableCollection<PatientMeta> UpdateList()
        {
             Sort();
             return PatientsBooked;
@@ -41,7 +42,7 @@ namespace SerapisDoctor.Global_Lists
            
         }
 
-        public static void RemoveFromList(Patient patient)
+        public static void RemoveFromList(PatientMeta patient)
         {
             var indexOfPatient=PatientsBooked.IndexOf(patient);
 

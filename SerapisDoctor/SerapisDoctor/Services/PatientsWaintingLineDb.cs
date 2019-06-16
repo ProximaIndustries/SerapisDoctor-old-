@@ -1,5 +1,4 @@
-﻿using SerapisDoctor.Model.Patient;
-using SQLitePCL;
+﻿using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using SQLite;
@@ -7,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SerapisDoctor.Services.Interfaces;
 using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using SerapisDoctor.Model.PatientModel;
 
 namespace SerapisDoctor.Services
 {
@@ -16,57 +17,57 @@ namespace SerapisDoctor.Services
         public static SQLiteConnection conn;
 
         //Get all patients in the Sqlite database
-        public static Task<List<PateintMeta>> GetPatientsAsync()
-        {
+        public static Task<List<PatientMeta>> GetPatientsAsync()
+        {           
             using(SQLiteConnection conn=new SQLiteConnection(database))
             {
-                conn.CreateTable<PateintMeta>();
-                var patients = conn.Table<PateintMeta>().ToList();
+                conn.CreateTable<PatientMeta>();
+                var patients = conn.Table<PatientMeta>().ToList();
 
                 return Task.FromResult(patients);
             }
         }
 
         //Get all the patients saved in the SQLIte database
-        public static Task<PateintMeta> GetItemAsync(PateintMeta patientLocalDbId)
+        public static Task<PatientMeta> GetItemAsync(PatientMeta patientLocalDbId)
         {
             int id = patientLocalDbId.LocalId;
 
             using(SQLiteConnection conn=new SQLiteConnection(database))
             {
-                conn.CreateTable<PateintMeta>();
-                var patient = conn.Table<PateintMeta>().Where(i => i.LocalId == id).FirstOrDefault();
+                conn.CreateTable<PatientMeta>();
+                var patient = conn.Table<PatientMeta>().Where(i => i.LocalId == id).FirstOrDefault();
 
                 return Task.FromResult(patient);
             }
         }
   
         //Add the pateint to the local database
-        public static void InsertPatient(PateintMeta patientMetaData)
+        public static void InsertPatient(PatientMeta patientMetaData)
         {
             using (SQLiteConnection conn = new SQLiteConnection(database))
             {
-                conn.CreateTable<PateintMeta>();
+                conn.CreateTable<PatientMeta>();
                 conn.Insert(patientMetaData);
             }
         }
 
         //Used for editing a patient object in the local database
-        public static Task SaveItemAsync(PateintMeta patientLocal)
+        public static Task SaveItemAsync(PatientMeta patientLocal)
         {
             using(SQLiteConnection conn=new SQLiteConnection(database))
             {
                 //1)Check if the item present 
-                  conn.CreateTable<PateintMeta>();
+                  conn.CreateTable<PatientMeta>();
 
-                foreach (var patient in conn.Table<PateintMeta>().ToList())
+                foreach (var patient in conn.Table<PatientMeta>().ToList())
                 {
                     if (patient.LocalId == patientLocal.LocalId)
                     {
                         //edit the patient and save
-                        var p=conn.Table<PateintMeta>().FirstOrDefault();
+                        var p=conn.Table<PatientMeta>().FirstOrDefault();
 
-                         p = new PateintMeta
+                         p = new PatientMeta
                         {
                               LineNumber=patientLocal.LineNumber
                         };
@@ -85,25 +86,33 @@ namespace SerapisDoctor.Services
         }
 
         //Remove a patient from the local SQlite database 
-        public static Task DeletePatientAsync(PateintMeta localId)
+        public static Task DeletePatientAsync(PatientMeta localId)
         {
             using (SQLiteConnection conn = new SQLiteConnection(database))
             {
-                conn.CreateTable<PateintMeta>();
-                var patient = conn.Table<PateintMeta>().Where(i => i.LocalId == localId.LocalId).FirstOrDefault();
+                conn.CreateTable<PatientMeta>();
+                var patient = conn.Table<PatientMeta>().Where(i => i.LocalId == localId.LocalId).FirstOrDefault();
 
-                return Task.FromResult(conn.Delete<PateintMeta>(patient));
+                return Task.FromResult(conn.Delete<PatientMeta>(patient));
             }
         }
 
 
         //Clears all pateints from the local Database, I mean all of them.
-        public static Task ClearLocalDatabaseAsync()
+        public static void ClearLocalDatabase()
         {
             using(SQLiteConnection conn=new SQLiteConnection(database))
             {
-                conn.CreateTable<PateintMeta>();
-                return Task.FromResult(conn.DeleteAll<PateintMeta>());
+                conn.CreateTable<PatientMeta>();
+                conn.DeleteAll<PatientMeta>();
+            }
+        }
+
+        public static void RefreshList()
+        {
+            using(SQLiteConnection conn=new SQLiteConnection(database))
+            {
+                
             }
         }
     }

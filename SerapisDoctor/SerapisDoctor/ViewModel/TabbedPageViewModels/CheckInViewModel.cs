@@ -1,7 +1,7 @@
 ﻿using Rg.Plugins.Popup.Services;
 using SerapisDoctor.Global_Lists;
 using SerapisDoctor.Model.AppointmentModel;
-using SerapisDoctor.Model.Patient;
+using SerapisDoctor.Model.PatientModel;
 using SerapisDoctor.Services;
 using SerapisDoctor.Utils;
 using SerapisDoctor.View.Pop_ups;
@@ -17,7 +17,7 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
      public class CheckInViewModel:BaseViewModel
     {
-        public ObservableCollection<Patient> ListOfBookedPatients { get; set; }
+        public ObservableCollection<PatientMeta> ListOfBookedPatients { get; set; }
 
         private CheckInPopUp popUp;
 
@@ -39,7 +39,7 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
         private void GenerateDummyList()
         {
-            ListOfBookedPatients = new ObservableCollection<Patient>();
+            ListOfBookedPatients = new ObservableCollection<PatientMeta>();
 
             ListOfBookedPatients = PatientAwatingCheckIn.GetPatients();
         }
@@ -79,29 +79,16 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             await bookedPatient_today.GetBookedPatientsAsync();
         }
 
-        public ICommand SelectPatient => new Command<Patient>(patient =>
+        public ICommand SelectPatient => new Command<PatientMeta>(patient =>
         {
             IsBusy = true;
 
             try
             {
-                Patient obj = new Patient()
+                PatientMeta obj = new PatientMeta()
                 {
                     FullName = patient.FullName,
-                    MedicalAidPatient = patient.MedicalAidPatient,
-                    PatientProfilePicture = patient.PatientProfilePicture,
-                    Appointment = patient.Appointment,
-                    Gender = patient.Gender,
-                    HasBloodPressure = patient.HasBloodPressure,
-                    IsDepenedent = patient.IsDepenedent,
-                    PatientMedicalAid = patient.PatientMedicalAid,
-                    PatientAge = patient.PatientAge,
-                    PatientBloodType = patient.PatientBloodType,
-                    PatientFirstName = patient.PatientFirstName,
-                    PatientLastName = patient.PatientLastName,
-                    ListOfAllergies = patient.ListOfAllergies,
-                    ListOfChronicDisease = patient.ListOfChronicDisease,
-                    ListOfMedication = patient.ListOfMedication,
+                    ProfilePicture=patient.ProfilePicture
                 };
 
                 //Send the object to the pop up.

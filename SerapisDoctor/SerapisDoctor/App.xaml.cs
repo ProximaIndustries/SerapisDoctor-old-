@@ -4,7 +4,6 @@ using Xamarin.Forms.Xaml;
 using SerapisDoctor.View;
 using Microsoft.Identity.Client;
 using System.Collections.Generic;
-using SerapisDoctor.Model.Patient;
 using System.Collections.ObjectModel;
 using SerapisDoctor.Services;
 using System.IO;
@@ -73,7 +72,7 @@ namespace SerapisDoctor
              * Clear the local database **More logic based on time etc. 
              * needed This will have to do for now
             */
-             Task.FromResult(PatientsWaintingLineDb.ClearLocalDatabaseAsync());
+             PatientsWaintingLineDb.ClearLocalDatabase();
 
             //Get doctors location
             DoctorLocationTracker doctorLocationTracker = new DoctorLocationTracker();

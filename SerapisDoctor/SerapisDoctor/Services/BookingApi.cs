@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using Newtonsoft.Json;
-using SerapisDoctor.Model.Patient;
 using System.Linq;
 using System.IO;
+using SerapisDoctor.Model.PatientModel;
 
 namespace SerapisDoctor.Services
 {
@@ -25,10 +25,10 @@ namespace SerapisDoctor.Services
         }
 
         //Gets all the patients booked for the day
-        public async Task<IEnumerable<Patient>> GetBookedPatientsAsync()
+        public async Task<IEnumerable<PatientMeta>> GetBookedPatientsAsync()
         {
 
-            List<Patient> storePatients = new List<Patient>();
+            List<PatientMeta> storePatients = new List<PatientMeta>();
 
             //The absolute path for the api
             var BookedPatients_Api_Path = "http://localhost:62575/api/{0}";
@@ -52,7 +52,7 @@ namespace SerapisDoctor.Services
                     {
                         var listOfBookedPatients =await response.Content.ReadAsStringAsync();
 
-                        var deseralizedList = JsonConvert.DeserializeObject<List<Patient>>(listOfBookedPatients).ToList();
+                        var deseralizedList = JsonConvert.DeserializeObject<List<PatientMeta>>(listOfBookedPatients).ToList();
 
                         foreach (var patient in deseralizedList)
                         {
@@ -78,7 +78,7 @@ namespace SerapisDoctor.Services
 
 
         //Get the patients medical information
-        public async Task<Patient> GetPatientFileAsync(ObjectId _id)
+        public async Task<PatientMeta> GetPatientFileAsync(ObjectId _id)
         {
             if (_id != null)
             {
@@ -86,7 +86,7 @@ namespace SerapisDoctor.Services
 
                 Patient_Api_Path = string.Format(Patient_Api_Path, _id);
 
-                Patient _patientFile = new Patient();
+                PatientMeta _patientFile = new PatientMeta();
 
                 try
                 {
@@ -104,7 +104,7 @@ namespace SerapisDoctor.Services
                         {
                             var content = response.Content.ReadAsStringAsync().Result;
 
-                            var jsonFile = JsonConvert.DeserializeObject<Patient>(content);
+                            var jsonFile = JsonConvert.DeserializeObject<PatientMeta>(content);
 
                             _patientFile = jsonFile;
 

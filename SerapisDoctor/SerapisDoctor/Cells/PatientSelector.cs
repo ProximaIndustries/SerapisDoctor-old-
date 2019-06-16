@@ -1,4 +1,4 @@
-﻿using SerapisDoctor.Model.Patient;
+﻿using SerapisDoctor.Model.PatientModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,9 +18,9 @@ namespace SerapisDoctor.Cells
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            var patientPayMethod=item as Patient;
+            var patientPayMethod=item as PatientMeta;
 
-            if (patientPayMethod.MedicalAidPatient == true)
+            if (patientPayMethod.IsMedicalAidPatient == true)
             {
                 return medicalAidTemplate;
             }

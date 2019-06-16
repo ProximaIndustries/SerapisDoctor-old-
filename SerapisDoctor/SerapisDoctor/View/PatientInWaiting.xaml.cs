@@ -13,12 +13,12 @@ namespace SerapisDoctor.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PatientInWaiting : ContentPage
 	{
-        PatientInWaitingViewModel viewModel;
+        DiagnosisListViewModel viewModel;
 
         public PatientInWaiting ()
 		{
 			InitializeComponent();
-            viewModel = new PatientInWaitingViewModel();
+            viewModel = new DiagnosisListViewModel();
             BindingContext = viewModel;
 		}
 	}

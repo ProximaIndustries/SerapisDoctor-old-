@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SerapisDoctor.Model.Patient
+namespace SerapisDoctor.Model.PatientModel
 {
     public class Patient
     {

@@ -1,4 +1,4 @@
-﻿using SerapisDoctor.Model.Patient;
+﻿using SerapisDoctor.Model.PatientModel;
 using SerapisDoctor.Services;
 using SerapisDoctor.Utils;
 using System;
@@ -17,27 +17,12 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             InitalizeList();
         }
 
+        public ObservableCollection<PatientMeta> List { get; set; }
+
         private void InitalizeList()
         {
-            List = new ObservableCollection<PateintMeta>();
+            List = new ObservableCollection<PatientMeta>();
 
-            foreach (var pateintInLine in PatientsWaintingLineDb.GetPatientsAsync().Result)
-            {
-                List.Add(pateintInLine);
-            }
-        }
-
-        private ObservableCollection<PateintMeta> _list;
-        public  ObservableCollection<PateintMeta> List
-        {
-            get
-            {
-                return _list;
-            }
-            set
-            {
-                _list = value;
-            }
         }
 
         private int lineNumber;
