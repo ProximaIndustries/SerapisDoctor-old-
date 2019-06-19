@@ -8,6 +8,7 @@ using SerapisDoctor.Model.Patient;
 using System.Collections.ObjectModel;
 using SerapisDoctor.Services;
 using System.IO;
+using SerapisDoctor.View.TabbedPages;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace SerapisDoctor
@@ -41,7 +42,8 @@ namespace SerapisDoctor
                 {
                     RedirectUri = RedirectAddress
                 };
-
+            
+                
                 MainPage = new NavigationPage(new MainPage());
             }
             catch (Exception ex)
@@ -56,8 +58,7 @@ namespace SerapisDoctor
         {
             InitializeComponent();
 
-            Database = filePath;
-
+            Database = filePath;           
             MainPage = new NavigationPage(new MainPage());
         }
 

@@ -23,5 +23,7 @@ namespace SerapisDoctor.View.TabbedPages
 
             BindingContext = viewModel;
 		}
-	}
+
+      
+    }
 }

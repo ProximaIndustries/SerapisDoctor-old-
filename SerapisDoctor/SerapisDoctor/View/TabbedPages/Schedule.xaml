@@ -2,47 +2,102 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:SerapisDoctor.Controls.Calendar"
-             x:Class="SerapisDoctor.View.TabbedPages.Schedule">
+             x:Class="SerapisDoctor.View.TabbedPages.Schedule" BackgroundColor="White"
+             xmlns:bookingview="clr-namespace:SerapisDoctor.View.Templates">
 
-
-    <ContentPage.Content>
-        <Grid RowSpacing="0">
+    <ContentPage.Resources>
+        <Style TargetType="BoxView" >
+            <Setter Property="HeightRequest" Value="100" />
+            <Setter Property="WidthRequest" Value="90" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="7*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
+                
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.5*"/>
+                <ColumnDefinition Width="6.5*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--Calender Code-->
+            <ScrollView Grid.Row="0" Grid.RowSpan="3"
+                 Grid.Column="0"> 
+            <controls:Calendar Grid.Row="0" Grid.RowSpan="3"
+                x:Name="AppCalendar" Grid.Column="0"
+                StartDay="Sunday" DatesFontSize="13"
+                SelectedFontSize="15" WeekdaysFontSize="13"
+                TitleLabelFontSize="13" WeekdaysShow="True"
+                DatesBackgroundColor="White" MultiSelectDates="True"
+                HorizontalOptions="Fill" VerticalOptions="Fill" 
+                DateCommand="{Binding SelectedDateCommand}" SelectedBackgroundColor="Gray"
+                SelectedDates="{Binding Dates, Mode=TwoWay}" SelectedFontAttributes="Bold"  
+                TitleLeftArrowTextColor="Green" TitleRightArrowTextColor="Black" />
+            </ScrollView>
+            <!--Doctors avaliable-->
+            <ListView Grid.Row="3" Grid.Column="0" 
+                       x:Name="DoctorList"
+                       SeparatorVisibility="None" HasUnevenRows="True"
+                       ItemsSource="{Binding Doctors}" CachingStrategy="RecycleElement" 
+                      Margin="0,5,0,0"
+                  >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ContentView Padding="5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                        
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
 
-            <!--Practice display information-->
-            <Grid Grid.Row="0" BackgroundColor="Yellow">
-                <Label 
-                    Text="Today, 3 June 2019" 
-                    FontSize="30" 
-                    TextColor="Black"
-                    VerticalTextAlignment="Center"
+                                    <Image Grid.Column="0" Grid.Row="0"
+                                           Grid.RowSpan="2" Source="{Binding PhotoUrl}"
+                                           HorizontalOptions="CenterAndExpand"/>
+                                    <Label Grid.Column="1" Grid.Row="0"
+                                           Text="{Binding LastName, StringFormat='Dr. {0:N}'}" 
+                                           VerticalOptions="CenterAndExpand" TextColor="Black" />
+                                    <Label  Grid.Column="1" Grid.Row="1" 
+                                            Text="{Binding VarsityAttended}" 
+                                            VerticalOptions="CenterAndExpand" TextColor="Green"
+                                            />
+                                </Grid>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <!--Top menu-->     
+            <Button Grid.Row="0" Grid.Column="1"
+                    WidthRequest="80" Text="Today"
+                    HorizontalOptions="StartAndExpand" TextColor="Black"
                     />
-            </Grid>
+            <BoxView Grid.Row="0" Grid.Column="1"  Margin="0,2,0,0"
+                     HeightRequest="2" WidthRequest="650" BackgroundColor="Black" 
+                     HorizontalOptions="StartAndExpand" VerticalOptions="End" />
 
-            <!--The schedule list-->
-            <Grid Grid.Row="1" BackgroundColor="Green">
-                <ListView ItemsSource="{Binding HoursOfOperation}" HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Label Text="Value" TextColor="Black" FontSize="Large"/>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+            <Button Grid.Row="0" Grid.Column="1"
+                    WidthRequest="170" Text="FullScreen Mode"
+                    HorizontalOptions="EndAndExpand" TextColor="Black"
+                    />
 
-
-            <!--The confirmation Button-->
-            <Grid Grid.Row="2" BackgroundColor="Blue">
-
-            </Grid>
-
+            <!--avaliable dates-->
+            <bookingview:BookingView Grid.Row="1" 
+                                     Grid.RowSpan="3" 
+                                     Grid.Column="1" />
         </Grid>
-    </ContentPage.Content>
-
+    </StackLayout>
 </ContentPage>

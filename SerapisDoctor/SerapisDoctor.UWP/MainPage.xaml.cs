@@ -21,6 +21,9 @@ namespace SerapisDoctor.UWP
         {
             this.InitializeComponent();
 
+            Rg.Plugins.Popup.Popup.Init();
+            //Xamarin.Forms.Forms.Init(e, Rg.Plugins.Popup.Popup.GetExtraAssemblies());
+
             LoadApplication(new SerapisDoctor.App());
         }
     }
