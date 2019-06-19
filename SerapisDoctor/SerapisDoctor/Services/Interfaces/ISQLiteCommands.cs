@@ -1,9 +1,10 @@
-﻿using SerapisDoctor.Model.Patient;
+﻿using SerapisDoctor.Model.PatientModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SerapisDoctor.ViewModel.TabbedPageViewModels;
 
 namespace SerapisDoctor.Services
 {

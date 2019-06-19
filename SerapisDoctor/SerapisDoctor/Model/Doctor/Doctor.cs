@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using SerapisDoctor.Model.Enum;
+using SerapisDoctor.Model.Practice;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,6 +38,8 @@ namespace SerapisDoctor.Model.Doctor
         public DoctorPrescription prescription { get; set; }
 
         public DoctorsNote DoctorNote { get; set; }
+
+        public List<PracticeInformation> PracticesOwnedOrWorksAt { get; set; }
 
     }
 }

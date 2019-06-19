@@ -4,11 +4,11 @@ using Xamarin.Forms.Xaml;
 using SerapisDoctor.View;
 using Microsoft.Identity.Client;
 using System.Collections.Generic;
-using SerapisDoctor.Model.Patient;
 using System.Collections.ObjectModel;
 using SerapisDoctor.Services;
 using System.IO;
-using SerapisDoctor.View.TabbedPages;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace SerapisDoctor
@@ -30,6 +30,8 @@ namespace SerapisDoctor
         public static string Database=string.Empty;
         #endregion
 
+        public Location trackLocation { get; set; }
+
         public App ()
 		{
             InitializeComponent();
@@ -42,8 +44,7 @@ namespace SerapisDoctor
                 {
                     RedirectUri = RedirectAddress
                 };
-            
-                
+
                 MainPage = new NavigationPage(new MainPage());
             }
             catch (Exception ex)
@@ -58,17 +59,27 @@ namespace SerapisDoctor
         {
             InitializeComponent();
 
-            Database = filePath;           
+            Database = filePath;
+
             MainPage = new NavigationPage(new MainPage());
         }
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
+            // Handle when your app starts
 
-            //Clear the local database
-            
-		}
+            /*
+             * Clear the local database **More logic based on time etc. 
+             * needed This will have to do for now
+            */
+             PatientsWaintingLineDb.ClearLocalDatabase();
+
+            //Get doctors location
+            DoctorLocationTracker doctorLocationTracker = new DoctorLocationTracker();
+
+            Task.FromResult(doctorLocationTracker.GetCurrentLocationAsync());
+
+        }
 
 		protected override void OnSleep ()
 		{
@@ -78,6 +89,8 @@ namespace SerapisDoctor
 		protected override void OnResume ()
 		{
 			// Handle when your app resumes
+
+            //Check the location first
 		}
 	}
 }

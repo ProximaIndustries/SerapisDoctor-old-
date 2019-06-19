@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace SerapisDoctor.ViewModel
 {
-    public class SideMenuViewModel:BaseViewModel,IInitailGenerator
+    public class SideMenuViewModel : BaseViewModel, IInitailGenerator
     {
         public SideMenuViewModel()
         {

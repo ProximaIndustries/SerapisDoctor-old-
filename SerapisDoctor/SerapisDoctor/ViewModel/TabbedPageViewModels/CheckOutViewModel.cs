@@ -1,9 +1,11 @@
-﻿using SerapisDoctor.Model.Patient;
+﻿using SerapisDoctor.Model.PatientModel;
+using SerapisDoctor.Services;
 using SerapisDoctor.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace SerapisDoctor.ViewModel.TabbedPageViewModels
@@ -16,23 +18,28 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             InitalizeList();
         }
 
-        private void InitalizeList()
-        {
-            List = new ObservableCollection<Patient>();
-            List = PatientsInLine._list;
-        }
-
-        private ObservableCollection<Patient> _list;
-        public  ObservableCollection<Patient> List
+        private ObservableCollection<PatientMeta> list;
+        public ObservableCollection<PatientMeta> List
         {
             get
             {
-                return _list;
+                return list;
             }
             set
             {
-                _list = value;
+                list = value;
             }
+        }
+        private ObservableCollection<PatientMeta> InitalizeList()
+        {
+            List = new ObservableCollection<PatientMeta>();
+
+            foreach (var patient in PatientsWaintingLineDb.GetPatientsAsync().Result)
+            {
+                List.Add(patient);
+            }
+
+            return List;
         }
 
         private int lineNumber;

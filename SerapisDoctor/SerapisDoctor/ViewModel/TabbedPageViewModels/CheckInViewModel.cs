@@ -1,7 +1,7 @@
 ﻿using Rg.Plugins.Popup.Services;
 using SerapisDoctor.Global_Lists;
 using SerapisDoctor.Model.AppointmentModel;
-using SerapisDoctor.Model.Patient;
+using SerapisDoctor.Model.PatientModel;
 using SerapisDoctor.Services;
 using SerapisDoctor.Utils;
 using SerapisDoctor.View.Pop_ups;
@@ -17,7 +17,24 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
      public class CheckInViewModel:BaseViewModel
     {
-        public ObservableCollection<Patient> ListOfBookedPatients { get; set; }
+        public int LineNumber = 0;
+
+        private ObservableCollection<PatientMeta> listOfBookedPatients;
+
+        public ObservableCollection<PatientMeta> ListOfBookedPatients
+        {
+            get
+            {
+                return listOfBookedPatients;
+            }
+            set
+            {
+                listOfBookedPatients = value;
+                PatientAwatingCheckIn.UpdateList();
+                listOfBookedPatients = value;
+            }
+        }
+
 
         private CheckInPopUp popUp;
 
@@ -33,13 +50,14 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             LoadItemsCommand = new Command(() => 
             {
                 RefreashPatientsBooked();
-                
             });
         }
 
+
+        //Mock 
         private void GenerateDummyList()
         {
-            ListOfBookedPatients = new ObservableCollection<Patient>();
+            ListOfBookedPatients = new ObservableCollection<PatientMeta>();
 
             ListOfBookedPatients = PatientAwatingCheckIn.GetPatients();
         }
@@ -72,36 +90,30 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             }
         }
 
+        #region Use when the api is live
         private async Task GenerateDummyList2Async()
         {
             BookingApi bookedPatient_today = new BookingApi();
 
             await bookedPatient_today.GetBookedPatientsAsync();
         }
+        #endregion
 
-        public ICommand SelectPatient => new Command<Patient>(patient =>
+
+        public ICommand SelectPatient => new Command<PatientMeta>(patient =>
         {
             IsBusy = true;
 
+            LineNumber++;
+
             try
             {
-                Patient obj = new Patient()
+                PatientMeta obj = new PatientMeta()
                 {
                     FullName = patient.FullName,
-                    MedicalAidPatient = patient.MedicalAidPatient,
-                    PatientProfilePicture = patient.PatientProfilePicture,
-                    Appointment = patient.Appointment,
-                    Gender = patient.Gender,
-                    HasBloodPressure = patient.HasBloodPressure,
-                    IsDepenedent = patient.IsDepenedent,
-                    PatientMedicalAid = patient.PatientMedicalAid,
-                    PatientAge = patient.PatientAge,
-                    PatientBloodType = patient.PatientBloodType,
-                    PatientFirstName = patient.PatientFirstName,
-                    PatientLastName = patient.PatientLastName,
-                    ListOfAllergies = patient.ListOfAllergies,
-                    ListOfChronicDisease = patient.ListOfChronicDisease,
-                    ListOfMedication = patient.ListOfMedication,
+                    ProfilePicture = patient.ProfilePicture,
+                    Id = " ",
+                    LineNumber = this.LineNumber
                 };
 
                 //Send the object to the pop up.

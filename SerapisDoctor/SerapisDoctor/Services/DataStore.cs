@@ -1,5 +1,5 @@
 ﻿using SerapisDoctor.Model.AppointmentModel;
-using SerapisDoctor.Model.Patient;
+using SerapisDoctor.Model.PatientModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,60 +8,27 @@ namespace SerapisDoctor.Services
 {
     public static class DataStore
     {
-        static Patient Patient = new Patient()
+        static PatientMeta Patient = new PatientMeta()
         {
-            PatientProfilePicture = "Capture.png",
+            ProfilePicture = "Capture.png",
             FullName = "Khanyisani Buthelezi",
-            Gender = Model.Enum.Genders.male,
-            HasBloodPressure = false,
-            IsDepenedent = false,
-            ListOfAllergies = null,
-            MedicalAidPatient = true,
-            PatientAge = 22,
-            Appointment = new Appointment
-            {
-                DateBooked = DateTime.Today.ToShortDateString(),
-                TimeBooked = DateTime.Today.ToShortTimeString()
-            }
         };
 
-        static Patient Patient2 = new Patient()
+        static PatientMeta Patient2 = new PatientMeta()
         {
-            PatientProfilePicture = "userplaceholder.png",
-            FullName = "Bonga Ngcobo",
-            Gender = Model.Enum.Genders.male,
-            HasBloodPressure = false,
-            IsDepenedent = false,
-            ListOfAllergies = null,
-            MedicalAidPatient = false,
-            PatientAge = 21,
-            Appointment = new Appointment
-            {
-                DateBooked = DateTime.Today.ToShortDateString(),
-                TimeBooked = DateTime.Today.AddMinutes(45).ToShortTimeString()
-            }
+           ProfilePicture="Bonga.jpeg",
+           FullName="Bonga Ngcobo"
         };
 
-        static Patient Patient3 = new Patient()
+        static PatientMeta Patient3 = new PatientMeta()
         {
-            PatientProfilePicture = "userplaceholder.png",
-            FullName = "Anderson Cooper",
-            Gender = Model.Enum.Genders.male,
-            HasBloodPressure = false,
-            IsDepenedent = false,
-            ListOfAllergies = null,
-            MedicalAidPatient = true,
-            PatientAge = 45,
-            Appointment = new Appointment
-            {
-                DateBooked = DateTime.Today.ToShortDateString(),
-                TimeBooked = DateTime.Today.ToShortTimeString()
-            }
+            ProfilePicture="userplaceholder.png",
+            FullName="Anderson Cooper"
         };
 
-        static List<Patient> BookedPatientsToday = new List<Patient>();
+        static List<PatientMeta> BookedPatientsToday = new List<PatientMeta>();
 
-        public static List<Patient> GetBookedPatients()
+        public static List<PatientMeta> GetBookedPatients()
         {
             BookedPatientsToday.Add(Patient);
             BookedPatientsToday.Add(Patient2);
@@ -69,7 +36,7 @@ namespace SerapisDoctor.Services
             return BookedPatientsToday;
         }
 
-        public static Patient GetRefereshedBookedPatients()
+        public static PatientMeta GetRefereshedBookedPatients()
         {
             return Patient3;
         }

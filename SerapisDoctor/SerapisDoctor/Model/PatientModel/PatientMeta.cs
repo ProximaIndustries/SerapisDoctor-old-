@@ -1,15 +1,12 @@
-﻿using MongoDB.Bson;
-using SQLite;
+﻿using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SerapisDoctor.Model.Patient
+namespace SerapisDoctor.Model.PatientModel
 {
-    
-    public class PateintMeta
+    public class PatientMeta
     {
-        //Local Id system
         [PrimaryKey, AutoIncrement]
         public int LocalId { get; set; }
 
@@ -21,5 +18,7 @@ namespace SerapisDoctor.Model.Patient
         public string ProfilePicture { get; set; }
 
         public int LineNumber { get; set; }
+
+        public bool IsMedicalAidPatient { get; set; }
     }
 }

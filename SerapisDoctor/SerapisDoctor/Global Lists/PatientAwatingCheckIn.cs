@@ -1,4 +1,4 @@
-﻿using SerapisDoctor.Model.Patient;
+﻿using SerapisDoctor.Model.PatientModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,9 +11,9 @@ namespace SerapisDoctor.Global_Lists
 {
     public static class PatientAwatingCheckIn
     {
-        public static ObservableCollection<Patient> PatientsBooked = new ObservableCollection<Patient>();
+        public static ObservableCollection<PatientMeta> PatientsBooked = new ObservableCollection<PatientMeta>();
 
-        public static ObservableCollection<Patient> GetPatients()
+        public static ObservableCollection<PatientMeta> GetPatients()
         {
             foreach (var patient in DataStore.GetBookedPatients())
             {
@@ -23,13 +23,13 @@ namespace SerapisDoctor.Global_Lists
             return PatientsBooked;
         }
 
-        public static void AddPatient(Patient patient)
+        public static void AddPatient(PatientMeta patient)
         {
             PatientsBooked.Add(patient);
             UpdateList();
         }
 
-       public static ObservableCollection<Patient> UpdateList()
+       public static ObservableCollection<PatientMeta> UpdateList()
        {
             Sort();
             return PatientsBooked;
@@ -41,13 +41,20 @@ namespace SerapisDoctor.Global_Lists
            
         }
 
-        public static void RemoveFromList(Patient patient)
+        public static void RemoveFromList(PatientMeta patient)
         {
             var indexOfPatient=PatientsBooked.IndexOf(patient);
 
-            var element = PatientsBooked.Where(x => x.FullName == patient.FullName);
+            try
+            {
+                var element = PatientsBooked.Where(x => x.FullName == patient.FullName);
 
-            PatientsBooked.Remove(element.First());
+                PatientsBooked.Remove(element.FirstOrDefault());
+            }
+            catch(TimeoutException timeout)
+            {
+                throw timeout.InnerException;
+            }
 
             UpdateList();
         }

@@ -40,6 +40,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding TempButtonCommand}" Text="details"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -103,7 +107,7 @@
                                         />
 
                                     <controls:CircleImage 
-                                                Source="{Binding PatientProfilePicture}" 
+                                                Source="{Binding ProfilePicture}" 
                                                 Aspect="AspectFit" 
                                                 BorderThickness="2"
                                                 Grid.Column="1"
@@ -139,12 +143,10 @@
                     </ListView.ItemTemplate>
 
                     <ListView.Behaviors>
-                        <behaviorsPack:SelectedItemBehavior Command="{Binding SelectPatientCommand}"/>
+                        <behaviorsPack:SelectedItemBehavior Command="{Binding SelectPateintCommand}"/>
                     </ListView.Behaviors>
                     
                 </ListView>
-                
-                
                 
             </Grid>
 

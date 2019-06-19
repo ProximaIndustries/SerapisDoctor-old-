@@ -4,9 +4,14 @@
              x:Class="SerapisDoctor.View.SideMenuPages.Help">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="{Binding Lati, StringFormat='Latitude: {0}'}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="{Binding Longi, StringFormat='Longitude: {0}'}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
