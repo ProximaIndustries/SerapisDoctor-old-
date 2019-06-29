@@ -1,25 +1,25 @@
 ﻿using Rg.Plugins.Popup.Services;
 using SerapisDoctor.Global_Lists;
-using SerapisDoctor.Model.AppointmentModel;
 using SerapisDoctor.Model.PatientModel;
 using SerapisDoctor.Services;
 using SerapisDoctor.Utils;
 using SerapisDoctor.View.Pop_ups;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
-     public class CheckInViewModel:BaseViewModel
+    public class CheckInViewModel:BaseViewModel
     {
         public int LineNumber = 0;
 
         private ObservableCollection<PatientMeta> listOfBookedPatients;
+
+        private ErrorPopUp errorPop;
 
         public ObservableCollection<PatientMeta> ListOfBookedPatients
         {
@@ -35,7 +35,6 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             }
         }
 
-
         private CheckInPopUp popUp;
 
         public Command LoadItemsCommand { get; set; }
@@ -47,10 +46,21 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             //GenerateDummyList2Async(); !!!use when api with azure is up and running
             popUp = new CheckInPopUp();
 
+            errorPop = new ErrorPopUp();
+
             LoadItemsCommand = new Command(() => 
             {
                 RefreashPatientsBooked();
             });
+
+        }
+
+        private void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (e.NetworkAccess != NetworkAccess.Internet)
+            {
+                PopupNavigation.Instance.PushAsync(errorPop);
+            }
         }
 
 
@@ -71,12 +81,22 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
             try
             {
+                //Listens to weather or not the internet connectivity has changed
+                Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+
                 //Try look for more booked patients for the day in the server (Services)
 
-                //the follwing is dummy data to test to removed when back end configured
-                var patientAdded=DataStore.GetRefereshedBookedPatients();
+                if (Connectivity.NetworkAccess != NetworkAccess.None)
+                {
+                    //the follwing is dummy data to test to removed when back end configured
+                    var patientAdded = DataStore.GetRefereshedBookedPatients();
 
-                PatientAwatingCheckIn.AddPatient(patientAdded);
+                    PatientAwatingCheckIn.AddPatient(patientAdded);
+                }
+                else
+                {
+                    PopupNavigation.Instance.PushAsync(errorPop);
+                }
             }
             catch (Exception)
             {
@@ -97,8 +117,8 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
             await bookedPatient_today.GetBookedPatientsAsync();
         }
-        #endregion
 
+        #endregion
 
         public ICommand SelectPatient => new Command<PatientMeta>(patient =>
         {

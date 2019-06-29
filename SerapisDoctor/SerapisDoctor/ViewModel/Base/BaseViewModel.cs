@@ -9,10 +9,6 @@ namespace SerapisDoctor.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public BaseViewModel()
-        {
-
-        }
 
         private bool isButtonEnabled;
 
@@ -46,7 +42,6 @@ namespace SerapisDoctor.ViewModel
                 isRefreshing = value;
             }
         }
-
 
         private bool isBusy;
         public bool IsBusy
