@@ -18,17 +18,29 @@ namespace SerapisDoctor.Services
         {
             try
             {
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(20));
                 var location = await Geolocation.GetLocationAsync(request);
 
-                if (location == null)
+                if (location != null)
                 {
                     LocalGpsCoordinate = location;
                 }
             }
+            catch(FeatureNotEnabledException notEnabledEx)
+            {
+                throw notEnabledEx;
+            }
+            catch(FeatureNotSupportedException notSupportedEx)
+            {
+                throw notSupportedEx;
+            }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                //Stop listining to Gps.
             }
 
             return LocalGpsCoordinate;
