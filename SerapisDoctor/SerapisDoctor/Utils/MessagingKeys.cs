@@ -6,7 +6,7 @@ namespace SerapisDoctor.Utils
 {
     public class MessagingKeys
     {
-       public const string PopUpObject= "PopcardInfo";
+        public const string PopUpObject= "PopcardInfo";
         public const string PrescriptionMsg = "PrescriptionMedication";
         public const string SendPatientObj = "SendPatientObject";
         public const string PatientDetails = "PatientsDetails";
