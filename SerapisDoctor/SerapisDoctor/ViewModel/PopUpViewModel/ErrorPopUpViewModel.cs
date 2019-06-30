@@ -7,26 +7,54 @@ using Rg.Plugins.Popup.Pages;
 
 namespace SerapisDoctor.ViewModel.PopUpViewModel
 {
-    public class ErrorPopUpViewModel
+    public class ErrorPopUpViewModel:BaseViewModel
     {
-        public Color ErrorBackGroundColour { get; set; }
-
+      
         public string TextColour { get; set; }
 
-        const string textColour = "Black";
+        const string textColour = "White";
 
         public string ErrorMessage { get; set; }
-
-        private PopupPage errorPage;
 
         public ErrorPopUpViewModel()
         {
             InitalizeErrorMessage();
         }
 
-        private void InitalizeErrorMessage()
+        //Need to fix the on property changed property to be able to change the notification background colour
+        //Placed in comments cause it throws null excpetions for some reason
+        private Color errorBackground = Color.White;
+        public Color ErrorBackGroundColour
         {
+            get
+            {
+                return errorBackground;
+            }
+            set
+            {
+                if (errorBackground != value)
+                {
+                    errorBackground = Color.Red;
+                    //OnPropertyChanged("ErrorBackGroundColour");
+                    errorBackground = value;
+                }
+                else
+                {
+                    errorBackground = Color.White;
+                    //OnPropertyChanged("ErrorBackGroundColour");
+                }
+            }
+        }
 
+        private void RemoveErrorMessage(string message)
+        {
+            ErrorBackGroundColour = Color.Green;
+            TextColour = "White";
+            ErrorMessage = message;
+        }
+
+        private void InitalizeErrorMessage()
+        { 
             ErrorMessage = "No connection";
             TextColour = textColour;
             ErrorBackGroundColour = Color.Red;

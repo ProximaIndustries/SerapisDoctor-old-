@@ -16,12 +16,12 @@
     </popUp:PopupPage.Resources>
 
     <popUp:PopupPage.Content>
-        <Frame BackgroundColor="{Binding ErrorBackgroundColour}"   
+        <Frame BackgroundColor="{Binding ErrorBackGroundColour}"   
                HorizontalOptions="FillAndExpand" 
                VerticalOptions="Start"
               HeightRequest="50"
               >
-            <Grid BackgroundColor="{Binding ErrorBackgroundColour}">
+            <Grid BackgroundColor="{Binding ErrorBackGroundColour}">
 
                 <Label Text="{Binding ErrorMessage}" 
                        VerticalTextAlignment="Center" 

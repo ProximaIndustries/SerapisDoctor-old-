@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using SerapisDoctor.ViewModel.PopUpViewModel;
 
 namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
@@ -48,10 +49,19 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
             errorPop = new ErrorPopUp();
 
+            //Listens to weather or not the internet connectivity has changed
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+
             LoadItemsCommand = new Command(() => 
             {
                 RefreashPatientsBooked();
             });
+
+        }
+
+        //Desconstructor to unsubcribe to any events to save memory
+         ~CheckInViewModel()
+        {
 
         }
 
@@ -60,6 +70,22 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             if (e.NetworkAccess != NetworkAccess.Internet)
             {
                 PopupNavigation.Instance.PushAsync(errorPop);
+            }
+            else
+            {
+                //Messaging center sends some info to change the errorPopUp notification
+                MessagingCenter.Send<CheckInViewModel>(this, "Connection established");
+
+                //Wait for the message to be sent
+                Task.Delay(1500);
+
+                //Return the page with diffrent properties
+                PopupNavigation.Instance.PushAsync(errorPop);
+
+                //wait a second then automatically close the banner
+                Task.Delay(1000);
+
+                PopupNavigation.Instance.PopAsync(true);
             }
         }
 
@@ -81,9 +107,6 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 
             try
             {
-                //Listens to weather or not the internet connectivity has changed
-                Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
-
                 //Try look for more booked patients for the day in the server (Services)
 
                 if (Connectivity.NetworkAccess != NetworkAccess.None)

@@ -10,5 +10,6 @@ namespace SerapisDoctor.Utils
         public const string PrescriptionMsg = "PrescriptionMedication";
         public const string SendPatientObj = "SendPatientObject";
         public const string PatientDetails = "PatientsDetails";
+        public const string ErrorPopUpBanner = "NotificationBanner";
     }
 }
