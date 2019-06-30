@@ -69,23 +69,24 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
         {
             if (e.NetworkAccess != NetworkAccess.Internet)
             {
+                //Messaging center sends some info to change the errorPopUp notification
+                MessagingCenter.Send<CheckInViewModel, string>(this, MessagingKeys.ErrorPopUpBanner, "Connection error");
+
                 PopupNavigation.Instance.PushAsync(errorPop);
             }
             else
             {
                 //Messaging center sends some info to change the errorPopUp notification
-                MessagingCenter.Send<CheckInViewModel>(this, "Connection established");
+                MessagingCenter.Send<CheckInViewModel, string>(this, MessagingKeys.ErrorPopUpBanner, "Connection estblished");
 
-                //Wait for the message to be sent
-                Task.Delay(1500);
-
+                
                 //Return the page with diffrent properties
                 PopupNavigation.Instance.PushAsync(errorPop);
 
                 //wait a second then automatically close the banner
-                Task.Delay(1000);
+                Task.Delay(3000);
 
-                PopupNavigation.Instance.PopAsync(true);
+                //code to automatically close the banner
             }
         }
 

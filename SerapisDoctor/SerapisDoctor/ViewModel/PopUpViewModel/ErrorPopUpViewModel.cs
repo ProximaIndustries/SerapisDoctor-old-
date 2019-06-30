@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Pages;
+using SerapisDoctor.ViewModel.TabbedPageViewModels;
+using SerapisDoctor.Utils;
 
 namespace SerapisDoctor.ViewModel.PopUpViewModel
 {
@@ -14,11 +16,29 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
 
         const string textColour = "White";
 
-        public string ErrorMessage { get; set; }
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get
+            {
+                return errorMessage;
+            }
+
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged("ErrorMessage");
+                errorMessage = value;
+            }
+        }
 
         public ErrorPopUpViewModel()
         {
-            InitalizeErrorMessage();
+            MessagingCenter.Subscribe<CheckInViewModel, string>(this, MessagingKeys.ErrorPopUpBanner, (arg, sender) => 
+            {
+                InitalizeErrorMessage(sender);
+            });
+
         }
 
         //Need to fix the on property changed property to be able to change the notification background colour
@@ -34,7 +54,7 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
             {
                 if (errorBackground != value)
                 {
-                    errorBackground = Color.Red;
+                    //errorBackground = value;
                     //OnPropertyChanged("ErrorBackGroundColour");
                     errorBackground = value;
                 }
@@ -46,25 +66,25 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
             }
         }
 
-        private void RemoveErrorMessage(string message)
-        {
-            ErrorBackGroundColour = Color.Green;
-            TextColour = "White";
-            ErrorMessage = message;
-        }
-
-        private void InitalizeErrorMessage()
+        private void InitalizeErrorMessage(string msg)
         { 
-            ErrorMessage = "No connection";
-            TextColour = textColour;
-            ErrorBackGroundColour = Color.Red;
+            if(msg=="Connection error" || msg==null)
+            {
+                ErrorMessage = "No connection";
+                TextColour = textColour;
+                ErrorBackGroundColour = Color.Red;
+            }
+            else
+            {
+                ErrorBackGroundColour = Color.Green;
+                TextColour = textColour;
+                ErrorMessage = "Connected";
+            }
         }
 
         ~ErrorPopUpViewModel()
         {
-            ErrorBackGroundColour = Color.Green;
-            TextColour = textColour;
-            ErrorMessage = "Connected";
+            //Unsubscribe to the messaging center
         }
     }
 }

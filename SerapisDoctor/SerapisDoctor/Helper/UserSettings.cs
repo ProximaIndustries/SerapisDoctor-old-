@@ -4,8 +4,9 @@ using System.Text;
 
 namespace SerapisDoctor.Helper
 {
-    //
+    
     public class UserSettings
     {
+
     }
 }
