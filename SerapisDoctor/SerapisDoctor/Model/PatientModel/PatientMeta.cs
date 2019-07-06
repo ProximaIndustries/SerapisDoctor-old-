@@ -17,7 +17,7 @@ namespace SerapisDoctor.Model.PatientModel
 
         public string ProfilePicture { get; set; }
 
-        public int LineNumber { get; set; }
+        public uint LineNumber { get; set; }
 
         public bool IsMedicalAidPatient { get; set; }
     }

@@ -16,11 +16,13 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
     public class CheckInViewModel:BaseViewModel
     {
-        public int LineNumber = 0;
+        public uint LineNumber = TicketLineNumberCounter.PatientLineNumber;
 
         private ObservableCollection<PatientMeta> listOfBookedPatients;
 
+        //An instance of a class for the network error page
         private ErrorPopUp errorPop;
+
 
         public ObservableCollection<PatientMeta> ListOfBookedPatients
         {
@@ -36,6 +38,7 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             }
         }
 
+        //An instance to make the check in pop up page
         private CheckInPopUp popUp;
 
         public Command LoadItemsCommand { get; set; }
@@ -148,8 +151,6 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
         {
             IsBusy = true;
 
-            LineNumber++;
-
             try
             {
                 PatientMeta obj = new PatientMeta()
@@ -173,6 +174,12 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             }
             finally
             {
+                //Inrement the number 
+                var tempLineNumber=TicketLineNumberCounter.IncrementLineNumber();
+
+                //Store that number back memeory
+                TicketLineNumberCounter.PatientLineNumber = tempLineNumber;
+
                 IsBusy = false;
             }
         });
