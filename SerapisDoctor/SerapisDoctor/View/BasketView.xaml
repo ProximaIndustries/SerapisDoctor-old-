@@ -1,32 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SerapisDoctor.View.BasketView">
+             xmlns:ViewModel="clr-namespace:SerapisDoctor.ViewModel"
+             x:Class="SerapisDoctor.View.BasketView" 
+             >
 
 
     <ContentPage.Resources>
         <Style TargetType="Label" x:Key="medicationLabels">
-            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="Label.FontSize" Value="Large"/>
         </Style>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
+	<ContentPage.BindingContext>
+		<ViewModel:BusketViewViewModel/>
+	</ContentPage.BindingContext>
+    
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+        <Grid Grid.Row="0">
                 <ListView ItemsSource="{Binding PrescriptionList}" 
                       HasUnevenRows="True" 
                       SeparatorColor="Black" 
                       
-                      >
+                          >
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+
+                                <ViewCell.ContextActions>
+                                    <MenuItem Text="Delete" Command="{Binding RemoveItem}" IsDestructive="True"/>
+                                </ViewCell.ContextActions>
+                                
                                 <ContentView>
                                     <Grid RowSpacing="15">
                                         <Grid.RowDefinitions>
@@ -42,22 +52,23 @@
                                             <ColumnDefinition Width="1*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Grid.Margin>
-                                            <OnIdiom x:TypeArguments="Thickness">
-                                                <OnIdiom.Phone>10,10,0,10</OnIdiom.Phone>
-                                                <OnIdiom.Tablet>12,12,0,12</OnIdiom.Tablet>
-                                            </OnIdiom>
-                                        </Grid.Margin>
-                                        
-                                        <Grid Grid.Row="0" Grid.Column="0">
+                                        <!--Goes here-->
+                                    <Grid.Margin>
+                                        <OnIdiom x:TypeArguments="Thickness">
+                                            <OnIdiom.Phone>10,10,0,10</OnIdiom.Phone>
+                                            <OnIdiom.Tablet>12,12,0,12</OnIdiom.Tablet>
+                                        </OnIdiom>
+                                    </Grid.Margin>
+
+                                    <Grid Grid.Row="0" Grid.Column="0">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="5*"/>
                                                     <ColumnDefinition Width="5*"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Grid.Column="0" Text="Medication" Style="{StaticResource medicationLabels}"/>
-                                                <Label Grid.Column="1" Text="{Binding PrescriptionMedication}" Style="{StaticResource medicationLabels}"/>
+                                                <Label Grid.Column="0" Text="Medication" Style="{StaticResource Key=medicationLabels}"/>
+                                                <Label Grid.Column="1" Text="{Binding PrescriptionMedication}" Style="{StaticResource Key=medicationLabels}"/>
 
                                             </Grid>
                                         </Grid>
@@ -70,8 +81,8 @@
                                                 </Grid.ColumnDefinitions>
 
 
-                                                <Label Grid.Column="0" Text="Dosage Amount" Style="{StaticResource medicationLabels}"/>
-                                                <Label Grid.Column="1" Text="{Binding PrescriptionDosage}" Style="{StaticResource medicationLabels}"/>
+                                                <Label Grid.Column="0" Text="Dosage Amount" Style="{StaticResource Key=medicationLabels}"/>
+                                                <Label Grid.Column="1" Text="{Binding PrescriptionDosage}" Style="{StaticResource Key=medicationLabels}"/>
 
                                             </Grid>
                                         </Grid>
@@ -84,8 +95,8 @@
                                                 </Grid.ColumnDefinitions>
 
 
-                                                <Label Grid.Column="0" Text="Instructions" Style="{StaticResource medicationLabels}"/>
-                                                <Label Grid.Column="1" Text="{Binding PrescriptionInstructions}" Style="{StaticResource medicationLabels}"/>
+                                                <Label Grid.Column="0" Text="Instructions" Style="{StaticResource Key=medicationLabels}"/>
+                                                <Label Grid.Column="1" Text="{Binding PrescriptionInstructions}" Style="{StaticResource Key=medicationLabels}"/>
 
                                             </Grid>
                                         </Grid>
@@ -98,8 +109,8 @@
                                                 </Grid.ColumnDefinitions>
 
 
-                                                <Label Grid.Column="0" Text="Added Notes" Style="{StaticResource medicationLabels}"/>
-                                                <Label Grid.Column="1" Text="{Binding AddedPrescriptionNotes}" Style="{StaticResource medicationLabels}"/>
+                                                <Label Grid.Column="0" Text="Added Notes" Style="{StaticResource Key=medicationLabels}"/>
+                                                <Label Grid.Column="1" Text="{Binding AddedPrescriptionNotes}" Style="{StaticResource Key=medicationLabels}"/>
 
                                             </Grid>
                                         </Grid>
@@ -108,7 +119,7 @@
                                               VerticalOptions="Center"
                                               HorizontalOptions="Center"
                                               >
-                                            <Label FontSize="25" Text="1"/>
+                                            <Label FontSize="25" Text=""/>
                                         </Grid>
 
                                     </Grid>
@@ -120,8 +131,8 @@
                     <ListView.Footer> 
                         <Label 
                             HorizontalOptions="Center" 
-                            IsVisible="True"
-                            Text="{Binding NumOfItems, StringFormat='Total number of items: {0}'}"
+                            IsVisible="{Binding LabelVisibility}"
+                            Text="{Binding NumOfItems, StringFormat=Total number of items: \{0\}}"
                             FontSize="25"
                             VerticalOptions="Center"
                             HorizontalTextAlignment="Center"
@@ -135,7 +146,12 @@
                   VerticalOptions="Fill" 
                   HorizontalOptions="Fill" 
                   BackgroundColor="#8eacbb"
+                  x:Name="ConfirmButtonGrid"
                   >
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ConfirmCommand}"/>
+                </Grid.GestureRecognizers>
 
                 <Label 
                     HorizontalOptions="Center"
@@ -146,13 +162,8 @@
                     VerticalOptions="Center"
                     />
 
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ConfirmCommand}"/>
-                </Grid.GestureRecognizers>
-
             </Grid>
 
         </Grid>
-    </ContentPage.Content>
 
 </ContentPage>

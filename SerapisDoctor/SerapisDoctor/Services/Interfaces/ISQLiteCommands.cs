@@ -13,10 +13,10 @@ namespace SerapisDoctor.Services
        
 
         //Gets all the pateints, currently in the local database
-        Task<List<T>> GetPatientsFromLocalDbAsync(PateintMeta metaData);
+        Task<List<T>> GetPatientsFromLocalDbAsync(PatientMeta metaData);
 
         //This Id is the id in the PatientMeta model, uses the autoincrment Sqlite property
-        Task<PateintMeta> GetPatientFromLocalDbAsync(int id);
+        Task<PatientMeta> GetPatientFromLocalDbAsync(int id);
 
         //Insert the pateint to the database
         Task InsertPatientToLocalDbAsync();

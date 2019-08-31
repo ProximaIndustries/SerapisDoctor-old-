@@ -5,8 +5,7 @@
              xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              x:Class="SerapisDoctor.View.ConfirmationPage"
              xmlns:template="clr-namespace:SerapisDoctor.View.Templates"
-             x:Name="Self"
-             
+             x:Name="Confirmation"
              >
 
 
@@ -20,7 +19,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" x:Name="PatientDocUserDetails">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"/>
@@ -110,11 +109,11 @@
 
                 </Grid>
 
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" x:Name="BoxLine">
                     <BoxView Color="Black" HorizontalOptions="FillAndExpand"/>
                 </Grid>
 
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="2" x:Name="CarouselViewGrid">
                     <carousel:CarouselViewControl 
                         ShowArrows="True"  
                         CurrentPageIndicatorTintColor="White"
@@ -137,7 +136,7 @@
                     </carousel:CarouselViewControl>
                 </Grid>
 
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="3" x:Name="FingerPrintIconGrid">
                     <Image Source="TouchIdIcon.png">
                         <Image.WidthRequest>
                             <OnIdiom x:TypeArguments="x:Double">

@@ -37,8 +37,6 @@ namespace SerapisDoctor.Model.Doctor
 
         public DoctorPrescription prescription { get; set; }
 
-        public DoctorsNote DoctorNote { get; set; }
-
         public List<PracticeInformation> PracticesOwnedOrWorksAt { get; set; }
 
     }

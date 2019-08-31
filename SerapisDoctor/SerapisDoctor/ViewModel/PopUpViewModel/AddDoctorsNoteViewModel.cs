@@ -5,6 +5,7 @@ using System.Text;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
+using SerapisDoctor.Model.Doctor;
 
 namespace SerapisDoctor.ViewModel
 {
@@ -18,7 +19,7 @@ namespace SerapisDoctor.ViewModel
         {
             InitalizeDate();
 
-            SaveDoctorsNote = new Command(async () => await SaveDocNoteAsync());
+            SaveDoctorsNote = new Command(async() => await SaveDocNoteAsync());
         }
 
 
@@ -66,7 +67,15 @@ namespace SerapisDoctor.ViewModel
         private async Task SaveDocNoteAsync()
         {
             //Closes the pop up and adds the note to the current patient
+            DoctorsNote note = new DoctorsNote()
+            {
+                 DateOfNote=TodaysDate,
+                 Note=PatientsNote,
+                 //Get from the config file
+                 DoctorsName=""
+            };
 
+            MessagingCenter.Instance.Send<AddDoctorsNoteViewModel, DoctorsNote>(this, MessagingKeys.MedicalNoteAndFile, note);
 
             await Task.FromResult(PopupNavigation.Instance.PopAllAsync(true));
         }

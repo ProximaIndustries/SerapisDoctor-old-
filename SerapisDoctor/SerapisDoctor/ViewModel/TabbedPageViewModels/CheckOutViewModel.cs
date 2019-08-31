@@ -30,16 +30,26 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                 list = value;
             }
         }
+
         private ObservableCollection<PatientMeta> InitalizeList()
         {
             List = new ObservableCollection<PatientMeta>();
 
-            foreach (var patient in PatientsWaintingLineDb.GetPatientsAsync().Result)
+            List.Clear();
+
+            foreach (var patientCheckedIn in PatientsWaintingLineDb.GetPatientsAsync().Result)
             {
-                List.Add(patient);
+                List.Add(patientCheckedIn);
             }
 
+            UpdateList(List);
+
             return List;
+        }
+
+        public void UpdateList(ObservableCollection<PatientMeta> _patientList)
+        {
+            PatientsWaintingLineDb.RefreshList(_patientList); 
         }
 
         private int lineNumber;

@@ -36,16 +36,19 @@
             <Grid Grid.Row="0" HorizontalOptions="End" VerticalOptions="Start">
                 <!--Place  a cross to close the pop up-->
                 <Image Source="closebutton.png">
+					<Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseAnalytics}" />
+					</Image.GestureRecognizers>
                     <Image.WidthRequest>
                         <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android, iOS">60</On>
-                            <On Platform="winPhone">65</On>
+                            <On Platform="Android, iOS" Value="60"/>
+                            <On Platform="winPhone" Value="65"/>
                         </OnPlatform>
                     </Image.WidthRequest>
                     <Image.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android, iOS">60</On>
-                            <On Platform="winPhone">65</On>
+                            <On Platform="Android, iOS" Value="60"/>
+                            <On Platform="winPhone" Value="65"/>
                         </OnPlatform>
                     </Image.HeightRequest>
                 </Image>
@@ -53,12 +56,13 @@
 
             <Grid Grid.Row="1">
                 <!--Anaylics go here, To tell the doctor what to look at-->
-                <ListView ItemsSource="{Binding .}" SeparatorVisibility="Default" SeparatorColor="Black" CachingStrategy="RecycleElement">
+                <ListView ItemsSource="{Binding RecommendedChecks}" SeparatorVisibility="Default" SeparatorColor="Black" CachingStrategy="RecycleElement">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>

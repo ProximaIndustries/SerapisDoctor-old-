@@ -1,0 +1,136 @@
+﻿<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2*"/>
+				<ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout 
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" 
+                Grid.Row="0" 
+                Grid.Column="1"
+                >
+                <Label 
+                    Text="Time Checked in:" 
+                    TextColor="Black" 
+                    FontSize="50"
+                    Margin="5,5,5,5" 
+                    />
+            </StackLayout>
+
+            <StackLayout 
+                HorizontalOptions="Start"  
+                VerticalOptions="Center" 
+                Grid.Row="1" 
+                Grid.Column="1"
+                >
+                <Label 
+                    Text="Checked in by:" 
+                    TextColor="Black" 
+                    FontSize="50"
+                    Margin="5,5,5,5" 
+                    />
+            </StackLayout>
+
+            <StackLayout 
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" 
+                Grid.Row="2" 
+                Grid.Column="1"
+                >
+                <Label 
+                    Text="Duration:" 
+                    TextColor="Black" 
+                    FontSize="50"
+                    Margin="5,5,5,5" 
+                    />
+            </StackLayout>
+
+            <StackLayout 
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" 
+                Grid.Row="1" 
+                Grid.Column="2"
+                >
+                <Label 
+                    Text="Jessica Nkosi" 
+                    TextColor="Black" 
+                    FontSize="50"
+                    Margin="5,5,5,5" 
+                    />
+            </StackLayout>
+
+            <StackLayout 
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" 
+                Grid.Row="2" 
+                Grid.Column="2"
+                >
+                <Label 
+                    Text="0h:30m:20s" 
+                    TextColor="Black" 
+                    FontSize="50"
+                    Margin="5,5,5,5" 
+                    />
+            </StackLayout>
+
+            <StackLayout 
+                HorizontalOptions="Start" 
+                VerticalOptions="Center" 
+                Grid.Row="0" 
+                Grid.Column="2"
+                >
+                <Label 
+                    Text="14:00" 
+                    TextColor="Black" 
+                    FontSize="50"
+                    Margin="5,5,5,5" 
+                    />
+            </StackLayout>
+
+            <!--add icon-->
+            <StackLayout 
+                Grid.Row="0" 
+                Grid.Column="0"
+                VerticalOptions="Center"
+                >
+                <Label Text="." 
+                       FontSize="50" 
+                       BackgroundColor="#1A82A8" TextColor="#000000" 
+                       
+                       />
+            </StackLayout>
+
+            <!--add icon-->
+            <StackLayout 
+                Grid.Row="1" 
+                Grid.Column="0"
+                VerticalOptions="Center"
+                >
+                <Label 
+                    FontSize="50" 
+                    BackgroundColor="#1A82A8" 
+                    TextColor="#0B0A0A" VerticalOptions="Center" 
+                    />
+            </StackLayout>
+
+            <!--add icon-->
+            <StackLayout 
+                Grid.Row="2" 
+                Grid.Column="0"
+                VerticalOptions="Center"
+                >
+                <Label 
+                    FontSize="50" 
+                    BackgroundColor="#1A82A8" 
+                    />
+            </StackLayout>
+            
+        </Grid>

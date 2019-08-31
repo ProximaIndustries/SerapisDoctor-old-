@@ -4,6 +4,7 @@
              xmlns:template="clr-namespace:SerapisDoctor.Cells"
              xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              x:Class="SerapisDoctor.View.TabbedPages.CheckIn"
+             x:Name="CheckInPage"
              >
 
 
@@ -25,7 +26,7 @@
                       CachingStrategy="RecycleElement"
                       IsRefreshing="{Binding IsRefreshing}"
                       IsPullToRefreshEnabled="True"
-                >
+                    >
 
                 <ListView.Behaviors>
                     <behaviorsPack:SelectedItemBehavior Command="{Binding SelectPatient}"/>

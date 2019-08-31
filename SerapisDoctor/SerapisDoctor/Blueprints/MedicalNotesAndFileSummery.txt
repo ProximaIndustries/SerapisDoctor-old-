@@ -1,0 +1,40 @@
+﻿<Grid>
+
+                <!--Move command to listview selction when added-->
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenFileOrNote}" />
+                </Grid.GestureRecognizers>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Frame Grid.Row="0"
+                HeightRequest="150" 
+                WidthRequest="150" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                CornerRadius="20" 
+                BorderColor="#000000"
+                
+                   >
+
+                    <!--Add the Pdf logo-->
+                    <Image Source="Icon.png" 
+                       VerticalOptions="Center"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center"
+                       />
+
+                </Frame>
+
+
+                <Label 
+                Grid.Row="1" 
+                Text="Femer X-ray" 
+                FontSize="35"
+                TextColor="White" HorizontalTextAlignment="Center"
+                />
+
+            </Grid>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SerapisDoctor.Model.Doctor
+namespace SerapisDoctor.Model.Enum
 {
     public enum MedicationType
     {

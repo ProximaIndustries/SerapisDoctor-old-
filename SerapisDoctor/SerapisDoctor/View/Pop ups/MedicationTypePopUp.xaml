@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popUp:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:popUp="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:popupAnimation="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+             xmlns:Utils="clr-namespace:SerapisDoctor.Utils"
+             mc:Ignorable="d"
+             x:Class="SerapisDoctor.View.Pop_ups.MedicationTypePopUp"
+             
+                 >
+
+    <popUp:PopupPage.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </popUp:PopupPage.Resources>
+
+    <popUp:PopupPage.BindingContext>
+        <Utils:EnumToStringConverter/>
+    </popUp:PopupPage.BindingContext>
+    
+    <popUp:PopupPage.Content>
+        <ListView VerticalOptions="Start" 
+                  HorizontalOptions="End" 
+                  ItemsSource="{Binding MedicationTypeList}" 
+                  BackgroundColor="White"
+                  Margin="300,30,15,100"
+                  x:Name="medList" 
+                  HasUnevenRows="True"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <!--Image icon from back-end-->
+                                <Image Source="ic_brightness_1.png" VerticalOptions="Center" />
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <!--Name of place of body to look at-->
+                                <Label Text="{Binding MedicationType, Converter={Utils:EnumToStringConverter}}" 
+                                       TextColor="#090909" 
+                                       FontSize="Large"
+                                       />
+                            </Grid>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </popUp:PopupPage.Content>
+
+
+</popUp:PopupPage>

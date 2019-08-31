@@ -54,6 +54,7 @@
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
 
+            <!--Grid Row 0-->
             <profile:CircleImage Source="{Binding ProfilePicture}" 
                                  Grid.Row="0" 
                                  HorizontalOptions="Center">
@@ -78,6 +79,7 @@
                 
             </profile:CircleImage>
 
+            <!--Grid Row 1-->
             <Grid Grid.Row="1" HorizontalOptions="Center">
                 <Label  Text="{Binding UserName}" 
                         HorizontalTextAlignment="Center"
@@ -86,6 +88,7 @@
                 
             </Grid>
 
+            <!--Grid Row 2-->
             <Grid Grid.Row="2" RowSpacing="10">
 
                 <!-- Come Back to Style this page-->
@@ -96,17 +99,49 @@
                         <OnIdiom.Tablet>10,0,0,0</OnIdiom.Tablet>
                     </OnIdiom>
                 </Grid.Margin>
+
+                <AbsoluteLayout>
+                    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                        <!--SOme patient information will go here-->
+
+                    </StackLayout>
+
+                    <ContentView 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="{Binding IsBusy}"
+                        >
+
+                        <ActivityIndicator 
+                            IsRunning="{Binding IsBusy}" 
+                            WidthRequest="60" 
+                            HeightRequest="60" 
+                            Color="Blue"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            />
+
+                    </ContentView>
+                    
+                </AbsoluteLayout>
+                
             </Grid>
 
+            <!--Grid Row 3-->
             <Grid Grid.Row="3" VerticalOptions="Fill" BackgroundColor="DodgerBlue">
-                <Grid ColumnSpacing="2">
+                <Grid ColumnSpacing="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
 
 
-                    <Grid Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid Grid.Column="0" 
+                          VerticalOptions="Center" 
+                          HorizontalOptions="Center" 
+                          IsEnabled="{Binding IsButtonEnabled}"
+                          x:Name="CheckInGrid"
+                          >
                        
                         <Label Text="Check In" Style="{StaticResource ButtonLabel}"/>
 
@@ -115,7 +150,7 @@
                         </Grid.GestureRecognizers>
                     </Grid>
 
-                    <Grid Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" IsEnabled="{Binding IsButtonEnabled}">
                         <Label Text="Cancel" Style="{StaticResource ButtonLabel}"/>
 
                         <Grid.GestureRecognizers>

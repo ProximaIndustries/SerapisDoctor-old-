@@ -16,7 +16,6 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
     public class CheckInViewModel:BaseViewModel
     {
-        public uint LineNumber = TicketLineNumberCounter.PatientLineNumber;
 
         private ObservableCollection<PatientMeta> listOfBookedPatients;
 
@@ -87,9 +86,10 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                 PopupNavigation.Instance.PushAsync(errorPop);
 
                 //wait a second then automatically close the banner
-                Task.Delay(3000);
+                Task.Delay(4000);
 
                 //code to automatically close the banner
+                PopupNavigation.Instance.PopAllAsync(true);
             }
         }
 
@@ -158,7 +158,14 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                     FullName = patient.FullName,
                     ProfilePicture = patient.ProfilePicture,
                     Id = " ",
-                    LineNumber = this.LineNumber
+                    Appointment = new Model.AppointmentModel.Appointment
+                    {
+                        DateBooked = DateTime.Today.ToShortDateString(),
+                        HasSeenGP = true,
+                        TimeBooked = DateTime.Today.ToShortTimeString(),
+                        BookingId = 0,
+                        Duration = TimeSpan.FromSeconds(1),
+                    }
                 };
 
                 //Send the object to the pop up.
@@ -174,12 +181,6 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
             }
             finally
             {
-                //Inrement the number 
-                var tempLineNumber=TicketLineNumberCounter.IncrementLineNumber();
-
-                //Store that number back memeory
-                TicketLineNumberCounter.PatientLineNumber = tempLineNumber;
-
                 IsBusy = false;
             }
         });

@@ -1,6 +1,7 @@
 ﻿using SerapisDoctor.Model;
 using SerapisDoctor.Model.PatientModel;
 using SerapisDoctor.Services;
+using SerapisDoctor.Utils;
 using SerapisDoctor.View;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,16 @@ namespace SerapisDoctor.ViewModel
 {
     public class DiagnosisListViewModel
     {
+        private uint lineNumber = 1;
+
         public ObservableCollection<PatientMeta> DiagnoseList { get; set; }
         
+
         public DiagnosisListViewModel()
         {
             InitailizeList();
         }
+
 
         private ObservableCollection<PatientMeta> InitailizeList()
         {
@@ -32,8 +37,12 @@ namespace SerapisDoctor.ViewModel
                 meta = new PatientMeta()
                 {
                     FullName = item.FullName,
-                    ProfilePicture = item.ProfilePicture
+                    ProfilePicture = item.ProfilePicture,
+                    Appointment=item.Appointment,
+                    LineNumber=lineNumber
                 };
+
+                lineNumber++;
 
                 DiagnoseList.Add(meta);
             }
@@ -44,6 +53,11 @@ namespace SerapisDoctor.ViewModel
         public ICommand SelectPateintCommand => new Command<PatientMeta>(patientDetails=>
         {
             NavigateToDetails();
+
+            //Use query to get details using the patients id.
+
+            //Start the timer clock.
+            AppointmentStopWatch.StartClockCount();
         });
 
         private void NavigateToDetails()

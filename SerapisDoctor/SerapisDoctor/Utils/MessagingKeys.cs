@@ -11,5 +11,8 @@ namespace SerapisDoctor.Utils
         public const string SendPatientObj = "SendPatientObject";
         public const string PatientDetails = "PatientsDetails";
         public const string ErrorPopUpBanner = "NotificationBanner";
+        public const string MedicalDetails = "PatientMedicalDetails";
+        public const string UpperTilePopUp="UpperTilePopUp";
+        public const string MedicalNoteAndFile = "DoctorsNote";
     }
 }

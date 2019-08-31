@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SerapisDoctor.View.Templates.MedicationSummery">
     <ContentView.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout 
+            BackgroundColor="#C4AE0C" 
+            HorizontalOptions="Center" 
+            VerticalOptions="Center" 
+            >
+            <Frame CornerRadius="8">
+                    
+            </Frame>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

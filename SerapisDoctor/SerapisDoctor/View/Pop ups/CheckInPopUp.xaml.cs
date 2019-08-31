@@ -21,8 +21,15 @@ namespace SerapisDoctor.View.Pop_ups
 			InitializeComponent ();
             viewModel = new CheckInPopUpViewModel();
             BindingContext =viewModel;
+
+            viewModel.ButtonEvent += AnimateButtonPress;
 		}
 
-
-	}
+        private void AnimateButtonPress(object sender, EventArgs args)
+        {
+            CheckInGrid.Scale = 1.4;
+            Task.Delay(500);
+            CheckInGrid.ScaleTo(1, 250, Easing.SinOut);
+        }
+    }
 }

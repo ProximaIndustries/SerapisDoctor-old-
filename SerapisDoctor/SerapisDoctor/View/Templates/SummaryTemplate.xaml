@@ -54,7 +54,10 @@
 
 
             <ContentView Grid.Row="2" VerticalOptions="Fill" HorizontalOptions="Fill">
-                
+                <StackLayout>
+                    <!--The code to render each view goes here-->
+                    
+                </StackLayout>
             </ContentView>
             
         </Grid>

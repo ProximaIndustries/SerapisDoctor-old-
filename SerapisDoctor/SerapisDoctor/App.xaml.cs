@@ -26,7 +26,7 @@ namespace SerapisDoctor
         public static UIParent UiPartent;
         #endregion
 
-        #region Properties (Local database)
+        #region Properties (Local databases)
         public static string Database=string.Empty;
         #endregion
 
@@ -73,6 +73,8 @@ namespace SerapisDoctor
              * needed This will have to do for now
             */
              PatientsWaintingLineDb.ClearLocalDatabase();
+
+             PrescriptionLocalDb.ClearBusket();
 
             //Get doctors location
             DoctorLocationTracker doctorLocationTracker = new DoctorLocationTracker();

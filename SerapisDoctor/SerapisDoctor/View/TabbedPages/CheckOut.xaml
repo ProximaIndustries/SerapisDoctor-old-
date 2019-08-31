@@ -8,7 +8,8 @@
         <Style x:Key="CellLabels" TargetType="Label">
             <Setter Property="HorizontalOptions" Value="Center"/>
             <Setter Property="VerticalOptions" Value="Center"/>
-            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="TextColor" Value="Black"/>
         </Style>
 
         <Style x:Key="LineNumber" TargetType="Label">
@@ -29,7 +30,7 @@
                   SeparatorVisibility="Default" 
                   SeparatorColor="Black"
                   Grid.Row="0"
-                      CachingStrategy="RecycleElement"
+                  CachingStrategy="RecycleElement"
                       >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -50,22 +51,22 @@
 
 
                                 <profilepicture:CircleImage 
-                                                Source="{Binding PatientProfilePicture}"
+                                                Source="{Binding ProfilePicture}"
                                                 Grid.Column="1"
                                                 Aspect="AspectFit"
-                                                BorderThickness="1"
-                                                BorderColor="#607d8b"
+                                                BorderThickness="2"
+                                                BorderColor="DodgerBlue"
                                             >
                                     <profilepicture:CircleImage.WidthRequest>
                                         <OnIdiom x:TypeArguments="x:Double">
                                             <OnIdiom.Phone>40</OnIdiom.Phone>
-                                            <OnIdiom.Tablet>65</OnIdiom.Tablet>
+                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
                                         </OnIdiom>
                                     </profilepicture:CircleImage.WidthRequest>
                                     <profilepicture:CircleImage.HeightRequest>
                                         <OnIdiom x:TypeArguments="x:Double">
                                             <OnIdiom.Phone>40</OnIdiom.Phone>
-                                            <OnIdiom.Tablet>65</OnIdiom.Tablet>
+                                            <OnIdiom.Tablet>100</OnIdiom.Tablet>
                                         </OnIdiom>
                                     </profilepicture:CircleImage.HeightRequest>
 

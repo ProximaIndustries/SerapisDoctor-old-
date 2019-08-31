@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             x:Class="SerapisDoctor.View.PatientDetails">
+             x:Class="SerapisDoctor.View.PatientDetails"
+             x:Name="PageLoadAnimation"
+             >
 
 
     <ContentPage.Resources>
@@ -47,7 +49,7 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="customerinsightIcon.png" Command="{Binding PatientAnaylticsPortal}"/>
+        <ToolbarItem x:Name="InsightButton"  Icon="customerinsightIcon.png" Command="{Binding PatientAnaylticsPortal}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
@@ -65,7 +67,12 @@
                 </Grid.RowDefinitions>
 
                 <!--#region Users First Hand Information-->
-                <Grid Grid.Row="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="10, 10, 0, 5">
+                <Grid Grid.Row="0" 
+                      HorizontalOptions="Start" 
+                      VerticalOptions="Center" 
+                      Margin="10, 10, 0, 5"
+                      x:Name="PatientId"
+                      >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
@@ -100,7 +107,7 @@
                             Grid.Column="1"
                             Style="{StaticResource PatientName}"
                             VerticalTextAlignment="Center"
-                            HorizontalTextAlignment="Center"
+                            HorizontalTextAlignment="Start"
                             />
 
                     </Grid>
@@ -126,6 +133,7 @@
                             <RowDefinition Height="5*"/>
                         </Grid.RowDefinitions>
 
+                        <!--#region Top Half-->
                         <Grid Grid.Row="0">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -137,9 +145,12 @@
 
                                 <!--#region Age Tile-->
                                 <Grid Grid.Column="0" 
-                                      
+                                      x:Name="AgeTileGrid"
                                       HorizontalOptions="Fill"
                                       >
+									<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding AgePopUp}"/>
+									</Grid.GestureRecognizers>
 
                                     <Frame>
                                         <Grid VerticalOptions="Center" >
@@ -190,7 +201,13 @@
                                 <Grid Grid.Column="1" 
                                       VerticalOptions="Fill" 
                                       HorizontalOptions="Fill"
+                                      x:Name="BloodTypeGrid"
                                       >
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BloodTypePopUp}"/>
+                                    </Grid.GestureRecognizers>
+
                                     <Frame>
                                         <Grid VerticalOptions="Center">
                                             <Grid.RowDefinitions>
@@ -242,7 +259,12 @@
                                 <Grid Grid.Column="2" 
                                       VerticalOptions="Fill" 
                                       HorizontalOptions="Fill"
+                                      x:Name="BloodPressureGrid"
                                       >
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BloodPressurePopUp}"/>
+                                    </Grid.GestureRecognizers>
 
                                     <Frame >
                                         <Grid VerticalOptions="Center">
@@ -296,8 +318,13 @@
                                 <Grid Grid.Column="3" 
                                       VerticalOptions="Fill" 
                                       HorizontalOptions="Fill"
+                                      x:Name="GenderGrid"
                                       >
 
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GenderPopUp}"/>
+                                    </Grid.GestureRecognizers>
+                                    
                                     <Frame>
                                         <Grid VerticalOptions="Center">
                                             <Grid.RowDefinitions>
@@ -335,7 +362,9 @@
 
                             </Grid>
                         </Grid>
-
+                        <!--#endregion-->
+                        
+                        <!--#region Bottom half-->
                         <Grid Grid.Row="1">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -349,7 +378,11 @@
                                 <Grid Grid.Column="0" 
                                       VerticalOptions="Fill" 
                                       HorizontalOptions="Fill"
+                                      x:Name="ChronicDiseaseGrid"
                                       >
+									<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ChronicDiseasePopUp}"/>
+									</Grid.GestureRecognizers>
 
                                     <Frame>
                                         <Grid VerticalOptions="Center">
@@ -392,12 +425,15 @@
                                 </Grid>
                                 <!--#endregion-->
 
-
                                 <!--#region Medical Files Tile-->
                                 <Grid Grid.Column="1" 
                                       VerticalOptions="Fill" 
                                       HorizontalOptions="Fill"
+                                      x:Name="MedicalFileGrid"
                                       >
+									<Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding MedicalFilesNotePopUp}" />
+									</Grid.GestureRecognizers>
 
                                     <Frame>
                                         <Grid VerticalOptions="Center">
@@ -430,7 +466,7 @@
                                             <Grid Grid.Row="1">
                                                 <Label
                                                  Text="Medical Files"
-                                                 Style="{StaticResource TileHeader}"   
+                                                 Style="{StaticResource Key=TileHeader}"   
                                            />
                                             </Grid>
 
@@ -444,7 +480,11 @@
                                 <Grid Grid.Column="2" 
                                       VerticalOptions="Fill" 
                                       HorizontalOptions="Fill"
+                                      x:Name="MedicationGrid"
                                       >
+									<Grid.GestureRecognizers>
+										<TapGestureRecognizer Command="{Binding MedicationPopUp}"/>
+									</Grid.GestureRecognizers>
 
                                     <Frame>
                                         <Grid VerticalOptions="Center">
@@ -477,7 +517,11 @@
                                 <Grid Grid.Column="3" 
                                       VerticalOptions="Fill" 
                                       HorizontalOptions="Fill"
+                                      x:Name="AllergiesGrid"
                                       >
+									<Grid.GestureRecognizers>
+										<TapGestureRecognizer Command="{Binding AllergiesPopUp}"/>
+									</Grid.GestureRecognizers>
 
                                     <Frame>
                                         <Grid VerticalOptions="Center">
@@ -521,7 +565,8 @@
 
                             </Grid>
                         </Grid>
-
+                        <!--#endregion-->
+                                
                     </Grid>
                 </Grid>
                 <!--#endregion-->
@@ -535,7 +580,9 @@
                             <ColumnDefinition Width="5*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Grid Grid.Column="0">
+                        <Grid Grid.Column="0"
+                              x:Name="AddFileButtonGrid"
+                              >
                             <Image Source="AddFileIcon.png" Style="{StaticResource BottomIcons}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding DoctorsNoteCommand}"/>
@@ -543,8 +590,10 @@
                             </Image>
                         </Grid>
                         
-                        <Grid Grid.Column="1">
-                            <Image Source="DoctorNoteIcon.png" Style="{StaticResource BottomIcons}">
+                        <Grid Grid.Column="1"
+                              x:Name="DoctorNoteGrid"
+                              >
+                            <Image IsEnabled="False" Source="DoctorNoteIcon.png" Style="{StaticResource BottomIcons}">
 
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding AddMedicalFiles}"/>
@@ -553,13 +602,16 @@
                             </Image>
                         </Grid>
 
-                        <Grid Grid.Column="2">
+                        <Grid Grid.Column="2"
+                              x:Name="PrescriptionFillGrid"
+                              >
                             <Image 
                                 Source="PrescriptionFillIcon.png" 
                                 Style="{StaticResource BottomIcons}"
+                                x:Name="PrecriptionButton"
                                 >
 
-                                <Image.GestureRecognizers>
+                                <Image.GestureRecognizers IsEnabled="{Binding IsButtonEnabled}">
                                     <TapGestureRecognizer Command="{Binding PrescriptionCommand}"/>
                                 </Image.GestureRecognizers>
 

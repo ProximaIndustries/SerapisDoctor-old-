@@ -1,31 +1,48 @@
-﻿using SerapisDoctor.Global_Lists;
-using SerapisDoctor.Model.Doctor;
-using SerapisDoctor.Utils;
+﻿using SerapisDoctor.Model.Enum;
+using SerapisDoctor.Services;
 using SerapisDoctor.View;
+using SerapisDoctor.View.Pop_ups;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Rg.Plugins.Popup.Services;
 
 namespace SerapisDoctor.ViewModel
 {
     public class DoctorPrescriptionViewModel:BaseViewModel
     {
-        Model.Doctor.DoctorPrescription prescription;
+        #region Local event handler
+        public delegate void ButtonPressedHandeler(object sender, EventArgs args);
+
+        public event ButtonPressedHandeler ButtonEvent;
+
+        public void RaiseButtonEvent()
+        {
+            if (ButtonEvent != null)
+                ButtonEvent(this, new EventArgs());
+        }
+        #endregion
+
+        private Model.Doctor.DoctorPrescription prescription;
+
+        private MedicationTypePopUp PopUp;
 
         private ObservableCollection<Model.Doctor.DoctorPrescription> PrescriptionScriptList { get; set; }
 
         public DoctorPrescriptionViewModel()
         {
-            PrescriptionScriptList = new ObservableCollection<Model.Doctor.DoctorPrescription>();
+            PopUp = new MedicationTypePopUp();
             AddToBusketCommand = new Command(AddMedication);
-            ViewBusketCommand = new Command(NavigateToConfirmationPage);
+            ViewBusketCommand = new Command(async()=>await NavigateToConfirmationPageAsync());
+            DiffrentMedcationTypeForm = new Command(LoadPopUpPage);
         }
 
         #region Command Properties
         public ICommand ViewBusketCommand { get; set; }
+
+        public ICommand DiffrentMedcationTypeForm { get; set; }
 
         public ICommand AddToBusketCommand { get; set; }
         #endregion
@@ -43,6 +60,7 @@ namespace SerapisDoctor.ViewModel
             {
                 dosagePrescriptionAmount = value;
                 OnPropertyChanged("DosagePrescriptionAmount");
+                dosagePrescriptionAmount = value;
             }
         }
 
@@ -57,6 +75,7 @@ namespace SerapisDoctor.ViewModel
             {
                 prescriptionInstructions = value;
                 OnPropertyChanged("PrescriptionInstructions");
+                prescriptionInstructions = value;
             }
         }
 
@@ -71,6 +90,7 @@ namespace SerapisDoctor.ViewModel
             {
                 prescriptionMedication = value;
                 OnPropertyChanged("PrescriptionMedication");
+                prescriptionMedication = value;
             }
         }
 
@@ -85,6 +105,7 @@ namespace SerapisDoctor.ViewModel
             {
                 addedPrescriptionNotes = value;
                 OnPropertyChanged("AddedPrescriptionNotes");
+                addedPrescriptionNotes = value;
             }
         }
 
@@ -108,13 +129,13 @@ namespace SerapisDoctor.ViewModel
         {
             get
             {
-                //Value for now 
                 return setOpacity;
             }
             set
             {
                 setOpacity = value;
                 OnPropertyChanged("SetOpacity");
+                setOpacity = value;
             }
         }
 
@@ -134,14 +155,21 @@ namespace SerapisDoctor.ViewModel
 
         #endregion
 
-        private async void NavigateToConfirmationPage()
+        private void LoadPopUpPage()
         {
-            MessagingCenter.Send(this, MessagingKeys.PrescriptionMsg, PrescriptionScriptList);
+            //This loads a pop up page with options on the diffrent medication types
+            PopupNavigation.Instance.PushAsync(PopUp);
+        }
+
+        private async Task NavigateToConfirmationPageAsync()
+        {
             await App.Current.MainPage.Navigation.PushAsync(new BasketView());
         }
 
         private void AddMedication()
         {
+            //This is a temp variable
+            Random random=new Random();
 
             prescription = new Model.Doctor.DoctorPrescription()
             {
@@ -149,15 +177,19 @@ namespace SerapisDoctor.ViewModel
                 PrescriptionInstructions = PrescriptionInstructions,
                 PrescriptionMedication = PrescriptionMedication,
                 AddedPrescriptionNotes = AddedPrescriptionNotes,
-                TypeOfMedication=MedicationType.bandage
+                TypeOfMedication = MedicationType.pills,
+                MedCashPrice = 30.45,
+                Id = random.Next(),
+                
             };
 
             try
             {
-                if (CheckEntryFields() == true)
+                if(CheckEntryFields() == true)
                 {
-                    PrescriptionScriptList.Add(prescription);
-                    CountBusketItems();
+                    RaiseButtonEvent();
+                    PrescriptionLocalDb.InsertPrescription(prescription);
+                    MedsInBusket = PrescriptionLocalDb.GetAllDoctorPrescriptionsAsync().Result.Count;
                 }
                 else
                 {
@@ -197,20 +229,13 @@ namespace SerapisDoctor.ViewModel
 
             if (checkMedicationField || checkInstructions || checkDosageField)
             {
-                
                 return false;
             }
             else
             {
-                
                 return true;
             }
 
-        }
-
-        private int CountBusketItems()
-        {
-            return MedsInBusket = PrescriptionScriptList.Count;
         }
 
     }

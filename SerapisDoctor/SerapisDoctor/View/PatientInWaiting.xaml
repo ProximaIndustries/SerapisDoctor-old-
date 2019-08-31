@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
-             x:Class="SerapisDoctor.View.PatientInWaiting">
+             x:Class="SerapisDoctor.View.PatientInWaiting"
+             x:Name="dignosisPage"
+             >
 
 
     <ContentPage.Resources>
@@ -24,25 +26,25 @@
                    x:Key="PatientUserName" 
                    >
 
-                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontSize" Value="25"/>
                 <Setter Property="HorizontalOptions" Value="Fill"/>
                 <Setter Property="LineBreakMode" Value="TailTruncation"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
 
             <Style  TargetType="Label" 
                 x:Key="LineNumberLabel" 
                 >
                 <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="Margin" Value="10,0"/>
             </Style>
 
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding TempButtonCommand}" Text="details"/>
-    </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <Grid>
@@ -51,7 +53,7 @@
                 <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" HorizontalOptions="Start">
+            <Grid Grid.Row="0" HorizontalOptions="Start" x:Name="doctorDetails">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -102,8 +104,6 @@
                                         Text="{Binding LineNumber}" 
                                         Grid.Column="0" 
                                         Style="{StaticResource LineNumberLabel}"
-                                        VerticalOptions="Center"
-                                        FontSize="Large"
                                         />
 
                                     <controls:CircleImage 
@@ -113,20 +113,20 @@
                                                 Grid.Column="1"
                                                 Margin="0,10"        
                                                 HorizontalOptions="Center"
-                                                BorderColor="#607d8b"
+                                                BorderColor="DodgerBlue"
                                         >
 
                                         <controls:CircleImage.WidthRequest>
                                             <OnIdiom x:TypeArguments="x:Double">
                                                 <OnIdiom.Phone>30</OnIdiom.Phone>
-                                                <OnIdiom.Tablet>65</OnIdiom.Tablet>
+                                                <OnIdiom.Tablet>100</OnIdiom.Tablet>
                                             </OnIdiom>
                                         </controls:CircleImage.WidthRequest>
                                         <controls:CircleImage.HeightRequest>
-                                            <OnPlatform x:TypeArguments="x:Double">
-                                                <On Platform="Android, iOS">100</On>
-                                                <On Platform="WinPhone">50</On>
-                                            </OnPlatform>
+                                            <OnIdiom x:TypeArguments="x:Double">
+                                                <OnIdiom.Phone>30</OnIdiom.Phone>
+                                                <OnIdiom.Tablet>100</OnIdiom.Tablet>
+                                            </OnIdiom>
                                         </controls:CircleImage.HeightRequest>
                                     </controls:CircleImage>
 
@@ -145,9 +145,8 @@
                     <ListView.Behaviors>
                         <behaviorsPack:SelectedItemBehavior Command="{Binding SelectPateintCommand}"/>
                     </ListView.Behaviors>
-                    
+
                 </ListView>
-                
             </Grid>
 
         </Grid>

@@ -16,5 +16,6 @@ namespace SerapisDoctor.Model
         public string BackgroundImage { get; set; }
 
         public ContentView Content { get; set; }
+
     }
 }

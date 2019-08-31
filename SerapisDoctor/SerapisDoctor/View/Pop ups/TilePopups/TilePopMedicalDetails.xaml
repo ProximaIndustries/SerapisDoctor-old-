@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popUp:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:popUp="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:popupAnimation="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:TilePopUpsViewModelAnimation="clr-namespace:SerapisDoctor.ViewModel.PopUpViewModel.TilePopUpsViewModel"
+                 mc:Ignorable="d"
+                 x:Class="SerapisDoctor.View.Pop_ups.TilePopups.TilePopMedicalDetails"
+                 >
+
+    <popUp:PopupPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </popUp:PopupPage.Resources>
+    
+    <Grid
+            Margin="60,80,60,80" 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="Fill"
+            BackgroundColor="White"
+            RowSpacing="0"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" x:Name="displayInformationGrid">
+                
+				      <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="6*"/>
+                          <ColumnDefinition Width="4*"/>
+				      </Grid.ColumnDefinitions>
+                    
+                <!--Display information-->
+                <Grid Grid.Column="0" 
+                      VerticalOptions="Fill"
+                      HorizontalOptions="End"
+                      RowSpacing="2"
+                      Margin="0,0,2,0"
+                      TranslationX="{Binding Transx}"
+                      TranslationY="{Binding TransY}"
+                      Scale="{Binding Scaler}" 
+                      x:Name="displayInfoPostioning"
+                      >
+                <!--Bind to the viewmodel to introduce animations-->
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" x:Name="ImageRow"
+                                   Source="{Binding ImageIcon}" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center" 
+                                   Aspect="AspectFit"
+                           >
+                        <Image.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS" Value="120"/>
+                                <On Platform="winPhone" Value="80"/>
+                            </OnPlatform>
+                        </Image.WidthRequest>
+                        <Image.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS" Value="120"/>
+                                <On Platform="winPhone" Value="80"/>
+                            </OnPlatform>
+                        </Image.HeightRequest>
+
+                        <!--Platform specfic sizing mark up code here-->
+
+                    </Image>
+
+                    <Label Grid.Row="1" x:Name="TitleRow" 
+                                       Text="{Binding Title}" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Start"
+                                       FontSize="20"
+                                       TextColor="Black"
+                                       IsVisible="{Binding ViewVisability}"
+                                       >
+                        <!--Platform specific sizinf mark up code here-->
+                    </Label>
+
+                    <Grid Grid.Row="1" IsVisible="False">
+                        <!--Place view here-->
+                    </Grid>
+                    
+
+                    <Image Grid.Row="2" 
+                           x:Name="AddButtonRow"
+                            Source="addmedication.png" 
+                            HorizontalOptions="Center"
+                            VerticalOptions="Start"
+                            IsEnabled="{Binding IsButtonEnabled}" 
+                            Margin="5,0,0,0"
+                            IsVisible="{Binding ViewVisability}"               
+                           >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddToPatientInfo}" />
+                        </Image.GestureRecognizers>
+                        <Image.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS" Value="80"/>
+                                <On Platform="winPhone" Value="85"/>
+                            </OnPlatform>
+                        </Image.WidthRequest>
+                        <Image.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS" Value="80"/>
+                                <On Platform="winPhone" Value="85"/>
+                            </OnPlatform>
+                        </Image.HeightRequest>
+                    </Image>
+
+            </Grid>
+
+                <!--Close pop up button-->
+                <Grid Grid.Column="1">
+                    <Image  x:Name="CloseButtonRow" 
+                       Source="closebutton.png" 
+                       HorizontalOptions="End"
+                       VerticalOptions="Start">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CloseDetailPage}" />
+                        </Image.GestureRecognizers>
+                        <Image.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS" Value="60"/>
+                                <On Platform="winPhone" Value="65"/>
+                            </OnPlatform>
+                        </Image.WidthRequest>
+                        <Image.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="Android, iOS" Value="60"/>
+                                <On Platform="winPhone" Value="65"/>
+                            </OnPlatform>
+                        </Image.HeightRequest>
+                    </Image>
+                </Grid>
+                
+            </Grid>
+
+            <Grid Grid.Row="1" VerticalOptions="Fill" x:Name="displayInfoGridTwo">
+                <ListView ItemsSource="{Binding ListOfConditions}" 
+                          SeparatorVisibility="Default" 
+                          SeparatorColor="Black" 
+                          CachingStrategy="RecycleElement"
+                          >
+
+                <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0">
+                                        <Label Text="{Binding .}" FontSize="20"/>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+            </ListView>
+            </Grid>
+
+        </Grid>
+
+
+</popUp:PopupPage>

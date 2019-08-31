@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SerapisDoctor.View.DoctorPrescription"
              Title="Prescribe Medication"
+             x:Name="DoctorPrescriptionPage"
              >
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Medication Type" Command="{Binding DiffrentMedcationTypeForm}"/>
+	</ContentPage.ToolbarItems>
 
     <ContentPage.Content>
+        
         <ScrollView>
             <Grid>
                 <Grid.RowDefinitions>
@@ -13,7 +18,7 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" VerticalOptions="Fill">
+                <Grid Grid.Row="0" VerticalOptions="Fill" x:Name="PrescriptionFormGrid">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
@@ -107,7 +112,8 @@
                                        HorizontalOptions="FillAndExpand" 
                                        VerticalOptions="Center"
                                        FontSize="Large"
-                                       TranslationY="12"       
+                                       TranslationY="12" 
+                                       Keyboard="Numeric"       
                                 />
 
 

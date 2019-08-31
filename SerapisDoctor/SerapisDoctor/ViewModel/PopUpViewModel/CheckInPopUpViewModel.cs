@@ -18,6 +18,18 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
 {
     public class CheckInPopUpViewModel : BaseViewModel
     {
+        #region Local Event handler
+        public delegate void ButtonPressed(object sender, EventArgs args);
+
+        public event ButtonPressed ButtonEvent;
+
+        public void RaiseButtonPressed()
+        {
+            if (ButtonEvent != null)
+                ButtonEvent(this, new EventArgs());
+        }
+        #endregion
+
         PatientMeta patientObj = new PatientMeta();
 
         public CheckInPopUpViewModel()
@@ -46,23 +58,56 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
         //Adds patients meta-data into sqlite storage
         private void AddPatientToList()
         {
+            RaiseButtonPressed();
 
-            //1.Add to the Local storage database
+            IsBusy = true;
 
-            //2.Connect to the local database and insert item
-            PatientsWaintingLineDb.InsertPatient(patientObj);
+            //Must be set to false, set to true for testing
+            IsButtonEnabled = true;
 
-            //Remove from PatientAwaitingCheckIn
-            PatientAwatingCheckIn.RemoveFromList(patientObj);
+            try
+            {
+                //Connect to the local database and insert item
+                PatientsWaintingLineDb.InsertPatient(patientObj);
 
-            //Auto close the pop up afterwards
-            PopupNavigation.Instance.PopAllAsync(true);
+                //Remove from PatientAwaitingCheckIn
+                PatientAwatingCheckIn.RemoveFromList(patientObj);
+
+                Task.Delay(250);
+
+                //Auto close the pop up afterwards
+                PopupNavigation.Instance.PopAllAsync(true);
+
+            }
+            catch(Exception ex)
+            {
+                //also send error logging to backend 
+                throw ex;
+            }
+            finally
+            {
+                IsBusy = false;
+
+                IsButtonEnabled = true;
+            }
         }
         
-
         private void CloseThePopUp()
         {
-            PopupNavigation.Instance.PopAllAsync(true);
+            IsButtonEnabled = false;
+
+            try
+            {
+                PopupNavigation.Instance.PopAllAsync(true);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                IsButtonEnabled = true;
+            }
         }
 
         private string profilePicture;

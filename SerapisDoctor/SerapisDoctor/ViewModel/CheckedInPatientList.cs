@@ -6,7 +6,7 @@ namespace SerapisDoctor.ViewModel
 {
     public class CheckedInPatientList
     {
-        public CheckedInPatientList()
+        private CheckedInPatientList()
         {
 
         }

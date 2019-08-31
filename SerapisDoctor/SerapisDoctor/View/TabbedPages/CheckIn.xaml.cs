@@ -21,5 +21,13 @@ namespace SerapisDoctor.View.TabbedPages
             viewModel = new CheckInViewModel();
             BindingContext = viewModel;
 		}
-	}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            
+        }
+
+    }
 }

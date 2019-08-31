@@ -20,6 +20,15 @@ namespace SerapisDoctor.View
 			InitializeComponent ();
             viewModel = new BusketViewViewModel();
             BindingContext = viewModel;
+
+            viewModel.ButtonEvent += ButtonAnimtion;
 		}
-	}
+
+        private void ButtonAnimtion(object sender, EventArgs args)
+        {
+            ConfirmButtonGrid.Scale = 1.4;
+            Task.Delay(500);
+            ConfirmButtonGrid.ScaleTo(1, 250, Easing.SinOut);
+        }
+    }
 }

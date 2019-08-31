@@ -10,7 +10,7 @@ namespace SerapisDoctor.ViewModel
     public class BaseViewModel : INotifyPropertyChanged
     {
 
-        private bool isButtonEnabled;
+        private bool isButtonEnabled=true;
 
         public bool IsButtonEnabled
         {
@@ -22,7 +22,7 @@ namespace SerapisDoctor.ViewModel
             {
                 isButtonEnabled = value;
                 OnPropertyChanged("IsButtonEnabled");
-                IsButtonEnabled = value;
+                isButtonEnabled = value;
             }
         }
 
@@ -59,7 +59,41 @@ namespace SerapisDoctor.ViewModel
             }
         }
 
-       
+
+        private string title;
+
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+            set
+            {
+                title = value;
+                OnPropertyChanged("Title");
+                title = value;
+            }
+        }
+
+
+        private string  imageIcon;
+
+        public string ImageIcon
+        {
+            get
+            {
+                return imageIcon;
+            }
+            set
+            {
+                imageIcon = value;
+                OnPropertyChanged("ImageIcon");
+                imageIcon = value;
+            }
+        }
+
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 

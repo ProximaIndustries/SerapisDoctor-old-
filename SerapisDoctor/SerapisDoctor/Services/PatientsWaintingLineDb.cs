@@ -1,19 +1,16 @@
-﻿using SQLitePCL;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SQLite;
-using System.Text;
 using System.Threading.Tasks;
-using SerapisDoctor.Services.Interfaces;
-using Xamarin.Forms;
-using System.Collections.ObjectModel;
 using SerapisDoctor.Model.PatientModel;
+using SerapisDoctor.Model.AppointmentModel;
+using System.Collections.ObjectModel;
 
 namespace SerapisDoctor.Services
 {
     public static class PatientsWaintingLineDb
     {
         readonly static string database=App.Database;
+
         public static SQLiteConnection conn;
 
         //Get all patients in the Sqlite database
@@ -108,11 +105,11 @@ namespace SerapisDoctor.Services
             }
         }
 
-        public static void RefreshList()
+        public static void RefreshList(ObservableCollection<PatientMeta> _patientLs)
         {
             using(SQLiteConnection conn=new SQLiteConnection(database))
             {
-                
+                conn.UpdateAll(_patientLs);
             }
         }
     }
