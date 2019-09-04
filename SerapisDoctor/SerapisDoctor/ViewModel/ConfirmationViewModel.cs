@@ -73,9 +73,9 @@ namespace SerapisDoctor.ViewModel
                      Seq =0,
                      Text ="Medication summery",
                      BackgroundImage ="MedicationSummeryBackground.png",
-                     Content=new MedicationSummery()
+                     Content=new ContentView()
                      {
-                         
+                           Content=new MedicationSummery()
                      }
                  },
 
