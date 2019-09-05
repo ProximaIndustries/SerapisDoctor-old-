@@ -103,7 +103,95 @@
                 <AbsoluteLayout>
                     <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
                         <!--SOme patient information will go here-->
+                        <Grid VerticalOptions="Center" Margin="0,20,0,20">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="5*" />
+								<RowDefinition Height="5*"/>
+							</Grid.RowDefinitions>
 
+                            <!--#Region Icon of medical aid scheme Grid Row 0 Grid Column 0-->
+                            <Image Grid.Row="0"
+                                   Grid.Column="0"
+                                   Source="DiscoveryLogo.png" 
+                                   Aspect="AspectFit" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center" 
+                                   >
+
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                                iOS="150"
+                                                Android="150" 
+                                                />
+                                </Image.WidthRequest>
+                                <Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                            iOS="150"
+                                            Android="150" 
+                                            />
+                                </Image.HeightRequest>
+
+                            </Image>
+                            <!--#EndRegion-->
+
+                            <!--#Region Grid Row 0 Grid Column 1 The name of the medical aid-->
+                            <Label Grid.Row="0" Grid.Column="1" 
+                                   Text="Discovery" 
+                                   HorizontalOptions="Start" 
+                                   VerticalOptions="Center"
+                                   FontSize="30"
+                                   >
+                                
+                            </Label>
+                            <!--#EndRegion-->
+
+                            <!--#Region Icon of been here before Grid Row 0 Grid Column 0-->
+                            <Image Grid.Row="1"
+                                   Grid.Column="0"
+                                   Source="DependentIcon.png" 
+                                   Aspect="AspectFit" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="Center" 
+                                   x:Name="IconOne"
+                                   IsVisible="True"
+                                   >
+
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                                iOS="100"
+                                                Android="100" 
+                                                />
+                                </Image.WidthRequest>
+                                
+                                <Image.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                                            iOS="100"
+                                            Android="100" 
+                                            />
+                                </Image.HeightRequest>
+
+                            </Image>
+                            <!--#EndRegion-->
+
+                            <!--#Region Grid Row 0 Grid Column 1 Yes or No-->
+                            <Label Grid.Row="1" Grid.Column="1"
+                                   IsVisible="True"
+                                   x:Name="LabelOne"
+                                   Text="Is a dependent" 
+                                   HorizontalOptions="Start" 
+                                   VerticalOptions="Center"
+                                   FontSize="30"
+                                   >
+
+                            </Label>
+                            <!--#EndRegion-->
+
+                        </Grid>
+                        
                     </StackLayout>
 
                     <ContentView 
