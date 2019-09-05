@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.OS;
 using CarouselView.FormsPlugin.Android;
 using System.IO;
+using Lottie.Forms.Droid;
 
 namespace SerapisDoctor.Droid
 {
@@ -21,7 +22,7 @@ namespace SerapisDoctor.Droid
             CarouselViewRenderer.Init();
             base.OnCreate(bundle);
 
-            
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             //GPs code
