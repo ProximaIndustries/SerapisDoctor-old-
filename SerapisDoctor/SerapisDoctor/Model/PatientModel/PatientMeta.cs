@@ -22,6 +22,8 @@ namespace SerapisDoctor.Model.PatientModel
 
         public bool IsMedicalAidPatient { get; set; }
 
+        public bool IsDependent { get; set; }
+
         [Ignore]
         public Appointment Appointment { get; set; }
     }

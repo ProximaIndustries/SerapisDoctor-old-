@@ -12,18 +12,21 @@ namespace SerapisDoctor.Services
         {
             ProfilePicture = "Capture.png",
             FullName = "Khanyisani Buthelezi",
+            IsDependent = false
         };
 
         static PatientMeta Patient2 = new PatientMeta()
         {
            ProfilePicture="Bonga.jpeg",
-           FullName="Bonga Ngcobo"
+           FullName="Bonga Ngcobo",
+           IsDependent=true
         };
 
         static PatientMeta Patient3 = new PatientMeta()
         {
             ProfilePicture="userplaceholder.png",
-            FullName="Anderson Cooper"
+            FullName="Anderson Cooper",
+            IsDependent=true
         };
 
         static List<PatientMeta> BookedPatientsToday = new List<PatientMeta>();

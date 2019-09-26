@@ -47,6 +47,16 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
                 //Set the values for the popup
                 UserName = sender.FullName;
                 ProfilePicture = sender.ProfilePicture;
+
+                if (sender.IsDependent.Equals(true))
+                {
+                    Visibility = true;
+                }
+                else
+                {
+                    Visibility = false;
+                }
+
             });
         }
 
@@ -109,6 +119,23 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel
                 IsButtonEnabled = true;
             }
         }
+
+        private bool visibility=false;
+
+        public bool Visibility
+        {
+            get
+            {
+                return visibility;
+            }
+            set
+            {
+                visibility = value;
+                OnPropertyChanged("Visibility");
+                visibility = value;
+            }
+        }
+
 
         private string profilePicture;
         public string ProfilePicture

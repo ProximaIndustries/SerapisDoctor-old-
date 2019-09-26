@@ -20,10 +20,13 @@ namespace SerapisDoctor
 	{
         #region Microsoft Graph credentials
         public static string ClientId = "706e42e5-cd0d-457d-9f85-0c4862557b94";
-        public static string[] Scopes = {"Calendars.ReadWrite"};
+        public static string[] Scopes = { "Calendars.ReadWrite"};
         public static PublicClientApplication PCA = null;
         public static string RedirectAddress = $"msal//{ClientId}://auth";
         public static UIParent UiPartent;
+
+
+
         #endregion
 
         #region Properties (Local databases)
@@ -58,6 +61,21 @@ namespace SerapisDoctor
         public App(string filePath)
         {
             InitializeComponent();
+
+            try
+            {
+                //Get the doctors events from microsoft outlook
+                PCA = new PublicClientApplication(ClientId)
+                {
+                    RedirectUri = RedirectAddress
+                };
+
+                PCA
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
             Database = filePath;
 

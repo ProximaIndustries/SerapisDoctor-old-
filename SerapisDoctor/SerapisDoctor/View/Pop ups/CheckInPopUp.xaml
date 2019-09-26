@@ -157,7 +157,7 @@
                                    VerticalOptions="Center" 
                                    HorizontalOptions="Center" 
                                    x:Name="IconOne"
-                                   IsVisible="True"
+                                   IsVisible="{Binding Visibility}"
                                    >
 
                                 <Image.WidthRequest>
@@ -179,7 +179,7 @@
 
                             <!--#Region Grid Row 0 Grid Column 1 Yes or No-->
                             <Label Grid.Row="1" Grid.Column="1"
-                                   IsVisible="True"
+                                   IsVisible="{Binding Visibility}"
                                    x:Name="LabelOne"
                                    Text="Is a dependent" 
                                    HorizontalOptions="Start" 
