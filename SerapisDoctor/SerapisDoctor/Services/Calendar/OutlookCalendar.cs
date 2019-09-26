@@ -9,7 +9,7 @@ namespace SerapisDoctor.Services.Calendar
 {
     public class OutlookCalendar
     {
-        //Get token from the PCA in App.
+        //Get token from the Authentication helper in App.
 
         static string httpRequest = "https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location";
 
