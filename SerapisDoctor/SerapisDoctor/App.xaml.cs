@@ -24,9 +24,6 @@ namespace SerapisDoctor
         public static IPublicClientApplication PCA = null;
         public static string RedirectAddress = $"msal//{ClientId}://auth";
         public static UIParent UiPartent;
-
-
-
         #endregion
 
         #region Properties (Local databases)

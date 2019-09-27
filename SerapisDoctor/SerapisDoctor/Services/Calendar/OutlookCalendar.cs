@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Graph;
+using System.Net.Http.Headers;
 
 namespace SerapisDoctor.Services.Calendar
 {
     public class OutlookCalendar
     {
         //Get token from the Authentication helper in App.
+
+        static string token = "";
 
         static string httpRequest = "https://graph.microsoft.com/v1.0/me/events?$select=subject,body,bodyPreview,organizer,attendees,start,end,location";
 
@@ -32,6 +32,25 @@ namespace SerapisDoctor.Services.Calendar
             else
             {
                 //send error mesage
+            }
+        }
+
+        public static ICalendarEventsCollectionPage GetEventsOutLookDataDummy()
+        {
+            try
+            {
+                var client = new GraphServiceClient(new DelegateAuthenticationProvider(async request =>
+                {
+                    request.Headers.Authorization = new AuthenticationHeaderValue("bearer", token);
+                }));
+
+                var data = client.Me.Calendar.Events.Request().GetAsync().Result;
+
+                return data;
+            }
+            catch (System.Exception)
+            {
+                return null;
             }
         }
     }

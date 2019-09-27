@@ -1,8 +1,10 @@
 ﻿using SerapisDoctor.Model.Doctor;
+using SerapisDoctor.Services.Calendar;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
@@ -40,7 +42,6 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
            GenerateDoctorList();
         }
 
-
         private void InitalizeSchedule()
         {
             HoursOfOperation = new List<int>();
@@ -59,6 +60,8 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                 tempVar = tempVar.AddHours(1);
             }
 
+            PopulateDateEvents();
+
         }
         private void GenerateDoctorList()
         {
@@ -74,7 +77,27 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
         }
 
 
+        static List<object> events = new List<object>();
 
+        //Used for test purposes
+        public static void  PopulateDateEvents()
+        {
+            try
+            {
+                foreach (var item in OutlookCalendar.GetEventsOutLookDataDummy())
+                {
+                    events.Add(item);
+                }
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
     }
 }
