@@ -13,13 +13,9 @@
 
     <popUp:PopupPage.Resources>
         <ResourceDictionary>
-            
+            <Utils:EnumToStringConverter x:Key="enumToStringConverter"/>
         </ResourceDictionary>
     </popUp:PopupPage.Resources>
-
-    <popUp:PopupPage.BindingContext>
-        <Utils:EnumToStringConverter/>
-    </popUp:PopupPage.BindingContext>
     
     <popUp:PopupPage.Content>
         <ListView VerticalOptions="Start" 
@@ -46,7 +42,7 @@
 
                             <Grid Grid.Column="1">
                                 <!--Name of place of body to look at-->
-                                <Label Text="{Binding MedicationType, Converter={Utils:EnumToStringConverter}}" 
+                                <Label Text="{Binding MedicationType, Converter={StaticResource enumToStringConverter}}" 
                                        TextColor="#090909" 
                                        FontSize="Large"
                                        />

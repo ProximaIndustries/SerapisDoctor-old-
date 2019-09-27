@@ -15,7 +15,7 @@ namespace SerapisDoctor.Utils
 
             var partTwo=_string.Substring(1);
 
-            return string.Format($"{0}{1}", partOne, partTwo);
+            return string.Format("{0}{1}", partOne, partTwo);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

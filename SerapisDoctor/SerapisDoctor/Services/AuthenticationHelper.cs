@@ -15,6 +15,9 @@ namespace SerapisDoctor.Services
 
         private static GraphServiceClient graphClient = null;
 
+        //google
+
+
         public  static GraphServiceClient GetAuthenticationClient()
         {
             if (graphClient == null)
