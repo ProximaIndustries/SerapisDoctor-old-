@@ -1,11 +1,13 @@
-﻿using System.Net.Http;
+﻿using Microsoft.Graph;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Graph;
-using System.Net.Http.Headers;
 
 namespace SerapisDoctor.Services.Calendar
 {
-    public class OutlookCalendar
+    class CalendarEventsData
     {
         //Get token from the Authentication helper in App.
 

@@ -84,7 +84,7 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
         {
             try
             {
-                foreach (var item in OutlookCalendar.GetEventsOutLookDataDummy())
+                foreach (var item in CalendarEventsData.GetEventsOutLookDataDummy())
                 {
                     events.Add(item);
                 }
