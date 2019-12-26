@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace SerapisDoctor.ViewModel
 {
-    public class SideMenuViewModel : BaseViewModel, IInitailGenerator
+    public class SideMenuViewModel : BaseViewModel
     {
         public SideMenuViewModel()
         {
@@ -32,17 +32,35 @@ namespace SerapisDoctor.ViewModel
         #endregion
 
         #region Properties
-        private string userName;
-        public string UserName
+        private string initialsString;
+
+        public string InitialsString
         {
             get
             {
-                return userName;
+                return initialsString = char.ToString(InitialGenerator.GenerateFirstNameInitial(myName));
             }
             set
             {
-                userName = value;
-                OnPropertyChanged("UserName");
+                initialsString = value;
+            }
+        }
+
+        string myName = "khanyisani";
+
+        private string displayName;
+        public string DisplayeName
+        {
+            get
+            {
+                displayName = " " + InitialsString + "." +" "+ Surname;
+                return displayName;
+            }
+            set
+            {
+                displayName = value;
+                OnPropertyChanged("DisplayName");
+                displayName = value;
             }
         }
 
@@ -60,7 +78,7 @@ namespace SerapisDoctor.ViewModel
             }
         }
 
-        private string surname;
+        private string surname="Buthelezi";
         public string Surname
         {
             get
@@ -71,23 +89,16 @@ namespace SerapisDoctor.ViewModel
             {
                 surname = value;
                 OnPropertyChanged("Surname");
+                surname = value;
             }
         }
+
+        
 
 
         #endregion
 
         #region Methods
-        public char FirstNameInitial(string firstName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public char MiddleNameInital(string middleName)
-        {
-            throw new NotImplementedException();
-        }
-
 
         private async Task GoToSettingsPageAsync()
         {

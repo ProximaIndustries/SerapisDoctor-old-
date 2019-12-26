@@ -56,9 +56,9 @@
                                     <RowDefinition Height="5*"/>
                                 </Grid.RowDefinitions>
 
-                                <Label HorizontalOptions="Center" 
+                                <Label HorizontalOptions="Start" 
                                                Grid.Row="0" 
-                                               Text="{Binding Surname, StringFormat='Dr. {0}'}" 
+                                               Text="{Binding DisplayeName, StringFormat='Dr. {0}'}" 
                                                FontSize="24" 
                                                TextColor="White" 
                                                FontAttributes="Bold" 
