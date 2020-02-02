@@ -34,10 +34,11 @@ namespace SerapisDoctor.Services
             //Make the default practice : "MediCross:Malvern"
             //id: 5bc9bd741c9d4400001badf0
             string dummy = "5bc9bd741c9d4400001badf0";
+            string dummyTwo = "5bc9bd861c9d4400001badf1";
             try
             {
 
-                BookedPatients_Api_Path = string.Format(BookedPatients_Api_Path, dummy);
+                BookedPatients_Api_Path = string.Format(BookedPatients_Api_Path, dummyTwo);
 
                 using (HttpClient client = new HttpClient())
                 {

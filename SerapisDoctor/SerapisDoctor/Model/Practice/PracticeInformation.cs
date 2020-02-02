@@ -1,7 +1,13 @@
-﻿namespace SerapisDoctor.Model.Practice
+﻿using MongoDB.Bson;
+namespace SerapisDoctor.Model.Practice
 {
     public class PracticeInformation
     {
+
+        public ObjectId Id { get; set; }
+
+        public string PracticePicture { get; set; }
+
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
