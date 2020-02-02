@@ -146,10 +146,11 @@
             </Grid>
 
             <Grid Grid.Row="1" VerticalOptions="Fill" x:Name="displayInfoGridTwo">
-                <ListView ItemsSource="{Binding ListOfConditions}" 
+            <ListView ItemsSource="{Binding ListOfConditions}" 
                           SeparatorVisibility="Default" 
                           SeparatorColor="Black" 
                           CachingStrategy="RecycleElement"
+                          HasUnevenRows="True"
                           >
 
                 <ListView.ItemTemplate>

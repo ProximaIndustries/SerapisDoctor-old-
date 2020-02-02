@@ -8,6 +8,10 @@
             >
 
 
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Test" Command="{Binding testCommand}"/>
+    </TabbedPage.ToolbarItems>
+    
     <TabbedPage.Children>
         <pages:CheckIn Icon="checkinpatient.png"/>
         <pages:CheckOut Icon="checkouticon.png" />

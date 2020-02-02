@@ -1,5 +1,6 @@
 ﻿using Rg.Plugins.Popup.Services;
 using SerapisDoctor.Model.PatientModel;
+using SerapisDoctor.Model.PopUpModel;
 using SerapisDoctor.Utils;
 using SerapisDoctor.View;
 using SerapisDoctor.View.Pop_ups;
@@ -36,6 +37,8 @@ namespace SerapisDoctor.ViewModel
         private TilePopMedicalDetails tileMedicalDetailPopUp;
 
         private UpperTilePopUpMedicalDetails upperTileMedicalDetails;
+
+        private PatientMedDetailPopUPModel popInfomation;
 
         public PatientDetailsViewModel()
         {
@@ -165,37 +168,77 @@ namespace SerapisDoctor.ViewModel
 
         private void GenerateMedicalFilesNotePopUp()
         {
-            const string SomeArg = "X-Ray";
+            const string medicalFilesCode = "MedicalFilesPopCode";
+
+            popInfomation = new PatientMedDetailPopUPModel()
+            {
+                TileTitle = medicalFilesCode,
+                Conditions = new List<object>()
+                {
+                    new List<object>(){"Obj one", "inner obj two" },
+                    new List<object>(){"Another list of objects", "using two each"}
+                }
+            };
 
             //Send somthing via the messeging center
-            MessagingCenter.Send<PatientDetailsViewModel, string>(this, MessagingKeys.MedicalDetails, SomeArg);
+            MessagingCenter.Send<PatientDetailsViewModel, PatientMedDetailPopUPModel>(this, MessagingKeys.MedicalDetails, popInfomation);
 
             PopupNavigation.Instance.PushAsync(tileMedicalDetailPopUp);
         }
 
         private void GenerateMedicationPopUp()
         {
-            const string SomeArg2 = "Oxycon";
+            const string medicationCode = "MedicationPopCode";
 
-            MessagingCenter.Send<PatientDetailsViewModel, string>(this, MessagingKeys.MedicalDetails, SomeArg2);
+            List<string> medicationsTaken = new List<string>() { "Oxycontin" };
+
+            popInfomation = new PatientMedDetailPopUPModel()
+            {
+                 TileTitle=medicationCode,
+                 Conditions=new List<object>() 
+                 { 
+                    "Oycontin"
+                 }
+            };
+
+            MessagingCenter.Send<PatientDetailsViewModel, PatientMedDetailPopUPModel>(this, MessagingKeys.MedicalDetails, popInfomation);
 
             PopupNavigation.Instance.PushAsync(tileMedicalDetailPopUp);
         }
 
         private void GenerateAllergiesPopUp()
         {
-            const string SomeArg3 = "SeaFood";
+            const string allergiesCode = "AllergiesPopCode";
 
-            MessagingCenter.Send<PatientDetailsViewModel, string>(this, MessagingKeys.MedicalDetails, SomeArg3);
+
+            List<object> SomeArg3 = new List<object>() { "SeaFood", "Dust and Pollen" };
+
+            popInfomation = new PatientMedDetailPopUPModel()
+            {
+                TileTitle = allergiesCode,
+                Conditions = SomeArg3
+            };
+
+            MessagingCenter.Send<PatientDetailsViewModel, PatientMedDetailPopUPModel>(this, MessagingKeys.MedicalDetails, popInfomation);
 
             PopupNavigation.Instance.PushAsync(tileMedicalDetailPopUp);
         }
 
         private void GenerateChronicDiseasePopUp()
         {
-            const string SomeArg4 = "Diabetestype2";
+            const string SomeArg4 = "ChronicPopCode";
 
-            MessagingCenter.Send<PatientDetailsViewModel, string>(this, MessagingKeys.MedicalDetails, SomeArg4);
+            popInfomation = new PatientMedDetailPopUPModel()
+            {
+                 TileTitle=SomeArg4,
+                 Conditions=new List<object>() 
+                 {
+                    "Diabetes type 2",
+                    "Collen"
+                 }
+            };
+
+            MessagingCenter.Send<PatientDetailsViewModel, PatientMedDetailPopUPModel>(this, MessagingKeys.MedicalDetails, popInfomation);
 
             PopupNavigation.Instance.PushAsync(tileMedicalDetailPopUp);
         }
@@ -315,5 +358,6 @@ namespace SerapisDoctor.ViewModel
 
         }
         #endregion
+
     }
 }

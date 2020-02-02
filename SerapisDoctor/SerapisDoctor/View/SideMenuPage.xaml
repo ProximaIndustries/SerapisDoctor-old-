@@ -49,20 +49,20 @@
                             </control:CircleImage.HeightRequest>
                         </control:CircleImage>
 
-                        <Grid Grid.Row="2" VerticalOptions="Start">
+                        <Grid Grid.Row="2" VerticalOptions="Start" HorizontalOptions="Center">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="5*"/>
                                     <RowDefinition Height="5*"/>
                                 </Grid.RowDefinitions>
 
-                                <Label HorizontalOptions="Start" 
-                                               Grid.Row="0" 
+                                <Label         Grid.Row="0" 
                                                Text="{Binding DisplayeName, StringFormat='Dr. {0}'}" 
                                                FontSize="24" 
                                                TextColor="White" 
                                                FontAttributes="Bold" 
                                                HorizontalTextAlignment="Center"
+                                               LineBreakMode="TailTruncation"
                                                />
 
                                 <Label 
@@ -81,10 +81,10 @@
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="1">
-                    <TableView  Intent="Menu" VerticalOptions="End" >
+                <Grid Grid.Row="1" VerticalOptions="Fill" HorizontalOptions="Fill">
+                    <TableView  Intent="Menu" VerticalOptions="Fill">
                         <TableRoot>
-                            <TableSection >
+                            <TableSection>
                                 <ImageCell Text="Home page" TextColor="White" ImageSource="home.png" Command="{Binding HomeCommand}"/>
                                 <ImageCell Text="Settings" ImageSource="settings.png" TextColor="White" Command="{Binding SettingsCommand}"/>
                                 <ImageCell Text="Activity stats" ImageSource="stats.png" TextColor="White" Command="{Binding ActivityCommand}"/>

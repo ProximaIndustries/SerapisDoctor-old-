@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
+using SerapisDoctor.Model.PopUpModel;
 
 namespace SerapisDoctor.ViewModel.PopUpViewModel.TilePopUpsViewModel
 {
@@ -23,6 +24,7 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel.TilePopUpsViewModel
         }
 
         public List<object> ListOfConditions { get; set; }
+
 
         #region Properties
         private double transY;
@@ -143,10 +145,11 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel.TilePopUpsViewModel
 
             AddToPatientInfo = new Command(AddInformationToPatient);
 
-            MessagingCenter.Subscribe<PatientDetailsViewModel, string>(this, MessagingKeys.MedicalDetails, (sender, arg) => 
+            MessagingCenter.Subscribe<PatientDetailsViewModel, PatientMedDetailPopUPModel>(this, MessagingKeys.MedicalDetails, (sender, arg) => 
             {
-                InitalizeTile(arg, arg);
+                InitalizeTile(arg.TileTitle, arg.Conditions);
             });
+
         }
 
         private void AddInformationToPatient()
@@ -181,30 +184,30 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel.TilePopUpsViewModel
             PopupNavigation.Instance.PopAllAsync(true);
         }
 
-        private void InitalizeTile(string _patientObj, string _list)
+        private void InitalizeTile(string _patientObj, List<object> _list)
         {
             switch (_patientObj)
             {
-                case "X-Ray":
+                case "MedicalFilesPopCode":
                     ImageIcon = MedicalFilesNote;
                     Title = TitleMedicalFileNote;
                     ListInitalizer(_list);
                     break;
 
-                case "Oxycon":
+                case "MedicationPopCode":
                     ImageIcon = Medications;
                     Title = TitleMedication;
                     ListInitalizer(_list);
                     break;
 
-                case "SeaFood":
+                case "AllergiesPopCode":
                     ImageIcon = AllergiesTile;
                     Title = TitleAllergies;
                     ListInitalizer(_list);
                     break;
 
-                case "Diabetestype2":
-                    ImageIcon = ChronicDiseases;
+                case "ChronicPopCode":
+                    ImageIcon = ChronicDiseases; 
                     Title = TitleChronic;
                     ListInitalizer(_list);
                     break;
@@ -216,12 +219,18 @@ namespace SerapisDoctor.ViewModel.PopUpViewModel.TilePopUpsViewModel
         }
 
         //Void for now, must copy each item to the local list
-        private void ListInitalizer(string useList)
+        private List<object> ListInitalizer(List<object> useList)
         {
-            ListOfConditions = new List<object>()
+            ListOfConditions = new List<object>() 
             {
-                
+                "Item 1", 
+                "Item 2", 
+                "Item 3" 
             };
+
+            //ListOfConditions = useList;
+
+            return ListOfConditions;
         }
 
         //Use to clear anything in memory to increase performace, also unsubsrcibe from subcription in MessagingCenter

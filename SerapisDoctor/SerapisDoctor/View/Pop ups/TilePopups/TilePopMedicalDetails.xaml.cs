@@ -58,5 +58,12 @@ namespace SerapisDoctor.View.Pop_ups.TilePopups
             AddButtonRow.FadeTo(1, 3200, Easing.SinOut);
             CloseButtonRow.FadeTo(1, 3400, Easing.SinOut);
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+
+        }
     }
 }
