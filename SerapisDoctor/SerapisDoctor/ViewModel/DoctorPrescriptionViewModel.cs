@@ -168,8 +168,6 @@ namespace SerapisDoctor.ViewModel
 
         private void AddMedication()
         {
-            //This is a temp variable
-            Random random=new Random();
 
             prescription = new Model.Doctor.DoctorPrescription()
             {
@@ -178,9 +176,7 @@ namespace SerapisDoctor.ViewModel
                 PrescriptionMedication = PrescriptionMedication,
                 AddedPrescriptionNotes = AddedPrescriptionNotes,
                 TypeOfMedication = MedicationType.pills,
-                MedCashPrice = 30.45,
-                Id = random.Next(),
-                
+                MedCashPrice = 30.45
             };
 
             try
