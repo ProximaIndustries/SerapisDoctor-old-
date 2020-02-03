@@ -11,7 +11,7 @@ namespace SerapisDoctor.Model.Doctor
         public string Degree { get; set; }
 
         
-        public long Graduated { get; set; }
+        public DateTime Graduated { get; set; }
 
         
         public string University { get; set; }

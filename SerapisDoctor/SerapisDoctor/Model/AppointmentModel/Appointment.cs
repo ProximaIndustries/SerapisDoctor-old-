@@ -15,6 +15,6 @@ namespace SerapisDoctor.Model.AppointmentModel
         public bool HasSeenGP { get; set; }
         public TimeSpan Duration { get; set; }
 
-        public bool HasBeenToThisPractice { get; set; } = false;
+        public bool HasBeenToThisPractice { get; set; }
     }
 }
