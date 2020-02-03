@@ -9,7 +9,6 @@ namespace SerapisDoctor.Model.Doctor
 {
     public class Doctor
     {
-        public ObjectId UserId { get; set; }
 
         public DoctorUser User { get; set; }
 
@@ -25,7 +24,7 @@ namespace SerapisDoctor.Model.Doctor
 
         public string PhotoUrl { get; set; }
 
-        public string Qualification { get; set; }
+        public List<Qualification> Qualifications { get; set; }
 
         public string VarsityAttended { get; set; }
 
@@ -38,6 +37,8 @@ namespace SerapisDoctor.Model.Doctor
         public DoctorPrescription prescription { get; set; }
 
         public List<PracticeInformation> PracticesOwnedOrWorksAt { get; set; }
+
+        public List<AppointmentModel.Appointment> ListOfAppointments { get; set; }
 
     }
 }

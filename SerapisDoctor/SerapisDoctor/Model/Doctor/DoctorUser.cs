@@ -8,7 +8,7 @@ namespace SerapisDoctor.Model.Doctor
     public class DoctorUser
     {
         //login and sign up properties
-
+        public ObjectId UserId { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
         public string GivenCode { get; set; }

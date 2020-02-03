@@ -1,10 +1,11 @@
-﻿using SerapisDoctor.Model.Enum;
+﻿using MongoDB.Bson;
+using SerapisDoctor.Model.Enum;
 
 namespace SerapisDoctor.Model.Doctor
 {
     public class DoctorPrescription
     {
-        public int Id { get; set; }
+        public ObjectId Id { get; set; }
         public string PrescriptionDosage { get; set; }
         public string PrescriptionInstructions { get; set; }
         public string PrescriptionMedication { get; set; }
