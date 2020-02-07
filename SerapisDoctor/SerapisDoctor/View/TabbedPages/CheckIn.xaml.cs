@@ -25,8 +25,6 @@ namespace SerapisDoctor.View.TabbedPages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            
         }
 
     }

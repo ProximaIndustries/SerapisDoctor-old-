@@ -67,12 +67,12 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
         {
             Doctors = new ObservableCollection<Doctor>
                   {
-                    new Doctor{ LastName = "Zulu ", VarsityAttended="MBchB(Ukzn)",PhotoUrl="userplaceholder.png" },
-                    new Doctor{ LastName = "Duma ", VarsityAttended="MBchB(UWC),FC Orth(SA)",PhotoUrl="userplaceholder.png"},
-                    new Doctor{ LastName = "Moody ", VarsityAttended="MBchB(Wits)",PhotoUrl="userplaceholder.png"},
-                    new Doctor{ LastName = "McGhee ", VarsityAttended="MBchB(Stellenbosch)",PhotoUrl="userplaceholder.png"},
-                    new Doctor{ LastName = "Naidoo", VarsityAttended="MBchB(Ukzn)",PhotoUrl="userplaceholder.png"},
-                    new Doctor{ LastName = "Ngwenya ", VarsityAttended="MBchB(UFS)",PhotoUrl="userplaceholder.png"},
+                    new Doctor{ LastName = "Zulu ",ProfilePicture="userplaceholder.png" },
+                    new Doctor{ LastName = "Duma ",ProfilePicture="userplaceholder.png"},
+                    new Doctor{ LastName = "Moody ",ProfilePicture="userplaceholder.png"},
+                    new Doctor{ LastName = "McGhee ", ProfilePicture="userplaceholder.png"},
+                    new Doctor{ LastName = "Naidoo", ProfilePicture="userplaceholder.png"},
+                    new Doctor{ LastName = "Ngwenya ",ProfilePicture="userplaceholder.png"},
             };
         }
 

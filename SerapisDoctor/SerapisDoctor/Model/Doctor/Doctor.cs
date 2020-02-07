@@ -9,6 +9,7 @@ namespace SerapisDoctor.Model.Doctor
 {
     public class Doctor
     {
+        public string PrivateId { get; set; }
 
         public DoctorUser User { get; set; }
 
@@ -22,19 +23,15 @@ namespace SerapisDoctor.Model.Doctor
 
         public int YearsOfExp { get; set; }
 
-        public string PhotoUrl { get; set; }
+        public string ProfilePicture { get; set; }
 
         public List<Qualification> Qualifications { get; set; }
 
-        public string VarsityAttended { get; set; }
-
         public Specilization Specialization { get; set; }
 
-        public int NumOfPrescriptions { get; set; }
+        public DoctorPrescription Prescription { get; set; }
 
-        public int NumOfPatientsSeen { get; set; }
-
-        public DoctorPrescription prescription { get; set; }
+        public DoctorsNote Note { get; set; }
 
         public List<PracticeInformation> PracticesOwnedOrWorksAt { get; set; }
 
