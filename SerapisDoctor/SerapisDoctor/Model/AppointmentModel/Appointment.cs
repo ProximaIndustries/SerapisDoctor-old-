@@ -7,8 +7,8 @@ namespace SerapisDoctor.Model.AppointmentModel
 {
     public class Appointment
     {
-        //Using int for now, need to use mongoId
-        public int BookingId { get; set; }
+        
+        public ObjectId BookingId { get; set; }
         public int LineNumber { get; set; }
         public string DateBooked { get; set; }
         public string TimeBooked { get; set; }
