@@ -20,7 +20,13 @@ namespace SerapisDoctor.Model.Practice
 
         public double DistanceFromPractice { get; set; }
 
-        public List<Doctor.DoctorMeta> DoctorsAtPractice{get; set;}
+        public string OperatingTime { get; set; }
+
+        public int NumOfPatientsInPractice { get; set; }
+
+        public PracticeContact ContactPractice { get; set; }
+
+        public List<ObjectId> DoctorsAtPractice{get; set;}
     }
 
 }
