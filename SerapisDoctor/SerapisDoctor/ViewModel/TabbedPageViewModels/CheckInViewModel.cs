@@ -11,6 +11,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using SerapisDoctor.ViewModel.PopUpViewModel;
+using Microsoft.Graph;
+using MongoDB.Bson;
 
 namespace SerapisDoctor.ViewModel.TabbedPageViewModels
 {
@@ -157,13 +159,14 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                 {
                     FullName = patient.FullName,
                     ProfilePicture = patient.ProfilePicture,
-                    Id = " ",
+                    Id = "",
                     Appointment = new Model.AppointmentModel.Appointment
                     {
-                        DateBooked = DateTime.Today.ToShortDateString(),
+                        
+                        DateBooked = DateTime.Today,
                         HasSeenGP = true,
-                        TimeBooked = DateTime.Today.ToShortTimeString(),
-                        BookingId = 0,
+                        TimeBooked = new DateTime(2000),
+                        BookingId = ObjectId.Parse(""),
                         Duration = TimeSpan.FromSeconds(1),
                     }
                 };
