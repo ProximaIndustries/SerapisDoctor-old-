@@ -12,20 +12,30 @@ namespace SerapisDoctor.Services
         {
             ProfilePicture = "Capture.png",
             FullName = "Khanyisani Buthelezi",
-            IsDependent = false
+            IsDependent = false,
+            IsMedicalAidPatient=false
         };
 
         static PatientMeta Patient2 = new PatientMeta()
         {
            ProfilePicture="Bonga.jpeg",
            FullName="Bonga Ngcobo",
-           IsDependent=true
+           IsDependent=false,
+           IsMedicalAidPatient=false
         };
 
         static PatientMeta Patient3 = new PatientMeta()
         {
-            ProfilePicture = "userplaceholder.png",
+            ProfilePicture = "randomLady.png",
             FullName = "Alex Smith",
+            IsDependent = true,
+            IsMedicalAidPatient = true
+        };
+
+        static PatientMeta PatientRefresher = new PatientMeta()
+        {
+            ProfilePicture = "userplaceholder.png",
+            FullName = "Robin Van Zyl",
             IsDependent = true,
             IsMedicalAidPatient = false
         };
@@ -42,6 +52,7 @@ namespace SerapisDoctor.Services
 
         public static List<PatientMeta> GetBookedPatients()
         {
+            BookedPatientsToday.Add(Patient3);
             BookedPatientsToday.Add(Patient);
             BookedPatientsToday.Add(Patient2);
             BookedPatientsToday.Add(Patient4);
@@ -51,7 +62,7 @@ namespace SerapisDoctor.Services
 
         public static PatientMeta GetRefereshedBookedPatients()
         {
-            return Patient3;
+            return PatientRefresher;
         }
     }
 }

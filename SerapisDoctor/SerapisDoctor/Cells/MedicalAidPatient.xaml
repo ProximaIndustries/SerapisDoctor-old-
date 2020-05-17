@@ -10,7 +10,7 @@
                 <ResourceDictionary>
                     <Style TargetType="Label" x:Key="PatientName" >
                         <Setter Property="TextColor" Value="Black"/>
-                        <Setter Property="FontSize" Value="Large"/>
+                        <Setter Property="FontSize" Value="25"/>
                         <Setter Property="LineBreakMode" Value="TailTruncation"/>
                     </Style>
 
