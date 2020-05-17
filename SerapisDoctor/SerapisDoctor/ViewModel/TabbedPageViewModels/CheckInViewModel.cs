@@ -163,11 +163,11 @@ namespace SerapisDoctor.ViewModel.TabbedPageViewModels
                     Appointment = new Model.AppointmentModel.Appointment
                     {
                         
-                        DateBooked = DateTime.Today,
-                        HasSeenGP = true,
-                        TimeBooked = new DateTime(2000),
-                        BookingId = ObjectId.Parse(""),
-                        Duration = TimeSpan.FromSeconds(1),
+                        //DateBooked = DateTime.Today,
+                        //HasSeenGP = true,
+                        //TimeBooked = new DateTime(2000),
+                        //BookingId = ObjectId.Parse(""),
+                        //Duration = TimeSpan.FromSeconds(1),
                     }
                 };
 

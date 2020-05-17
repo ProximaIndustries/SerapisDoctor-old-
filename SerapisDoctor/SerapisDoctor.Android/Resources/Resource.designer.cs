@@ -9235,6 +9235,9 @@ namespace SerapisDoctor.Droid
 			// aapt resource value: 0x7F070177
 			public const int userplaceholder = 2131165559;
 			
+			// aapt resource value: 0x7F070178
+			public const int wthenjwayo = 2131165560;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

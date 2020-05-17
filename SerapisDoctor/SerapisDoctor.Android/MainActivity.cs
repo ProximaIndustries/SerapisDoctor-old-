@@ -25,6 +25,9 @@ namespace SerapisDoctor.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            //Set the status bar color.
+            Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#607d8b"));
+
             //GPs code
             Xamarin.Essentials.Platform.Init(this, bundle);
 

@@ -24,9 +24,18 @@ namespace SerapisDoctor.Services
 
         static PatientMeta Patient3 = new PatientMeta()
         {
-            ProfilePicture="userplaceholder.png",
-            FullName="Anderson Cooper",
-            IsDependent=true
+            ProfilePicture = "userplaceholder.png",
+            FullName = "Alex Smith",
+            IsDependent = true,
+            IsMedicalAidPatient = false
+        };
+
+        static PatientMeta Patient4 = new PatientMeta()
+        {
+            ProfilePicture= "wthenjwayo.jpg",
+            FullName="Wandile Thenjwayo",
+            IsDependent=false,
+            IsMedicalAidPatient=true
         };
 
         static List<PatientMeta> BookedPatientsToday = new List<PatientMeta>();
@@ -35,6 +44,7 @@ namespace SerapisDoctor.Services
         {
             BookedPatientsToday.Add(Patient);
             BookedPatientsToday.Add(Patient2);
+            BookedPatientsToday.Add(Patient4);
 
             return BookedPatientsToday;
         }

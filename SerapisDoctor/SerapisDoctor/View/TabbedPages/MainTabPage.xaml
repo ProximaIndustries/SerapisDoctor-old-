@@ -9,7 +9,7 @@
 
 
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="Test" Command="{Binding testCommand}"/>
+        
     </TabbedPage.ToolbarItems>
     
     <TabbedPage.Children>
